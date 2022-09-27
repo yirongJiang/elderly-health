@@ -1,0 +1,38 @@
+package com.hx.collector.survey.service;
+
+import com.hx.collector.survey.dao.CognitionMapper;
+import com.hx.collector.survey.model.Result;
+import com.hx.collector.survey.model.cognition.req.AddCognitionReq;
+import com.hx.collector.survey.model.db.CognitionDbBean;
+import com.hx.collector.utils.UuidUtil;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.Date;
+
+@Service
+public class CognitionService {
+    @Resource
+    private CognitionMapper cognitionMapper;
+
+    public Result create(AddCognitionReq addCognitionReq) {
+        Result res = new Result("create cognition error!");
+        CognitionDbBean bean = new CognitionDbBean();
+        BeanUtils.copyProperties(addCognitionReq, bean);
+        bean.setCreateDate(new Date()).setUpdateDate(new Date()).setId(UuidUtil.getId()).setDelFlge("0");
+        int infoNum = this.createInfo(bean);
+        if (infoNum == 1) {
+            res.setCode(200);
+            res.setBody("create cognition success!");
+            return res;
+        }
+        return res;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public int createInfo(CognitionDbBean bean) {
+        return cognitionMapper.insert(bean);
+    }
+}
