@@ -2,9 +2,9 @@
   datasource:
     name: datasource
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://192.168.10.104:3306/node1?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://47.109.58.67:3306/evaluation?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: root
-    password: wjj121235847
+    password: collector
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       initialSize: 2  #初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
