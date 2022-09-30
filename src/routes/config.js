@@ -24,8 +24,12 @@ import Postsuccessfully from '../Components/Post-successfully'
 import Search from '../Components/Search'
 import Consult from '../Components/forms/Consult'
 import Evaluationdetail from '../Evaluation-detail'
-import Initailpage from '../Components/Initail-page'
+import Initailpage from '../Components/Login-initail'
 import Basicform from '../Components/forms/basic-form'
+import Scalenav from '../Components/Scale-nav'
+import Cognizefirst from '../Components/forms/Cognize/first'
+import Cognizesecond from '../Components/forms/Cognize/second'
+import Cognizethird from '../Components/forms/Cognize/third'
 
 
 export const getRoutesConfig = (isLogin) => [
@@ -68,7 +72,7 @@ export const getRoutesConfig = (isLogin) => [
         element: <Basicinfo />
       },
       {
-        key:'evaluate',
+        key: 'evaluate',
         path: 'evaluate/:isPost',
         element: <Evaluation />
       },
@@ -91,8 +95,11 @@ export const getRoutesConfig = (isLogin) => [
     element: isLogin ? <Evaluationdetail /> : <Navigate to='initail' />,
     children: [
       {
-        path:'',
-        element:<Basicform/>
+        path: '',
+        element: <Basicform />
+      }, {
+        path: 'scalenav',
+        element: <Scalenav />
       },
       {
         path: 'bi',
@@ -104,7 +111,21 @@ export const getRoutesConfig = (isLogin) => [
       },
       {
         path: 'cognize',
-        element: <Cognize />
+        element: <Cognize />,
+        children: [
+          {
+            path: '',
+            element: <Cognizefirst />
+          },
+          {
+            path: 'second',
+            element: <Cognizesecond />
+          },
+          {
+            path: 'third',
+            element: <Cognizethird />
+          },
+        ]
       },
       {
         path: 'iadl',
@@ -141,4 +162,75 @@ export const getRoutesConfig = (isLogin) => [
 
     ]
   }
+]
+export const requiredList = [
+  {
+    title: '自制认知筛查表',
+    finishedNumber: 0,
+    defaultNumber: 10,
+    navUrl: '/evaluationdetail/cognize'
+  },
+  {
+    title: '简易精神状态检查量表MMSE',
+    finishedNumber: 0,
+    defaultNumber: 10,
+    navUrl: '/evaluationdetail/'
+  },
+  {
+    title: 'BI评估表',
+    finishedNumber: 0,
+    defaultNumber: 10,
+    navUrl: '/evaluationdetail/'
+  },
+  {
+    title: '洛顿IADL表',
+    finishedNumber: 0,
+    defaultNumber: 10,
+    navUrl: '/evaluationdetail/'
+  },
+  {
+    title: '心理问卷',
+    finishedNumber: 0,
+    defaultNumber: 2,
+    navUrl: '/evaluationdetail/'
+  },
+  {
+    title: '吞咽二便功能',
+    finishedNumber: 0,
+    defaultNumber: 10,
+    navUrl: '/evaluationdetail/'
+  },
+  {
+    title: '每日步行数',
+    finishedNumber: 0,
+    defaultNumber: 1,
+    navUrl: '/evaluationdetail/'
+  },
+]
+
+export const optionalList = [
+  {
+    title: '听力筛查表',
+    finishedNumber: 0,
+    defaultNumber: 10,
+    navUrl: '/evaluationdetail/'
+  },
+  {
+    title: '视觉筛查表',
+    finishedNumber: 0,
+    defaultNumber: 15,
+    navUrl: '/evaluationdetail/'
+  },
+  {
+    title: '疼痛报告表',
+    finishedNumber: 0,
+    defaultNumber: 1,
+    navUrl: '/evaluationdetail/'
+  },
+  {
+    title: '冠心病/心率问题',
+    finishedNumber: 0,
+    defaultNumber: 1,
+    navUrl: '/evaluationdetail/'
+  },
 ]
