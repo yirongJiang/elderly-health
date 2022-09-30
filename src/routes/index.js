@@ -7,36 +7,55 @@ import Doctorlogin from '../Components/About-login/Doctor-login'
 import Register from '../Components/Register'
 import Reset from '../Components/Reset'
 import Bi from '../Components/BI'
-import Cognize from '../Components/Cognize'
-import Eyesight from '../Components/Eyesight'
-import Hearing from '../Components/Hearing'
-import Heart from '../Components/Hearing'
-import Ladl from '../Components/Ladl'
-import Mmse from '../Components/MMSE'
-import Pain from '../Components/Pain/inde';
-import Psychology from '../Components/Psychology'
+import Cognize from '../Components/forms/Cognize'
+import Eyesight from '../Components/forms/Eyesight'
+import Hearing from '../Components/forms/Hearing'
+import Heart from '../Components/forms/Heart-rate'
+import Ladl from '../Components/forms/Ladl'
+import Mmse from '../Components/forms/MMSE'
+import Painful from '../Components/forms/Pains'
+import Psychology from '../Components/forms/Psychology'
 import Steps from '../Components/Step-number'
 import Swallow from '../Components/Swallow'
 import { Navigate } from 'react-router-dom'
-import Basicinfo from '../Components/Basic-information'
+import Basicinfo from '../Components/hombasicinformation'
 import Evaluation from '../Evaluate-basci-info'
 import Postsuccessfully from '../Components/Post-successfully'
 import Search from '../Components/Search'
-import Consult from '../Components/Consult'
+import Consult from '../Components/forms/Consult'
 import Evaluationdetail from '../Evaluation-detail'
+import Initailpage from '../Components/Initail-page'
+import Basicform from '../Components/forms/basic-form'
+
 
 export const getRoutesConfig = (isLogin) => [
   {
-    path: '/',
-    element: isLogin ? <Navigate to='home' /> : <Initial />,
+    path: '*',
+    element: isLogin ? <Navigate to='initail' /> : <Initial />,
   },
   {
     path: '/initail',
     element: <Initial />,
     children: [
       {
+        path: '',
+        element: <Initailpage />
+      },
+      {
         path: 'doctorlogin',
         element: <Doctorlogin />
+      },
+      {
+        path: 'phonelogin',
+        element: <Phonelogin />
+      },
+      {
+        path: 'register',
+        element: <Register />
+      },
+      {
+        path: 'reset',
+        element: <Reset />
       }
     ]
   },
@@ -45,11 +64,12 @@ export const getRoutesConfig = (isLogin) => [
     element: isLogin ? <Home /> : <Navigate to='/initail' />,
     children: [
       {
-        path: 'basic',
+        path: '',
         element: <Basicinfo />
       },
       {
-        path: 'evaluate',
+        key:'evaluate',
+        path: 'evaluate/:isPost',
         element: <Evaluation />
       },
       {
@@ -70,6 +90,10 @@ export const getRoutesConfig = (isLogin) => [
     path: '/evaluationdetail',
     element: isLogin ? <Evaluationdetail /> : <Navigate to='initail' />,
     children: [
+      {
+        path:'',
+        element:<Basicform/>
+      },
       {
         path: 'bi',
         element: <Bi />
@@ -108,7 +132,7 @@ export const getRoutesConfig = (isLogin) => [
       },
       {
         path: 'pain',
-        element: <Pain />
+        element: <Painful />
       },
       {
         path: 'heartrate',
