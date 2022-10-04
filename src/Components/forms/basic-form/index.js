@@ -25,7 +25,7 @@ export default function Basicform() {
   const [peopleSpecial, setPeopleSpecial] = useState(0)
 
   const onFinish = (values) => {
-    nav(`/home/evaluate/1`)
+    nav(`/home/evaluate/1`,{state:{isSuccess:false}})
     console.log('Received values of form: ', values);
   };
 
@@ -45,7 +45,7 @@ export default function Basicform() {
   return (
     <div className='basicform-wrapper'>
       <div className="basicform-heade">
-        <div onClick={() => { nav('/home/evaluate/ ') }} className="back"> &lt;  返回</div>
+        <div onClick={() => { nav('/home/evaluate/ ',{state:{isSuccess:false}}) }} className="back"> &lt;  返回</div>
         <div className="title">请填写您的基本信息（全部必填）</div>
       </div>
       <Form

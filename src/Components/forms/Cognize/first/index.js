@@ -14,12 +14,16 @@ const formItemLayout = {
   },
 };
 export default function Cognizefirst() {
-  const nav=useNavigate()
+  const nav = useNavigate()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
   return (
-    <div className='cognizefirst-wrapper'>
+    <div className='common-wrapper'>
+      <div className="cognize-heade">
+        <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
+        <div className="title">自制认知筛查表</div>
+      </div>
       <Form
         name="validate_other"
         {...formItemLayout}

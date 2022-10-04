@@ -8,7 +8,7 @@ export default function Doctorlogin() {
   const [form] = Form.useForm()
   const onFinish = (values) => {
     console.log('Success:', values);
-    nav('/home',{replace: true})
+    nav('/home',{replace: true,state:{isScusses:false}})
   };
 
 

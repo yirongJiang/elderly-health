@@ -15,7 +15,7 @@ import Ladl from '../Components/forms/Ladl'
 import Mmse from '../Components/forms/MMSE'
 import Painful from '../Components/forms/Pains'
 import Psychology from '../Components/forms/Psychology'
-import Steps from '../Components/Step-number'
+import Steps from '../Components/forms/Step-number'
 import Swallow from '../Components/Swallow'
 import { Navigate } from 'react-router-dom'
 import Basicinfo from '../Components/hombasicinformation'
@@ -106,7 +106,7 @@ export const getRoutesConfig = (isLogin) => [
         element: <Bi />
       },
       {
-        path: 'mms',
+        path: 'mmse',
         element: <Mmse />
       },
       {
@@ -140,7 +140,7 @@ export const getRoutesConfig = (isLogin) => [
         element: <Swallow />
       },
       {
-        path: 'setps',
+        path: 'steps',
         element: <Steps />
       },
       {
@@ -174,37 +174,37 @@ export const requiredList = [
     title: '简易精神状态检查量表MMSE',
     finishedNumber: 0,
     defaultNumber: 10,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/mmse'
   },
   {
     title: 'BI评估表',
     finishedNumber: 0,
     defaultNumber: 10,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/bi'
   },
   {
     title: '洛顿IADL表',
     finishedNumber: 0,
     defaultNumber: 10,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/iadl'
   },
   {
     title: '心理问卷',
     finishedNumber: 0,
     defaultNumber: 2,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/psychology'
   },
   {
     title: '吞咽二便功能',
     finishedNumber: 0,
     defaultNumber: 10,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/swallow'
   },
   {
     title: '每日步行数',
     finishedNumber: 0,
     defaultNumber: 1,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/steps'
   },
 ]
 
@@ -213,24 +213,24 @@ export const optionalList = [
     title: '听力筛查表',
     finishedNumber: 0,
     defaultNumber: 10,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/hearing'
   },
   {
     title: '视觉筛查表',
     finishedNumber: 0,
     defaultNumber: 15,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/eyesight'
   },
   {
     title: '疼痛报告表',
     finishedNumber: 0,
     defaultNumber: 1,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/pain'
   },
   {
     title: '冠心病/心率问题',
     finishedNumber: 0,
     defaultNumber: 1,
-    navUrl: '/evaluationdetail/'
+    navUrl: '/evaluationdetail/heartrate'
   },
 ]
