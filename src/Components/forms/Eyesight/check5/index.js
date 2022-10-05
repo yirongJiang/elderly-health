@@ -1,7 +1,7 @@
 import { Button, Form, Radio } from 'antd';
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import './index.less'
+
 export default function Checkfive() {
   const [size, setSize] = useState(260)
   const nav = useNavigate()
