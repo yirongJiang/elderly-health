@@ -22,3 +22,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.hx.collector
   map-underscore-to-camel-case: true
+
+auth:
+  key: SMCCMtywOKW6p3oKj0VSHTP5ZZi31e$Y
+  expires: 30 #过期时间 分钟
