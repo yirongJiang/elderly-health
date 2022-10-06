@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Radio, Button } from 'antd';
 import './index.less'
 import { useNavigate } from 'react-router-dom';
+import Commontitle from '../../../../UI/Nav-head';
 
 const formItemLayout = {
   labelCol: {
@@ -19,11 +20,8 @@ export default function Cognizefirst() {
     console.log('Received values of form: ', values);
   };
   return (
-    <div className='common-wrapper'>
-      <div className="cognize-heade">
-        <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
-        <div className="title">自制认知筛查表</div>
-      </div>
+    <Commontitle title='自制认知筛查表' className='cognizefirst-wrapper'>
+      
       <Form
         name="validate_other"
         {...formItemLayout}
@@ -55,6 +53,6 @@ export default function Cognizefirst() {
         </Form.Item>
       </Form>
 
-    </div>
+    </Commontitle>
   )
 }

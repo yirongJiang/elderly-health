@@ -47,6 +47,8 @@ export default function Checkfive() {
           </Radio.Group>
         </Form.Item>
 
+        <div style={{ fontSize: `${size}px` ,position: 'fixed ', top: '30%', left: '35%' }}>5</div>
+
         <Form.Item
           style={{ width: '80%' }}
           wrapperCol={{
@@ -54,12 +56,11 @@ export default function Checkfive() {
             offset: 7
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button className='fifth-button' type="primary" htmlType="submit">
             提交
           </Button>
         </Form.Item>
       </Form>
-      <div style={{ fontSize: `${size}px`, position: 'fixed ', top: '30%', left: '35%' }}>5</div>
     </div>
   )
 }

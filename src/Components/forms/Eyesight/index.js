@@ -1,10 +1,11 @@
 import { Button, Form, Radio } from 'antd';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Commontitle from '../../../UI/Nav-head';
 import Checkfive from './check5';
+import './index.less'
 
 export default function Eyesight() {
-  const nav = useNavigate()
   const [nextStep, setNextStep] = useState(0)
   const [form] = Form.useForm()
   const onFinish = (values) => {
@@ -22,17 +23,12 @@ export default function Eyesight() {
     },
   };
   return (
-    <div className='common-wrapper'>
-      <div className="cognize-heade">
-        <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
-        <div className="title">视力测试</div>
-      </div>
+    <Commontitle title='视力测试' className='eyesight-wrapper'>
       {nextStep === 0 ? <Form
         form={form}
         name="validate_other"
         {...formItemLayout}
         onFinish={onFinish}
-
       >
         <Form.Item name="eyesight1" label="1.您是否有因视力不佳有走路困难吗(即使配戴眼镜) ?">
           <Radio.Group>
@@ -78,12 +74,12 @@ export default function Eyesight() {
             offset: 7
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button className='next-button' type="primary" htmlType="submit">
             下一步
           </Button>
         </Form.Item>
       </Form> : <Checkfive />}
 
-    </div>
+    </Commontitle>
   )
 }

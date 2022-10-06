@@ -1,6 +1,7 @@
 import { Radio, Form, Input, Button } from 'antd';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Commontitle from '../../../UI/Nav-head';
 
 export default function Steps() {
   const nav = useNavigate()
@@ -20,11 +21,7 @@ export default function Steps() {
     },
   };
   return (
-    <div className='common-wrapper'>
-      <div className="cognize-heade">
-        <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
-        <div className="title">每日步行数</div>
-      </div>
+    <Commontitle title='每日步行数' className='step-wrapper'>
       <Form
       form={form}
         name="validate_other"
@@ -59,6 +56,6 @@ export default function Steps() {
         </Form.Item>
       </Form>
 
-    </div>
+    </Commontitle>
   )
 }
