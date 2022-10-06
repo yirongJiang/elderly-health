@@ -1,6 +1,7 @@
 import { Button, Form, Radio, Space } from 'antd';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Commontitle from '../../../UI/Nav-head'
 
 export default function Bi() {
   const [form] = Form.useForm()
@@ -20,13 +21,9 @@ export default function Bi() {
     },
   };
   return (
-    <div className='common-wrapper'>
-      <div className="cognize-heade">
-        <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
-        <div className="title">BI评估表</div>
-      </div>
+    <Commontitle title='BI评估表' className='bi-wrapper'>
+      
       <Form
-
         form={form}
         name="validate_other"
         {...formItemLayout}
@@ -164,6 +161,6 @@ export default function Bi() {
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </Commontitle>
   )
 }

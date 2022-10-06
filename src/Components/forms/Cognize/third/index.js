@@ -1,6 +1,7 @@
 import { Button } from 'antd'
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
 export default function Cognizethird() {
   const [changePage, setChangePage] = useState(0)
@@ -98,12 +99,9 @@ export default function Cognizethird() {
   }
 
   return (
-    <div className='common-wrapper'>
-      {changePage === 0 ? <div className='formal-content'>
-        <div className="cognize-heade">
-          <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
-          <div className="title">在空白处话初11点10分的钟表 ：</div>
-        </div>
+    <Commontitle title='在空白处话初11点10分的钟表 ：' className='cognizethird-wrapper'>
+      {changePage === 0 ? 
+      <div className='formal-content'>
         <div className="top-buttons">
           <button onClick={recallClick}>撤销</button>
           <button onClick={clearCanvas}>清除</button>
@@ -114,7 +112,7 @@ export default function Cognizethird() {
           <Button onClick={sure} type='primary' >绘制完成</Button>
         </div></div> : <div className='buffer'>图片上传中<br />请稍作等待...</div>
       }
-    </div>
+    </Commontitle>
   )
 }
 

@@ -1,7 +1,92 @@
+import { Button, Form, Radio, Space } from 'antd';
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import Commontitle from '../../UI/Nav-head';
 
 export default function Swallow() {
+  const [form] = Form.useForm()
+  const nav = useNavigate()
+  const onFinish = (values) => {
+    console.log('Received values of form: ', values);
+    nav('/home', { state: { isSuccess: true } })
+  };
+  const formItemLayout = {
+    labelCol: {
+      span: 6,
+      offset: 0,
+    },
+    wrapperCol: {
+      span: 13,
+      offset: 1
+    },
+  };
   return (
-    <div>Swallow</div>
+    <Commontitle title='吞咽二便功能：' className='swallow-wrapper'>
+      <div className="question">
+        请自我汇报最近两周的情况：
+      </div>
+      <Form
+        style={{ padding: '0 10rem' }}
+        form={form}
+        name="validate_other"
+        {...formItemLayout}
+        onFinish={onFinish}
+      >
+
+        <Form.Item name="swallow1" label="1、进食或喝水时呛咳或其他吞咽障碍">
+          <Radio.Group>
+            <Space align='start'size={200}>
+              <Radio value="无">无</Radio>
+              <Radio value="有">有</Radio>
+            </Space>
+          </Radio.Group>
+        </Form.Item>
+         <hr />
+
+        <Form.Item name="swallow2" label="2、非经口进食">
+          <Radio.Group>
+            <Space align='start'size={200}>
+              <Radio value="无">无</Radio>
+              <Radio value="有">有</Radio>
+            </Space>
+          </Radio.Group>
+        </Form.Item>
+         <hr />
+
+        <Form.Item name="swallow3" label="3、尿频、尿急、尿不尽或尿失禁等小便控制障碍">
+          <Radio.Group>
+            <Space align='start'size={200}>
+              <Radio value="无">无</Radio>
+              <Radio value="有">有</Radio>
+            </Space>
+          </Radio.Group>
+        </Form.Item>
+         <hr />
+
+        <Form.Item name="swallow4" label="4、便秘或大便失禁等大便控制障碍">
+          <Radio.Group>
+            <Space align='start'size={200}>
+              <Radio value="无">无</Radio>
+              <Radio value="有">有</Radio>
+            </Space>
+          </Radio.Group>
+        </Form.Item>
+         <hr />
+
+
+        
+        <Form.Item
+          style={{ width: '80%' }}
+          wrapperCol={{
+            span: 9,
+            offset: 7
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            提交
+          </Button>
+        </Form.Item>
+      </Form>
+    </Commontitle>
   )
 }

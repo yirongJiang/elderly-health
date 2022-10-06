@@ -3,6 +3,7 @@ import { Button, Form, Radio } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './index.less'
 import rectangel from '../../../assect/img/画图.png'
+import Commontitle from '../../../UI/Nav-head';
 
 export default function Mmse() {
   const [form] = Form.useForm()
@@ -22,11 +23,7 @@ export default function Mmse() {
     },
   };
   return (
-    <div className='common-wrapper'>
-      <div className="cognize-heade">
-        <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
-        <div className="title">简易精神状态检查量表(MMSE)</div>
-      </div>
+    <Commontitle title='简易精神状态检查量表(MMSE)'  className='mmse-wrapper'>
       <div className="attention">
         * 填写人为医务人员时，可选填此表，自评则不需转跳至此表）<br />
         正确为“1”，不正确为“0”
@@ -454,6 +451,6 @@ export default function Mmse() {
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </Commontitle>
   )
 }
