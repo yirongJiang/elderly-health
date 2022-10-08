@@ -19,19 +19,19 @@ public class CognitionController extends BaseController{
 
     @ApiOperation("查询认知量表记录")
     @PostMapping(value = "/cognition/detail")
-    public CognitionDetail detail(@RequestParam(name = "userId") String userId, @RequestHeader(name = TOKEN)String token) {
-        return cognitionService.detail(userId);
+    public CognitionDetail detail(@RequestHeader(name = TOKEN)String token) {
+        return cognitionService.detail(token);
     }
 
     @ApiOperation("新增认知量表记录")
     @PostMapping(value = "/cognition/creat")
     public Result create(@RequestBody AddCognitionReq addCognitionReq, @RequestHeader(name = TOKEN)String token) {
-        return cognitionService.create(addCognitionReq);
+        return cognitionService.create(addCognitionReq, token);
     }
 
     @ApiOperation("变更认知量表记录")
     @PostMapping(value = "/cognition/modify")
     public Result modify(@RequestBody ModifyCognitionReq modifyCognitionReq, @RequestHeader(name = TOKEN)String token) {
-        return cognitionService.modify(modifyCognitionReq);
+        return cognitionService.modify(modifyCognitionReq, token);
     }
 }
