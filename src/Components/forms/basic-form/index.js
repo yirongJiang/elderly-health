@@ -16,16 +16,23 @@ const formItemLayout = {
   },
 };
 
+const commonRuls = [
+  {
+    required: true,
+    message: '请填写完整',
+  },
+]
 export default function Basicform() {
 
 
-  const nav=useNavigate()
+  const nav = useNavigate()
 
   const [locationSpecial, setLocationSpecial] = useState(0)
   const [peopleSpecial, setPeopleSpecial] = useState(0)
 
   const onFinish = (values) => {
-    nav(`/home/evaluate/1`,{state:{isSuccess:false}})
+    localStorage.setItem('isPost', 1)
+    nav(`/home/evaluate`)
     console.log('Received values of form: ', values);
   };
 
@@ -45,40 +52,55 @@ export default function Basicform() {
   return (
     <div className='basicform-wrapper'>
       <div className="basicform-heade">
-        <div onClick={() => { nav('/home/evaluate/ ',{state:{isSuccess:false}}) }} className="back"> &lt;  返回</div>
+        <div onClick={() => { nav('/home/evaluate') }} className="back"> &lt;  返回</div>
         <div className="title">请填写您的基本信息（全部必填）</div>
       </div>
       <Form
+        size='large'
         layout="vertical"
         name="validate_other"
         {...formItemLayout}
         onFinish={onFinish}
+
       >
-        <Form.Item style={{ width: '90%' }} label="姓名" >
+        <Form.Item
+          label="姓名"
+          name='姓名'
+          rules={commonRuls}
+          style={{ width: '90%' }} >
           <Input placeholder="请输入您的姓名" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
 
-        <Form.Item style={{ width: '90%' }} name="radio-group" label="性别">
+        <Form.Item
+          rules={commonRuls} style={{ width: '90%' }} name="radio-group" label="性别">
           <Radio.Group>
             <Radio value="男">男</Radio>
             <Radio value="女">女</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item style={{ width: '90%' }} label="年龄">
+        <Form.Item
+          label="年龄"
+          name='年龄'
+          rules={commonRuls} style={{ width: '90%' }}>
           <Input placeholder="请输入您的年龄" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
 
 
-        <Form.Item style={{ width: '90%' }} label="身高 / cm">
+        <Form.Item
+          name='身高'
+          rules={commonRuls} style={{ width: '90%' }} label="身高 / cm">
           <Input placeholder="cm" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
 
-        <Form.Item style={{ width: '90%' }} label="体重 / kg">
+        <Form.Item
+          name='体重'
+          rules={commonRuls} style={{ width: '90%' }} label="体重 / kg">
           <Input placeholder="kg" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
 
         <Form.Item
+          rules={commonRuls}
           style={{ width: '90%' }}
           name="select"
           label="文化程度"
@@ -93,6 +115,7 @@ export default function Basicform() {
         </Form.Item>
 
         <Form.Item
+          rules={commonRuls}
           style={{ width: '90%' }}
           name="婚姻状况"
           label="婚姻状况"
@@ -106,6 +129,7 @@ export default function Basicform() {
 
         {locationSpecial === 0 ?
           <Form.Item
+            rules={commonRuls}
             style={{ width: '90%' }}
             name="评估地点"
             label="评估地点"
@@ -119,12 +143,14 @@ export default function Basicform() {
               <Option value="其他(请注明)">其他(请注明)</Option>
             </Select>
           </Form.Item> :
-          <Form.Item label='评估地点说明' ><TextArea style={{ width: '80%' }} rows={2} placeholder='点击开始填写说明说明' /></Form.Item>
+          <Form.Item
+            rules={commonRuls} label='评估地点说明' ><TextArea style={{ width: '80%' }} rows={2} placeholder='点击开始填写说明说明' /></Form.Item>
         }
 
 
         {peopleSpecial === 0 ?
           <Form.Item
+            rules={commonRuls}
             style={{ width: '90%' }}
             name="填写人员"
             label="填写人员"
@@ -136,15 +162,17 @@ export default function Basicform() {
               <Option value="其他(请注明)">其他(请注明)</Option>
             </Select>
           </Form.Item> :
-          <Form.Item label='填写人员说明' ><TextArea rows={2} style={{ width: '80%', }} placeholder='点击开始填写说明' /></Form.Item>}
+          <Form.Item
+            rules={commonRuls} label='填写人员说明' ><TextArea rows={2} style={{ width: '80%', }} placeholder='点击开始填写说明' /></Form.Item>}
 
 
 
         <Form.Item
+          rules={commonRuls}
           style={{ width: '80%' }}
           wrapperCol={{
             span: 9,
-           
+
           }}
         >
           <Button type="primary" htmlType="submit">

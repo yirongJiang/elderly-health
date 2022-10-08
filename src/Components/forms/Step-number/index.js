@@ -2,7 +2,14 @@ import { Radio, Form, Input, Button } from 'antd';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
+import './index.less'
 
+const commonRules=[
+  {
+    required:true,
+    message:'请填写完整'
+  }
+]
 export default function Steps() {
   const nav = useNavigate()
   const [form]=Form.useForm()
@@ -33,17 +40,17 @@ export default function Steps() {
           rate: 3.5,
         }}
       >
-        <Form.Item name="每日步行情况" label="每日步行情况">
+        <Form.Item rules={commonRules} name="每日步行情况" label="每日步行情况">
           <Radio.Group>
             <Radio value="步行数（步）">步行数（步）</Radio>
             <Radio value="公里数（km）">公里数（km）</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="公里或者步数" >
+        <Form.Item rules={commonRules} name="公里或者步数" >
           <Input size='large' placeholder="请输入您的步数或" style={{ border: 'none', borderBottom: '2px gray solid' }} />
         </Form.Item>
-        <Form.Item
+        <Form.Item rules={commonRules}
           style={{ width: '80%' }}
           wrapperCol={{
             span: 9,

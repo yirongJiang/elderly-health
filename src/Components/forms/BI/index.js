@@ -1,14 +1,22 @@
-import { Button, Form, Radio, Space } from 'antd';
-import React, { useState } from 'react'
+import { Button, Form, message, Radio, Space } from 'antd';
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head'
+import './index.less'
 
+const commonRuls = [
+  {
+    required: true,
+    message: '请填写完整',
+  },
+]
 export default function Bi() {
   const [form] = Form.useForm()
   const nav=useNavigate()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    nav('/home', { state: { isSuccess: true } })
+    nav('/evaluationdetail/scalenav')
+    message.success('恭喜您，提交成功')
   };
   const formItemLayout = {
     labelCol: {
@@ -30,7 +38,7 @@ export default function Bi() {
         onFinish={onFinish}
       >
 
-        <Form.Item name="BI1" label="1.进食">
+        <Form.Item rules={commonRuls} name="BI1" label="1.进食">
           <Radio.Group>
 
             <Radio value="进食自理">自己在合理的时间内（约10秒钟吃一口）可用筷子取食眼前的食物。
@@ -44,7 +52,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="BI2" label="2.转移">
+        <Form.Item rules={commonRuls} name="BI2" label="2.转移">
           <Radio.Group>
             <Space align='start' direction="vertical">
               <Radio value="转移自理">自理
@@ -59,7 +67,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="BI3" label="3.修饰">
+        <Form.Item rules={commonRuls} name="BI3" label="3.修饰">
           <Radio.Group>
             <Radio value="修饰独立">可独立完成洗脸、洗手、刷牙及梳头。
             </Radio>
@@ -68,7 +76,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="BI4" label="4.如厕">
+        <Form.Item rules={commonRuls} name="BI4" label="4.如厕">
           <Radio.Group>
             <Radio value="如厕可以自行">可自行进出厕所，并能穿好衣服。使用便盆者，可自行清理便盆。
             </Radio>
@@ -81,7 +89,7 @@ export default function Bi() {
 
 
 
-        <Form.Item name="BI5" label="5.洗澡">
+        <Form.Item rules={commonRuls} name="BI5" label="5.洗澡">
           <Radio.Group>
             <Radio value="洗澡自理">可独立完成（不论是盆浴或淋浴）。
             </Radio>
@@ -90,7 +98,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item  name="BI6" label="6.行45m）">
+        <Form.Item rules={commonRuls}  name="BI6" label="6.行45m）">
           <Radio.Group>
             <Radio value="行走自理">使用或不使用辅具皆可独立行走50公尺以上。
             </Radio>
@@ -103,7 +111,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="BI7" label="7.上下楼梯">
+        <Form.Item rules={commonRuls} name="BI7" label="7.上下楼梯">
           <Radio.Group>
             <Radio value="楼梯自行">可自行上下楼梯（允许抓扶手、用拐杖）
             </Radio>
@@ -114,7 +122,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="BI8" label="8.穿衣">
+        <Form.Item rules={commonRuls} name="BI8" label="8.穿衣">
           <Radio.Group>
             <Radio value="穿衣自行">可自行穿脱衣服、鞋子及辅具。
             </Radio>
@@ -125,7 +133,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="BI9" label="9.大便控制">
+        <Form.Item rules={commonRuls} name="BI9" label="9.大便控制">
           <Radio.Group>
             <Space direction='vertical'>
             <Radio value="大便能控制">能控制。
@@ -138,7 +146,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="BI10" label="10.小便控制">
+        <Form.Item rules={commonRuls} name="BI10" label="10.小便控制">
           <Radio.Group>
             <Radio value="小便能控制">能控制
             </Radio>
@@ -149,7 +157,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item
+        <Form.Item rules={commonRuls}
           style={{ width: '80%' }}
           wrapperCol={{
             span: 9,

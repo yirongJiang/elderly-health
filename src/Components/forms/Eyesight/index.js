@@ -5,6 +5,12 @@ import Commontitle from '../../../UI/Nav-head';
 import Checkfive from './check5';
 import './index.less'
 
+const commonRules=[
+  {
+    required:true,
+    message:'请填写完整'
+  }
+]
 export default function Eyesight() {
   const [nextStep, setNextStep] = useState(0)
   const [form] = Form.useForm()
@@ -15,7 +21,7 @@ export default function Eyesight() {
   const formItemLayout = {
     labelCol: {
       span: 3,
-      offset: 2
+      offset: 1
     },
     wrapperCol: {
       span: 16,
@@ -30,7 +36,7 @@ export default function Eyesight() {
         {...formItemLayout}
         onFinish={onFinish}
       >
-        <Form.Item name="eyesight1" label="1.您是否有因视力不佳有走路困难吗(即使配戴眼镜) ?">
+        <Form.Item rules={commonRules} name="eyesight1" label="1.您是否有因视力不佳有走路困难吗(即使配戴眼镜) ?">
           <Radio.Group>
             <Radio value="是的">是的</Radio>
             <Radio value="有时">有时</Radio>
@@ -38,7 +44,7 @@ export default function Eyesight() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="eyesight2" label="2.你看东西、阅读、看电视有困难吗(即使配戴眼镜) ?">
+        <Form.Item rules={commonRules} name="eyesight2" label="2.你看东西、阅读、看电视有困难吗(即使配戴眼镜) ?">
           <Radio.Group>
             <Radio value="是的">是的</Radio>
             <Radio value="有时">有时</Radio>
@@ -46,28 +52,28 @@ export default function Eyesight() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="eyesight3" label="3.您是否有被诊断过白内障？">
+        <Form.Item rules={commonRules} name="eyesight3" label="3.您是否有被诊断过白内障？">
           <Radio.Group>
             <Radio value="是的">是的</Radio>
             <Radio value="不是">不是</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="eyesight4" label="4.您是否有进行过白内障手术？ ">
+        <Form.Item rules={commonRules} name="eyesight4" label="4.您是否有进行过白内障手术？ ">
           <Radio.Group>
             <Radio value="是的">是的</Radio>
             <Radio value="不是">不是</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="eyesight5" label="5.您是否有被诊断过其他眼部疾病？ ">
+        <Form.Item rules={commonRules} name="eyesight5" label="5.您是否有被诊断过其他眼部疾病？ ">
           <Radio.Group>
             <Radio value="是的">是的</Radio>
             <Radio value="不是">不是</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item
+        <Form.Item 
           style={{ width: '80%' }}
           wrapperCol={{
             span: 9,

@@ -1,15 +1,22 @@
-import { Button, Form, Radio, Space } from 'antd';
+import { Button, Form, message, Radio, Space } from 'antd';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 
+const commonRules=[
+  {
+    required: true,
+    message: '请选择完整',
+  },
+]
 export default function Psychology() {
   const [form] = Form.useForm()
   const nav = useNavigate()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    nav('/home', { state: { isSuccess: true } })
+    nav('/evaluationdetail/scalenav')
+    message.success('恭喜您，提交成功')
   };
   const formItemLayout = {
     labelCol: {
@@ -34,7 +41,7 @@ export default function Psychology() {
         onFinish={onFinish}
       >
 
-        <Form.Item name="psychology1" label="1、做什么事都没兴趣，没意思。">
+        <Form.Item rules={commonRules} name="psychology1" label="1、做什么事都没兴趣，没意思。">
           <Radio.Group>
             <Space align='start' direction="vertical">
               <Radio value="完全不会">完全不会</Radio>
@@ -45,7 +52,7 @@ export default function Psychology() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item name="psychology2" label="2、感到心情低落，抑郁，没希望。">
+        <Form.Item rules={commonRules} name="psychology2" label="2、感到心情低落，抑郁，没希望。">
           <Radio.Group>
             <Space align='start' direction="vertical">
               <Radio value="完全不会">完全不会</Radio>
@@ -56,7 +63,7 @@ export default function Psychology() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item
+        <Form.Item rules={commonRules}
           style={{ width: '80%' }}
           wrapperCol={{
             span: 9,
