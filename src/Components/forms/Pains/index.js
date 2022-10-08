@@ -96,7 +96,7 @@ export default function Painful() {
 
         <Form.Item label="疼痛程度： ： ">
           <Form.Item rules={commonRules} name="疼痛程度1"  >
-            <Rate style={{ marginLeft: '4%' }} count={10} character={<MehOutlined />} defaultValue={2} />
+            <Rate style={{ marginLeft: '4%' }} count={10} character={<MehOutlined />}  />
           </Form.Item>
           <img style={{ marginLeft: '3%' }} src={pains} alt="" />
         </Form.Item>
@@ -150,7 +150,7 @@ export default function Painful() {
         </Form.Item>
 
         <Form.Item label="疼痛程度 ： ：">
-          <Form.Item rules={commonRules} style={{ marginLeft: '4%' }} name="疼痛程度2"><Rate count={10} character={<MehOutlined />} defaultValue={2} /></Form.Item>
+          <Form.Item rules={commonRules} style={{ marginLeft: '4%' }} name="疼痛程度2"><Rate count={10} character={<MehOutlined />}  /></Form.Item>
           <img style={{ marginLeft: '3%' }} src={pains} alt="" />
         </Form.Item>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Input, Radio, Select } from 'antd';
+import { Button, Form, Input, message, Radio, Select } from 'antd';
 import './index.less'
 import TextArea from 'antd/lib/input/TextArea';
 import { useNavigate } from 'react-router-dom';
@@ -32,8 +32,9 @@ export default function Basicform() {
 
   const onFinish = (values) => {
     localStorage.setItem('isPost', 1)
-    nav(`/home/evaluate`)
     console.log('Received values of form: ', values);
+    nav(`/home/evaluate`)
+    message.success('恭喜您，完成填写！')
   };
 
   const locationChange = (value) => {

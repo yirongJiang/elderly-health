@@ -1,4 +1,4 @@
-import { Radio, Form, Input, Button } from 'antd';
+import { Radio, Form, Input, Button, message } from 'antd';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
@@ -16,6 +16,7 @@ export default function Steps() {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     nav(-1)
+    message.success('恭喜您，提交成功！')
   };
   const formItemLayout = {
     labelCol: {

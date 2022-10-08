@@ -7,8 +7,9 @@ export default function Commontitle(props) {
   const navChange = () => {
     if (props.navHome) {
       nav('/home/evaluate')
+    }else{
+      nav(-1)
     }
-    nav(-1)
   }
   return (
     <div className={`common-wrapper ${props.className}`}>
