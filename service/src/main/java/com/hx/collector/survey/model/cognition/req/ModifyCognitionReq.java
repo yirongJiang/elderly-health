@@ -13,12 +13,9 @@ public class ModifyCognitionReq {
     @ApiModelProperty(value = "石头问题答案", example = "1:是，0：否", dataType = "String")
     private String answerStone;
 
-    @ApiModelProperty(value = "时钟照片二进制数据", example = "", dataType = "String")
+    @ApiModelProperty(value = "时钟照片二进制数据", example = "1112#4#@", dataType = "String")
     private String photoClock;
 
-    @ApiModelProperty(value = "手绘时钟二进制数据", example = "", dataType = "String")
+    @ApiModelProperty(value = "手绘时钟二进制数据", example = "1112#4#@", dataType = "String")
     private String drawClock;
-
-    @ApiModelProperty(value = "填写用户id", example = "", dataType = "String")
-    private String userId;
 }
