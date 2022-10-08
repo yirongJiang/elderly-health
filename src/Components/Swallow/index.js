@@ -1,14 +1,23 @@
-import { Button, Form, Radio, Space } from 'antd';
+import { Button, Form, message, Radio, Space } from 'antd';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../UI/Nav-head';
+import './index.less'
 
+
+const commonRules=[
+  {
+    required:true,
+    message:'请填写完整'
+  }
+]
 export default function Swallow() {
   const [form] = Form.useForm()
   const nav = useNavigate()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    nav('/home', { state: { isSuccess: true } })
+    nav('/evaluationdetail/scalenav')
+    message.success('恭喜您，提交成功')
   };
   const formItemLayout = {
     labelCol: {
@@ -33,7 +42,7 @@ export default function Swallow() {
         onFinish={onFinish}
       >
 
-        <Form.Item name="swallow1" label="1、进食或喝水时呛咳或其他吞咽障碍">
+        <Form.Item rules={commonRules} name="swallow1" label="1、进食或喝水时呛咳或其他吞咽障碍">
           <Radio.Group>
             <Space align='start'size={200}>
               <Radio value="无">无</Radio>
@@ -43,7 +52,7 @@ export default function Swallow() {
         </Form.Item>
          <hr />
 
-        <Form.Item name="swallow2" label="2、非经口进食">
+        <Form.Item rules={commonRules} name="swallow2" label="2、非经口进食">
           <Radio.Group>
             <Space align='start'size={200}>
               <Radio value="无">无</Radio>
@@ -53,7 +62,7 @@ export default function Swallow() {
         </Form.Item>
          <hr />
 
-        <Form.Item name="swallow3" label="3、尿频、尿急、尿不尽或尿失禁等小便控制障碍">
+        <Form.Item rules={commonRules} name="swallow3" label="3、尿频、尿急、尿不尽或尿失禁等小便控制障碍">
           <Radio.Group>
             <Space align='start'size={200}>
               <Radio value="无">无</Radio>
@@ -63,7 +72,7 @@ export default function Swallow() {
         </Form.Item>
          <hr />
 
-        <Form.Item name="swallow4" label="4、便秘或大便失禁等大便控制障碍">
+        <Form.Item rules={commonRules} name="swallow4" label="4、便秘或大便失禁等大便控制障碍">
           <Radio.Group>
             <Space align='start'size={200}>
               <Radio value="无">无</Radio>
@@ -75,7 +84,7 @@ export default function Swallow() {
 
 
         
-        <Form.Item
+        <Form.Item rules={commonRules}
           style={{ width: '80%' }}
           wrapperCol={{
             span: 9,

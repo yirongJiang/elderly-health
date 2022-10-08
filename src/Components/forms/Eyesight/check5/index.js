@@ -1,4 +1,4 @@
-import { Button, Form, Radio } from 'antd';
+import { Button, Form, message, Radio } from 'antd';
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -8,12 +8,13 @@ export default function Checkfive() {
   const [form] = Form.useForm()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    nav('/home', { state: { isSuccess: true } })
+    nav('/evaluationdetail/scalenav')
+    message.success("恭喜您，提交成功")
   };
   const formItemLayout = {
     labelCol: {
       span: 3,
-      offset: 2
+      offset: 1
     },
     wrapperCol: {
       span: 16,
@@ -22,7 +23,7 @@ export default function Checkfive() {
   };
   useEffect(() => {
     const timer = setTimeout(() => {
-      setSize(size - 10)
+      setSize(size - 30)
       if (size < 180) {
         setSize(260)
       }
@@ -40,14 +41,14 @@ export default function Checkfive() {
         onFinish={onFinish}
       >
 
-        <Form.Item name="eyesight5" label="5.您是否看得清逐渐缩小的'5' ? ">
+        <Form.Item rules={[{ required: true, message: '请填写完整' }]} name="eyesight5" label="5.您是否看得清逐渐缩小的'5' ? ">
           <Radio.Group>
             <Radio value="是的">是的</Radio>
             <Radio value="不是">不是</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <div style={{ fontSize: `${size}px` ,position: 'fixed ', top: '30%', left: '35%' }}>5</div>
+        <div style={{ fontSize: `${size}px`, position: 'fixed ', top: '30%', left: '35%' }}>5</div>
 
         <Form.Item
           style={{ width: '80%' }}

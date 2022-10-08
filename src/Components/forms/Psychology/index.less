@@ -16,8 +16,22 @@
   }
 
   Form {
+    .ant-form-item-label {
+      label  {
+        text-align: left;
+        font-size: 20rem;
+    
+        &:after {
+          content: none !important; //解决上面的样式label后面会有空格
+        }
+      }
+    }
+    
     Button{
       margin-top: calc(40%);
+      width: 40vw;
+      height: 60rem;
+      border-radius: 10rem;
     }
   }
 }

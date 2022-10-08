@@ -1,8 +1,10 @@
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
+let hoverTime = 0
+let touchTime = 0
 export default function Cognizethird() {
   const [changePage, setChangePage] = useState(0)
   const canvasDom = useRef()
@@ -36,6 +38,7 @@ export default function Cognizethird() {
       })
     }
     )
+
     canvas.addEventListener('touchmove', (event) => {
       event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
       event = event.touches[0]
@@ -81,7 +84,8 @@ export default function Cognizethird() {
     console.log(url)
     setChangePage(1)
     setTimeout(() => {
-      nav(`/home`,{state:{isSuccess:true}})
+      nav(`/evaluationdetail/scalenav`)
+      message.success('恭喜您提交成功')
     }, 1000);
   }
 
@@ -100,17 +104,17 @@ export default function Cognizethird() {
 
   return (
     <Commontitle title='在空白处话初11点10分的钟表 ：' className='cognizethird-wrapper'>
-      {changePage === 0 ? 
-      <div className='formal-content'>
-        <div className="top-buttons">
-          <button onClick={recallClick}>撤销</button>
-          <button onClick={clearCanvas}>清除</button>
-          <button onClick={download}>下载图片</button>
-        </div>
-        <canvas className='set-canvas' ref={canvasDom} width="400" height="600" />
-        <div className="bottom">
-          <Button onClick={sure} type='primary' >绘制完成</Button>
-        </div></div> : <div className='buffer'>图片上传中<br />请稍作等待...</div>
+      {changePage === 0 ?
+        <div className='formal-content'>
+          <div className="top-buttons">
+            <button onClick={recallClick}>撤销</button>
+            <button onClick={clearCanvas}>清除</button>
+            <button onClick={download}>下载图片</button>
+          </div>
+          <canvas className='set-canvas' ref={canvasDom} width="400" height="600" />
+          <div className="bottom">
+            <Button onClick={sure} type='primary' >绘制完成</Button>
+          </div></div> : <div className='buffer'>图片上传中<br />请稍作等待...</div>
       }
     </Commontitle>
   )

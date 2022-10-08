@@ -3,6 +3,26 @@
   overflow: hidden;
 
   Form {
+    .ant-form-item-label {
+      height: 60rem;
+      display: flex;
+      justify-content: flex-start;
+      line-height: 16px; //这个数值视具体情况而定
+
+      label {
+        height: 70rem; //这是关键
+        white-space: normal;
+        text-align: left;
+        padding-right: 10rem;
+        font-size: 17rem;
+        line-height: 30rem;
+
+        &:after {
+          content: none !important; //解决上面的样式label后面会有空格
+        }
+      }
+    }
+
     Button {
       width: 60%;
       height: 60rem;
@@ -10,7 +30,8 @@
 
     .next-button {
       position: absolute;
-      top: 16vh
+      top: 5vh;
+      border-radius: 10rem;
     }
 
     .fifth-button {

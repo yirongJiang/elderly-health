@@ -73,7 +73,7 @@ export const getRoutesConfig = (isLogin) => [
       },
       {
         key: 'evaluate',
-        path: 'evaluate/:isPost',
+        path: 'evaluate',
         element: <Evaluation />
       },
       {

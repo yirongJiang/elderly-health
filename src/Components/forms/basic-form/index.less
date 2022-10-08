@@ -1,6 +1,23 @@
 .basicform-wrapper {
   height: 981rem;
 
+  .ant-form-item-label {
+    label {
+      text-align: left;
+      font-size: 20rem;
+
+      &:after {
+        content: none !important; //解决上面的样式label后面会有空格
+      }
+    }
+  }
+
+
+  input[type='text'] {
+    width: 50vw;
+    font-size: 16rem;
+  }
+
   .basicform-heade {
     width: 100%;
     height: 167rem;
@@ -21,7 +38,8 @@
 
   Form {
     font-weight: 600;
-     Button {
+
+    Button {
       margin: 20% 100rem;
       width: 139rem;
       height: 50rem;
