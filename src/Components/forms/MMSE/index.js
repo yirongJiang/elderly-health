@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Radio, Space } from 'antd';
+import { Button, Form, message, Radio, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './index.less'
 import rectangel from '../../../assect/img/画图.png'
@@ -11,6 +11,7 @@ export default function Mmse() {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     nav('/evaluationdetail/scalenav')
+    message.success('恭喜您，完成填写！')
   };
   const formItemLayout = {
     labelCol: {

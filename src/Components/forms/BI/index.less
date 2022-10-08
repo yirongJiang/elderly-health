@@ -1,10 +1,31 @@
-.ant-form-item-label {
-  label  {
-    text-align: left;
-    font-size: 20rem;
+.bi-wrapper {
+  Form {
+    .ant-form-item-label {
+      height: 60rem;
+      display: flex;
+      justify-content: flex-start;
+      line-height: 16px; //这个数值视具体情况而定
 
-    &:after {
-      content: none !important; //解决上面的样式label后面会有空格
+      label {
+        height: 70rem; //这是关键
+        white-space: normal;
+        text-align: left;
+        padding-right: 10rem;
+        font-size: 17rem;
+        line-height: 35rem;
+
+        &:after {
+          content: none !important; //解决上面的样式label后面会有空格
+        }
+      }
+    }
+
+    Button {
+      width: 40vw;
+      height: 60rem;
+      border-radius: 10rem;
+      margin: 20rem auto;
+      font-size: 20rem;
     }
   }
 }

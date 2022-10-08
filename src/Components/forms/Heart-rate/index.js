@@ -7,8 +7,8 @@ import './index.less'
 
 const commonRuls = [
   {
-    required: true,
-    message: '请选择一个',
+      required: true,
+      message: "请选择一个"
   },
 ]
 export default function Heart() {
@@ -41,7 +41,7 @@ export default function Heart() {
         onFinish={onFinish}
       >
 
-        <Form.Item  rules={commonRuls} name="heart1">
+        <Form.Item rules={commonRuls} label='' name="heart1">
           <Radio.Group>
             <Space size={60} align='start' direction="vertical">
               <Radio value="1"> 1<br /> 患者有心脏病，但日常活动量不受限制，一般体力活动不引起过度疲劳、心悸、气喘或心绞痛。。
@@ -61,7 +61,7 @@ export default function Heart() {
 
 
 
-        <Form.Item  rules={commonRuls}
+        <Form.Item rules={commonRuls}
           style={{ width: '80%' }}
           wrapperCol={{
             span: 9,
