@@ -20,9 +20,8 @@ import Swallow from '../Components/Swallow'
 import { Navigate } from 'react-router-dom'
 import Basicinfo from '../Components/hombasicinformation'
 import Evaluation from '../Evaluate-basci-info'
-import Postsuccessfully from '../Components/Post-successfully'
 import Search from '../Components/Search'
-import Consult from '../Components/forms/Consult'
+import Queryresult from '../Components/forms/Query-result'
 import Evaluationdetail from '../Evaluation-detail'
 import Initailpage from '../Components/Login-initail'
 import Basicform from '../Components/forms/basic-form'
@@ -30,6 +29,7 @@ import Scalenav from '../Components/Scale-nav'
 import Cognizefirst from '../Components/forms/Cognize/first'
 import Cognizesecond from '../Components/forms/Cognize/second'
 import Cognizethird from '../Components/forms/Cognize/third'
+import Evaluationoutcome from '../Components/forms/evaluation-outcome'
 
 
 export const getRoutesConfig = (isLogin) => [
@@ -77,16 +77,8 @@ export const getRoutesConfig = (isLogin) => [
         element: <Evaluation />
       },
       {
-        path: 'post',
-        element: <Postsuccessfully />
-      },
-      {
         path: 'search',
         element: <Search />
-      },
-      {
-        path: 'consult',
-        element: <Consult />
       }
     ]
   },
@@ -110,6 +102,10 @@ export const getRoutesConfig = (isLogin) => [
         element: <Mmse />
       },
       {
+        path: 'queryresult',
+        element: <Queryresult />
+      },
+      {
         path: 'cognize',
         element: <Cognize />,
         children: [
@@ -124,7 +120,7 @@ export const getRoutesConfig = (isLogin) => [
           {
             path: 'third',
             element: <Cognizethird />
-          },
+          }
         ]
       },
       {
@@ -158,6 +154,10 @@ export const getRoutesConfig = (isLogin) => [
       {
         path: 'heartrate',
         element: <Heart />
+      },
+      {
+        path: 'evaluateoutcome',
+        element: <Evaluationoutcome />
       }
 
     ]

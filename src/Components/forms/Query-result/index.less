@@ -1,0 +1,80 @@
+.queryresult-wrapper {
+  height: 100vh;
+  overflow: hidden;
+
+  Form {
+    margin-top: 1vh;
+    height: 20vh;
+
+    .ant-picker {
+      width: 100%;
+    }
+
+    .ant-form-item {
+      margin-bottom: 10rem;
+    }
+
+    Button {
+      position: absolute;
+      margin-right: 20rem;
+      width: 70rem;
+      height: 30rem;
+      font-size: 16rem;
+      top:1vh;
+      left: 80%;
+    }
+  }
+
+  .result-wrapper {
+
+    table {
+      width: 100%;
+      text-align: center;
+
+      td {
+        font-size: 18rem;
+        height: 4vh;
+      }
+
+      th{
+        height: 5vh;
+      }
+
+      thead th {
+        background-color: #f2f2f2;
+        width: 33.3%;
+        color: #2a4986;
+        font-size: 20rem;
+        font-weight: bold;
+      }
+
+      tbody {
+        display: block;
+        overflow: scroll;
+        height: 47vh;
+        margin-bottom: 10vh;
+      }
+
+      tbody tr {
+        table-layout: fixed;
+        /*重要  表格固定算法*/
+      }
+
+      thead,
+      tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+
+      tr:nth-child(odd) {
+        background: #f2f2f2;
+      }
+
+      tr:nth-child(even) {
+        background: white;
+      }
+
+    }
+  }
+}
