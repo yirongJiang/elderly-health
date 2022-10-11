@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
 import { requiredList, optionalList } from '../../routes/config'
 import Commontitle from '../../UI/Nav-head'
+import Footer from '../../UI/footer'
 
 
 export default function Scalenav() {
@@ -36,7 +37,9 @@ export default function Scalenav() {
         }
       </div>
       <div className="bottom">
-        <Button type='primary'>查看评估结果</Button>
+        <Button type='primary' onClick={() => { 
+          nav('/evaluationdetail/evaluateoutcome')
+         }}>查看评估结果</Button>
       </div>
     </Commontitle>
 
