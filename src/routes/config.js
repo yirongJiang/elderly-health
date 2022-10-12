@@ -30,6 +30,7 @@ import Cognizefirst from '../Components/forms/Cognize/first'
 import Cognizesecond from '../Components/forms/Cognize/second'
 import Cognizethird from '../Components/forms/Cognize/third'
 import Evaluationoutcome from '../Components/forms/evaluation-outcome'
+import CameraComponent from '../Components/forms/Cognize/Camera-photo'
 
 
 export const getRoutesConfig = (isLogin) => [
@@ -120,6 +121,10 @@ export const getRoutesConfig = (isLogin) => [
           {
             path: 'third',
             element: <Cognizethird />
+          },
+          {
+            path: 'camera',
+            element: <CameraComponent />
           }
         ]
       },

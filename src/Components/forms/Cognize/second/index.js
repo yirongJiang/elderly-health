@@ -20,7 +20,7 @@ export default function Cognizesecond() {
         <div>您也可以直接拍下您在纸上画的钟表，点击拍照：</div>
       </div>
       <div className="bottom">
-        <Button style={{ backgroundColor: 'pink' }} onClick={() => { nav('/evaluationdetail/cognize/third') }} type='primary'>开始拍照</Button>
+        <Button style={{ backgroundColor: 'pink' }} onClick={() => { nav('/evaluationdetail/cognize/camera') }} type='primary'>开始拍照</Button>
       </div>
 
     </Commontitle>
