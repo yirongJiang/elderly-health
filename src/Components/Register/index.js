@@ -1,13 +1,16 @@
 import { Button, Col, Form, Input, message, Row } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { register } from '../../api';
 import './index.less'
 
 export default function Register() {
   const nav = useNavigate()
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
+    console.log('Success:', {...values,role:'1'})
+    const res=await register( {values,role:'1'})
+    console.log(res)
     message.success('恭喜您注册成功')
-    console.log('Success:', values);
     nav(-1)
   };
 
@@ -30,7 +33,7 @@ export default function Register() {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          name="姓名"
+         
           rules={[
             {
               required: true,
@@ -39,14 +42,13 @@ export default function Register() {
           ]}
         >
           <Col span={12}>
-            <Form.Item name='姓名'>
+            <Form.Item name='userName'>
               <Input placeholder='请输入您的姓名' />
             </Form.Item>
           </Col>
         </Form.Item>
 
         <Form.Item
-          name="手机号"
           rules={[
             {
               required: true,
@@ -55,14 +57,14 @@ export default function Register() {
           ]}
         >
           <Col span={12}>
-            <Form.Item name='手机号'>
+            <Form.Item name='phone'>
               <Input placeholder='请输入您的手机号' />
             </Form.Item>
           </Col>
         </Form.Item>
 
         <Form.Item
-          name="密码"
+          name="passWord"
           rules={[
             {
               required: true,
