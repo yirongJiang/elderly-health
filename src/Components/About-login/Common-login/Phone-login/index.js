@@ -1,14 +1,17 @@
 import { Button, Col, Form, Input, Row } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../../../../api';
+import { login, register } from '../../../../api';
 import './index.less'
 
 export default function Phonelogin() {
   const nav = useNavigate()
   const onFinish = async (values) => {
-    console.log('Success:', values);
-    
+    // console.log('Success:', values);
+    const res = await login({ ...values, role: '1' })
+    console.log(res)
+    localStorage.setItem('X-Auth-Token', res.body)
+    nav('/home')
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -34,7 +37,6 @@ export default function Phonelogin() {
         autoComplete="off"
       >
         <Form.Item
-          name="姓名"
           rules={[
             {
               required: true,
@@ -50,7 +52,6 @@ export default function Phonelogin() {
         </Form.Item>
 
         <Form.Item
-          name="phone"
           rules={[
             {
               required: true,
@@ -59,14 +60,14 @@ export default function Phonelogin() {
           ]}
         >
           <Col span={12}>
-            <Form.Item name='手机号'>
+            <Form.Item name="phone">
               <Input placeholder='请输入您的手机号' />
             </Form.Item>
           </Col>
         </Form.Item>
 
         <Form.Item
-          name="passWord"
+
           rules={[
             {
               required: true,
@@ -75,7 +76,7 @@ export default function Phonelogin() {
           ]}
         >
           <Col span={12}>
-            <Form.Item name='密码'>
+            <Form.Item name="passWord">
               <Input placeholder='请输入您的密码' />
             </Form.Item>
           </Col>

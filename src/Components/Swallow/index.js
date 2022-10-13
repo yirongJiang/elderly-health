@@ -50,7 +50,6 @@ export default function Swallow() {
             </Space>
           </Radio.Group>
         </Form.Item>
-         <hr />
 
         <Form.Item rules={commonRules} name="swallow2" label="2、非经口进食">
           <Radio.Group>
@@ -60,7 +59,6 @@ export default function Swallow() {
             </Space>
           </Radio.Group>
         </Form.Item>
-         <hr />
 
         <Form.Item rules={commonRules} name="swallow3" label="3、尿频、尿急、尿不尽或尿失禁等小便控制障碍">
           <Radio.Group>
@@ -70,7 +68,6 @@ export default function Swallow() {
             </Space>
           </Radio.Group>
         </Form.Item>
-         <hr />
 
         <Form.Item rules={commonRules} name="swallow4" label="4、便秘或大便失禁等大便控制障碍">
           <Radio.Group>
@@ -80,7 +77,6 @@ export default function Swallow() {
             </Space>
           </Radio.Group>
         </Form.Item>
-         <hr />
 
 
         
