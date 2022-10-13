@@ -4,7 +4,6 @@ import Login from '../Login'
 import Messagelogin from '../Components/About-login/Common-login/Message-login'
 import Phonelogin from '../Components/About-login/Common-login/Phone-login'
 import Doctorlogin from '../Components/About-login/Doctor-login'
-import Register from '../Components/Register'
 import Reset from '../Components/Reset'
 import Bi from '../Components/forms/BI'
 import Cognize from '../Components/forms/Cognize'
@@ -53,10 +52,6 @@ export const getRoutesConfig = (isLogin) => [
       {
         path: 'phonelogin',
         element: <Phonelogin />
-      },
-      {
-        path: 'register',
-        element: <Register />
       },
       {
         path: 'reset',

@@ -50,7 +50,7 @@ export default function Doctorlogin() {
         </Form.Item>
 
         <Form.Item
-          name="password"
+          name="passWord"
           rules={[
             {
               required: true,

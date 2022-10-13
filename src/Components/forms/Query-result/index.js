@@ -58,7 +58,9 @@ export default function Queryresult() {
             <Col span={12}>
               <Form.Item name='机构来源'>
                 <Select>
-                  <Option value="demo">Demo</Option>
+                  <Option value="四川大学华西医院">四川大学华西医院</Option>
+                  <Option value="南京医科大学">南京医科大学</Option>
+                  <Option value="中南大学湘雅医院">中南大学湘雅医院</Option>
                 </Select>
               </Form.Item>
             </Col>

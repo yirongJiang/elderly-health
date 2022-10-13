@@ -14,11 +14,11 @@ export default function Initailpage() {
            nav('/initail/doctorlogin')
            }} type='primary'>医生</Button>
         </div>
-        <div className='initailpage-normal'>
+        {/* <div className='initailpage-normal'>
           <Button type='primary'onClick={() => { 
             nav('/initail/phonelogin')
            }} >普通用户</Button>
-        </div>
+        </div> */}
       </div>
     </div>
   )
