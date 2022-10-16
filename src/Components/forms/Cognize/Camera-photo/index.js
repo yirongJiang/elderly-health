@@ -1,6 +1,8 @@
 
-import { But, Button } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
+import { But, Button, message } from 'antd';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './index.less'
 
 export default function CameraComponent() {
   let width = 320;
@@ -8,7 +10,9 @@ export default function CameraComponent() {
   let streaming = false;
   let video = null;
   let canvas = null;
-  let startButton  = null;
+  let startButton = null;
+  const nav = useNavigate()
+  const [changeNumber, setChangeNumber] = useState(0)
   useEffect(() => {
     startup()
   })
@@ -72,14 +76,21 @@ export default function CameraComponent() {
       clearphoto();
     }
   }
-
+  const subClock = () => {
+    video.pause()
+    nav('/evaluationdetail/scalenav')
+    message.success('拍照完成啦')
+  }
   return (
     <div className="contentarea">
       <div className="camera">
         <video id="video">视频还未准备好</video>
         <canvas id="canvas">
         </canvas>
-        <Button type='primary' id="startButton">点击拍照</Button>
+        <div className="bottom">
+          <Button type='primary' id="startButton">点击拍照</Button>
+          <Button type='primary' onClick={subClock} id="submitButton">提交</Button>
+        </div>
       </div>
     </div>
   )
