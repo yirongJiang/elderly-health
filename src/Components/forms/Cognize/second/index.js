@@ -16,7 +16,7 @@ export default function Cognizesecond() {
         <Button onClick={() => { nav('/evaluationdetail/cognize/third') }} type='primary'>开始画钟</Button>
       </div>
       <div className="cognizesecond-head">
-        <span>4. 拍照时钟</span>
+        <span>4. 画出时钟</span>
         <div>您也可以直接拍下您在纸上画的钟表，点击拍照：</div>
       </div>
       <div className="bottom">

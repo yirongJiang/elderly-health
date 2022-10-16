@@ -93,7 +93,7 @@ export default function Evaluationoutcome() {
           <td>60</td>
         </tr>
       </table>
-      <Button className='Button' onClick={() => { nav('/home/evaluate') }} type='primary'>完成</Button>
+      <Button className='Button' onClick={() => { nav('/home') }} type='primary'>完成</Button>
       <Navfooter />
     </Commontitle>
   )
