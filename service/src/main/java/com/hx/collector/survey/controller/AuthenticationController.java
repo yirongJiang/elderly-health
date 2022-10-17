@@ -1,8 +1,8 @@
 package com.hx.collector.survey.controller;
 
 import com.hx.collector.survey.model.Result;
-import com.hx.collector.survey.model.cognition.req.LoginReq;
-import com.hx.collector.survey.model.cognition.req.RegisterReq;
+import com.hx.collector.survey.model.colloctor.req.LoginReq;
+import com.hx.collector.survey.model.colloctor.req.RegisterReq;
 import com.hx.collector.survey.service.AuthenticationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

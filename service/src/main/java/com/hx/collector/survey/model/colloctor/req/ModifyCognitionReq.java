@@ -1,4 +1,4 @@
-package com.hx.collector.survey.model.cognition.req;
+package com.hx.collector.survey.model.colloctor.req;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

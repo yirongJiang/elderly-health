@@ -1,4 +1,4 @@
-package com.hx.collector.survey.model.cognition;
+package com.hx.collector.survey.model.colloctor;
 
 import lombok.Data;
 
