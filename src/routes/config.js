@@ -41,12 +41,12 @@ export const getRoutesConfig = (isLogin) => [
     path: '/initail',
     element: <Initial />,
     children: [
+      // {
+      //   path: '',
+      //   element: <Initailpage />
+      // },
       {
         path: '',
-        element: <Initailpage />
-      },
-      {
-        path: 'doctorlogin',
         element: <Doctorlogin />
       },
       {

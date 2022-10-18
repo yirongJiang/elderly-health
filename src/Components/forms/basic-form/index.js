@@ -136,7 +136,6 @@ export default function Basicform() {
             label="评估地点"
           >
             <Select style={{ width: '50%' }} size='middle' onChange={locationChange} placeholder="点击选择评估地点">
-              <Option value="本人">本人</Option>
               <Option value="住院">住院</Option>
               <Option value="社区">社区</Option>
               <Option value="养老院">养老院</Option>
