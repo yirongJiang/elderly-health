@@ -25,10 +25,10 @@ export default function Mmse() {
   };
   return (
     <Commontitle title='简易精神状态检查量表(MMSE)' className='mmse-wrapper'>
-      <div className="attention">
+      {/* <div className="attention">
         * 填写人为医务人员时，可选填此表，自评则不需转跳至此表）<br />
         正确为“1”，不正确为“0”
-      </div>
+      </div> */}
       <Form
         form={form}
         name="validate_other"
