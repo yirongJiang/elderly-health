@@ -51,3 +51,26 @@ CREATE TABLE `bi` (
                       `del_flge` varchar(1) DEFAULT '0' COMMENT '是否有效,1有效，0无效',
                       PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+DROP TABLE
+    IF
+    EXISTS `user_info`;
+CREATE TABLE `user_info` (
+                             `id` VARCHAR ( 50 ) NOT NULL,
+                             `user_id` VARCHAR ( 50 ) NOT NULL COMMENT '用户ID',
+                             `name` VARCHAR ( 255 ) NOT NULL COMMENT '测试者姓名',
+                             `gender` VARCHAR ( 2 ) NOT NULL COMMENT '测试者性别,1:男，0：女',
+                             `height` FLOAT ( 5, 2 ) NOT NULL COMMENT '测试者身高',
+	`weight` FLOAT ( 5, 2 ) NOT NULL COMMENT '测试者体重',
+	`age` INT NOT NULL COMMENT '测试者年龄，分区间(55-60/60-65/65-70/70-75/75-80/80以上)',
+	`matrim` VARCHAR ( 50 ) NOT NULL COMMENT '测试者婚姻状况0:未婚，1：已婚，2：离异，3丧偶',
+	`edu` VARCHAR ( 50 ) NOT NULL COMMENT '测试者文化程度',
+	`disease` VARCHAR ( 255 ) NOT NULL COMMENT '测试者基础疾病（多选）',
+	`org` VARCHAR ( 255 ) NOT NULL COMMENT '测试者所在的医院机构',
+	`place` VARCHAR ( 255 ) NOT NULL COMMENT '测试者测试地点（门诊、住院、家里...）',
+	`staff` VARCHAR ( 50 ) NOT NULL COMMENT '填写人员（0：本人:1：医务人员...）',
+	`create_date` datetime DEFAULT NULL COMMENT '创建时间',
+	`update_date` datetime DEFAULT NULL COMMENT '更新时间',
+	`del_flge` VARCHAR ( 1 ) DEFAULT '0' COMMENT '是否有效,1有效，0无效',
+PRIMARY KEY ( `id` ) USING BTREE
+) ENGINE = INNODB DEFAULT CHARSET = utf8 ROW_FORMAT = DYNAMIC;
