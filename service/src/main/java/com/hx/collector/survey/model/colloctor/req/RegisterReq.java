@@ -1,4 +1,4 @@
-package com.hx.collector.survey.model.cognition.req;
+package com.hx.collector.survey.model.colloctor.req;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,8 +7,8 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-@ApiModel(description = "用户登陆请求")
-public class LoginReq {
+@ApiModel(description = "用户注册请求")
+public class RegisterReq {
     @ApiModelProperty(value = "用户名", example = "test", dataType = "String")
     private String userName;
 

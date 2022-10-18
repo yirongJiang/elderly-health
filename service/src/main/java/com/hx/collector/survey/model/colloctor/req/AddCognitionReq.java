@@ -1,12 +1,11 @@
-package com.hx.collector.survey.model.cognition.req;
+package com.hx.collector.survey.model.colloctor.req;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 
 @Data
-@ApiModel(description = "新增认知记录请求")
+@ApiModel(description = "新BI评估记录请求")
 public class AddCognitionReq {
     @ApiModelProperty(value = "时间问题答案", example = "1:是，0：否", dataType = "String")
     private String answerTime;
