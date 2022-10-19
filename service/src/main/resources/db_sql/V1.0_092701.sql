@@ -74,3 +74,23 @@ CREATE TABLE `user_info` (
 	`del_flge` VARCHAR ( 1 ) DEFAULT '0' COMMENT '是否有效,1有效，0无效',
 PRIMARY KEY ( `id` ) USING BTREE
 ) ENGINE = INNODB DEFAULT CHARSET = utf8 ROW_FORMAT = DYNAMIC;
+
+
+DROP TABLE IF EXISTS `iadl`;
+CREATE TABLE `iadl` (
+                        `id` varchar(50) NOT NULL,
+                        `q_one` varchar(1) NOT NULL COMMENT '电话的使用,由自理能到不能自己做分为1、2、3',
+                        `q_two` varchar(1) NOT NULL COMMENT '交通的使用，由自理能到不能自己做分为1、2、3',
+                        `q_three` varchar(1) NOT NULL COMMENT '购物，由自理能到不能自己做分为1、2、3',
+                        `q_four` varchar(1) NOT NULL COMMENT '准备食物，由自理能到不能自己做分为1、2、3',
+                        `q_five` varchar(1) NOT NULL COMMENT '家务活动，由自理能到不能自己做分为1、2、3',
+                        `q_six` varchar(1) NOT NULL COMMENT '家居维修，由自理能到不能自己做分为1、2、3',
+                        `q_seven` varchar(1) NOT NULL COMMENT '卫生，由自理能到不能自己做分为1、2、3',
+                        `q_eight` varchar(1) NOT NULL COMMENT '服药，由自理能到不能自己做分为1、2、3',
+                        `q_nine` varchar(1) NOT NULL COMMENT '财务管理，由自理能到不能自己做分为1、2、3',
+                        `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+                        `update_date` datetime DEFAULT NULL COMMENT '更新时间',
+                        `user_id` varchar(50) DEFAULT NULL COMMENT '用户ID',
+                        `del_flge` varchar(1) DEFAULT '0' COMMENT '是否有效,1有效，0无效',
+                        PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
