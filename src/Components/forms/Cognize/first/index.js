@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Form, Radio, Button } from 'antd';
 import './index.less'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../../UI/Nav-head';
+import { topicNumbercontext, topicFormDatacontext } from '../../../../store/topicNumbercontext';
+
 
 const formItemLayout = {
   labelCol: {
@@ -22,15 +24,33 @@ const commonRuls = [
 ]
 export default function Cognizefirst() {
   const nav = useNavigate()
+  const [form] = Form.useForm()
   const onFinish = (values) => {
     nav('/evaluationdetail/cognize/second')
     console.log('Received values of form: ', values);
   };
+
+  const topicContext = useContext(topicNumbercontext)
+  const formdataContext = useContext(topicFormDatacontext)
+
+  const formChange = (e) => {
+    const value = form.getFieldsValue(true)
+    let formdata = value
+    let selectedNumber = Object.keys(value).length
+    topicContext.numberDispatch({ type: 'COGNIZEADD', selectedNumber: selectedNumber })
+    formdataContext.formDispatch({ type: 'COGNIZEFORM', formdata: formdata })
+  }
+
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.cognizeFormdata })
+  }, [])
+
   return (
     <Commontitle title='自制认知筛查表' className='cognizefirst-wrapper'>
-
       <Form
-        name="validate_other"
+        onFieldsChange={formChange}
+        form={form}
+        name="自制认知筛查表"
         {...formItemLayout}
         onFinish={onFinish}
       >
@@ -42,6 +62,7 @@ export default function Cognizefirst() {
             <Radio value="晚上">晚上</Radio>
           </Radio.Group>
         </Form.Item>
+
         <Form.Item
           rules={commonRuls} name="cognizesecond-group" label="2. 石头是否能浮在水面？">
           <Radio.Group>
@@ -50,6 +71,7 @@ export default function Cognizefirst() {
             <Radio value="晚上">晚上</Radio>
           </Radio.Group>
         </Form.Item>
+
         <Form.Item
           rules={commonRuls}
           wrapperCol={{
@@ -61,6 +83,7 @@ export default function Cognizefirst() {
             下一步
           </Button>
         </Form.Item>
+
       </Form>
 
     </Commontitle>

@@ -1,8 +1,10 @@
 import { Button, Form, message, Radio, Space } from 'antd';
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head'
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import './index.less'
+
 
 const commonRuls = [
   {
@@ -12,7 +14,7 @@ const commonRuls = [
 ]
 export default function Bi() {
   const [form] = Form.useForm()
-  const nav=useNavigate()
+  const nav = useNavigate()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     nav('/evaluationdetail/scalenav')
@@ -28,10 +30,25 @@ export default function Bi() {
       offset: 0
     },
   };
+  const topicContext = useContext(topicNumbercontext)
+  const formdataContext = useContext(topicFormDatacontext)
+
+  const formChange = (e) => {
+    const value = form.getFieldsValue(true)
+    let formdata = value
+    let selectedNumber = Object.keys(value).length
+    topicContext.numberDispatch({ type: 'BIADD', selectedNumber: selectedNumber })
+    formdataContext.formDispatch({ type: 'BIFORM', formdata: formdata })
+  }
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.biFormdata })
+  }, [])
+
   return (
     <Commontitle title='BI评估表' className='bi-wrapper'>
-      
+
       <Form
+        onFieldsChange={formChange}
         form={form}
         name="validate_other"
         {...formItemLayout}
@@ -98,7 +115,7 @@ export default function Bi() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRuls}  name="BI6" label="6.行45m）">
+        <Form.Item rules={commonRuls} name="BI6" label="6.行45m）">
           <Radio.Group>
             <Radio value="行走自理">使用或不使用辅具皆可独立行走50公尺以上。
             </Radio>
@@ -136,12 +153,12 @@ export default function Bi() {
         <Form.Item rules={commonRuls} name="BI9" label="9.大便控制">
           <Radio.Group>
             <Space direction='vertical'>
-            <Radio value="大便能控制">能控制。
-            </Radio>
-            <Radio value="大便偶尔失禁">偶尔失禁（每周＜1次）。
-            </Radio>
-            <Radio value="大便完全失禁">失禁或昏迷。
-            </Radio>
+              <Radio value="大便能控制">能控制。
+              </Radio>
+              <Radio value="大便偶尔失禁">偶尔失禁（每周＜1次）。
+              </Radio>
+              <Radio value="大便完全失禁">失禁或昏迷。
+              </Radio>
             </Space>
           </Radio.Group>
         </Form.Item>

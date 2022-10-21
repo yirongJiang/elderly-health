@@ -1,14 +1,15 @@
 import { Button, Form, message, Radio, Space } from 'antd';
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Commontitle from '../../../UI/Nav-head'
+import Commontitle from '../../../UI/Nav-head';
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import './index.less'
 
 
 const commonRuls = [
   {
-      required: true,
-      message: "请选择一个"
+    required: true,
+    message: "请选择一个"
   },
 ]
 export default function Heart() {
@@ -29,12 +30,30 @@ export default function Heart() {
       offset: 0
     },
   };
+
+
+  const topicContext = useContext(topicNumbercontext)
+  const formdataContext = useContext(topicFormDatacontext)
+
+  const formChange = (e) => {
+    const value = form.getFieldsValue(true)
+    let formdata = value
+    let selectedNumber = Object.keys(value).length
+    topicContext.numberDispatch({ type: 'HEARTRATEADD', selectedNumber: selectedNumber })
+    formdataContext.formDispatch({ type: 'HEARTRATEFORM', formdata: formdata })
+  }
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.heartrateFormdata })
+  }, [])
+
+
   return (
     <Commontitle title='冠心病/心率问题' className='heart-wrapper'>
       <div className="question">
         是否有冠心病或心脏相关的问题？
       </div>
       <Form
+        onFieldsChange={formChange}
         form={form}
         name="validate_other"
         {...formItemLayout}

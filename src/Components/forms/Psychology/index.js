@@ -1,10 +1,11 @@
 import { Button, Form, message, Radio, Space } from 'antd';
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 
-const commonRules=[
+const commonRules = [
   {
     required: true,
     message: '请选择完整',
@@ -28,13 +29,30 @@ export default function Psychology() {
       offset: 1
     },
   };
+
+  const topicContext = useContext(topicNumbercontext)
+  const formdataContext = useContext(topicFormDatacontext)
+
+  const formChange = (e) => {
+    const value = form.getFieldsValue(true)
+    let formdata = value
+    let selectedNumber = Object.keys(value).length
+    topicContext.numberDispatch({ type: 'PSYCHOLOGYADD', selectedNumber: selectedNumber })
+    formdataContext.formDispatch({ type: 'PSYCHOLOGYFORM', formdata: formdata })
+  }
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.psychologyFormdata })
+  }, [])
+
+
   return (
     <Commontitle title='心理问卷' className='psychology-wrapper'>
       <div className="question">
         在最近两周里，您感觉自己被以下症状所困扰的频率是？
       </div>
       <Form
-      style={{padding:'0 10rem'}}
+        onFieldsChange={formChange}
+        style={{ padding: '0 10rem' }}
         form={form}
         name="validate_other"
         {...formItemLayout}

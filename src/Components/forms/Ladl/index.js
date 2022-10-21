@@ -1,8 +1,9 @@
 import { Button, Form, message, Radio, Space } from 'antd';
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 
 const commonRuls = [
   {
@@ -28,11 +29,27 @@ export default function Ladl() {
       offset: 0
     },
   };
+
+  const topicContext = useContext(topicNumbercontext)
+  const formdataContext = useContext(topicFormDatacontext)
+
+  const formChange = () => {
+    const value = form.getFieldsValue(true)
+    let formdata = value
+    let selectedNumber = Object.keys(value).length
+    topicContext.numberDispatch({ type: 'IADLADD', selectedNumber: selectedNumber })
+    formdataContext.formDispatch({ type: 'IADLFORM', formdata: formdata })
+  }
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.iadlFormdata })
+  }, [])
+
   return (
     <Commontitle title='洛顿IADL评估' className='ladi-wrapper'>
       <Form
-        style={{ fontWeight: 'bold', fontSize: '20rem', padding: '0 10rem' }}
         form={form}
+        onFieldsChange={formChange}
+        style={{ fontWeight: 'bold', fontSize: '20rem', padding: '0 10rem' }}
         name="validate_other"
         {...formItemLayout}
         onFinish={onFinish}
@@ -129,13 +146,13 @@ export default function Ladl() {
             (假设你必须要自己做)' >
           <Form.Item rules={commonRuls} name="6.家居维修">
             <Radio.Group>
-            <Space direction='vertical'>
-              <Radio value="家居维修自理">可以自己做，但做的时候有困难
-              </Radio>
-              <Radio value="家居维修需要帮忙">需要一些帮忙
-              </Radio>
-              <Radio value="家居维修依赖">完全不能自己做
-              </Radio>
+              <Space direction='vertical'>
+                <Radio value="家居维修自理">可以自己做，但做的时候有困难
+                </Radio>
+                <Radio value="家居维修需要帮忙">需要一些帮忙
+                </Radio>
+                <Radio value="家居维修依赖">完全不能自己做
+                </Radio>
               </Space>
             </Radio.Group></Form.Item>
         </Form.Item>
@@ -145,13 +162,13 @@ export default function Ladl() {
             (假设你必须要洗自己的衫﹑被﹑床单等)' >
           <Form.Item rules={commonRuls} name="7.卫生">
             <Radio.Group>
-            <Space direction='vertical'>
-              <Radio value="卫生自理">可以自己做，但做的时候有困难
-              </Radio>
-              <Radio value="卫生需要帮忙">需要一些帮忙
-              </Radio>
-              <Radio value="卫生依赖">完全不能自己做
-              </Radio>
+              <Space direction='vertical'>
+                <Radio value="卫生自理">可以自己做，但做的时候有困难
+                </Radio>
+                <Radio value="卫生需要帮忙">需要一些帮忙
+                </Radio>
+                <Radio value="卫生依赖">完全不能自己做
+                </Radio>
               </Space>
             </Radio.Group></Form.Item>
         </Form.Item>
@@ -161,13 +178,13 @@ export default function Ladl() {
             (假设你必须要自己擦药或食药等)'   >
           <Form.Item rules={commonRuls} label="" name="8.服药">
             <Radio.Group>
-            <Space direction='vertical'>
-              <Radio value="服药自理">可以自己做，但做的时候有困难
-              </Radio>
-              <Radio value="服药需要帮忙">需要一些帮忙
-              </Radio>
-              <Radio value="服药依赖">完全不能自己做
-              </Radio>
+              <Space direction='vertical'>
+                <Radio value="服药自理">可以自己做，但做的时候有困难
+                </Radio>
+                <Radio value="服药需要帮忙">需要一些帮忙
+                </Radio>
+                <Radio value="服药依赖">完全不能自己做
+                </Radio>
               </Space>
             </Radio.Group></Form.Item>
         </Form.Item>

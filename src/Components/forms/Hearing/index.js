@@ -1,8 +1,9 @@
 import { Button, Form, message, Radio, Space } from 'antd';
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 
 const commonRules = [
   {
@@ -28,9 +29,25 @@ export default function Hearing() {
       offset: 1
     },
   };
+
+  const topicContext = useContext(topicNumbercontext)
+  const formdataContext = useContext(topicFormDatacontext)
+
+  const formChange = (e) => {
+    const value = form.getFieldsValue(true)
+    let formdata = value
+    let selectedNumber = Object.keys(value).length
+    topicContext.numberDispatch({ type: 'HEARINGADD', selectedNumber: selectedNumber })
+    formdataContext.formDispatch({ type: 'HEARINGFORM', formdata: formdata })
+  }
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.hearingFormdata })
+  }, [])
+
   return (
     <Commontitle title='听力筛查表' className='hearing-wrapper'>
       <Form
+      onFieldsChange={formChange}
         style={{ padding: '0 10rem' }}
         form={form}
         name="听力筛查表"

@@ -1,9 +1,12 @@
 import { Button, Form, Radio } from 'antd';
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
 import Checkfive from './check5';
-import './index.less'
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
+import './index.less';
+
+
 
 const commonRules=[
   {
@@ -28,9 +31,25 @@ export default function Eyesight() {
       offset: 2
     },
   };
+
+  const topicContext = useContext(topicNumbercontext)
+  const formdataContext = useContext(topicFormDatacontext)
+
+  const formChange = (e) => {
+    const value = form.getFieldsValue(true)
+    let formdata = value
+    let selectedNumber = Object.keys(value).length
+    topicContext.numberDispatch({ type: 'EYESIGHTADD', selectedNumber: selectedNumber })
+    formdataContext.formDispatch({ type: 'EYESIGHTFORM', formdata: formdata })
+  }
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.eyesightFormdata })
+  }, [])
+
   return (
     <Commontitle title='视力测试' className='eyesight-wrapper'>
       {nextStep === 0 ? <Form
+        onFieldsChange={formChange}
         form={form}
         name="validate_other"
         {...formItemLayout}

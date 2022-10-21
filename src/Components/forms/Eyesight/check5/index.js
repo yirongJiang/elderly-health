@@ -1,6 +1,7 @@
 import { Button, Form, message, Radio } from 'antd';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { topicNumbercontext, topicFormDatacontext } from '../../../../store/topicNumbercontext'
 
 export default function Checkfive() {
   const [size, setSize] = useState(260)
@@ -32,9 +33,17 @@ export default function Checkfive() {
       clearTimeout(timer)
     }
   }, [size])
+
+
+  const topicContext = useContext(topicNumbercontext)
+
+  const formChange = (e) => {
+    topicContext.numberDispatch({ type: 'EYESIGHTADD', selectedNumber: 6 })
+  }
   return (
     <div className='five-wrapper'>
       <Form
+        onFieldsChange={formChange}
         form={form}
         name="validate_other"
         {...formItemLayout}
