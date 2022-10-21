@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Button, Form, message, Radio, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './index.less'
 import rectangel from '../../../assect/img/画图.png'
 import Commontitle from '../../../UI/Nav-head';
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
+
+
 
 export default function Mmse() {
   const [form] = Form.useForm()
   const nav = useNavigate()
+
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，完成填写！')
   };
+
+
   const formItemLayout = {
     labelCol: {
       span: 3,
@@ -23,6 +29,22 @@ export default function Mmse() {
       offset: 2
     },
   };
+
+  const topicContext = useContext(topicNumbercontext)
+  const formdataContext = useContext(topicFormDatacontext)
+
+  const formChange = (e) => {
+    const value = form.getFieldsValue(true)
+    let formdata = value
+    let selectedNumber = Object.keys(value).length
+    topicContext.numberDispatch({ type: 'MMSEADD', selectedNumber: selectedNumber })
+    formdataContext.formDispatch({ type: 'MMSEFORM', formdata: formdata })
+  }
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.mmseFormdata })
+   
+  }, [])
+
   return (
     <Commontitle title='简易精神状态检查量表(MMSE)' className='mmse-wrapper'>
       {/* <div className="attention">
@@ -30,6 +52,7 @@ export default function Mmse() {
         正确为“1”，不正确为“0”
       </div> */}
       <Form
+        onFieldsChange={formChange}
         form={form}
         name="validate_other"
         {...formItemLayout}

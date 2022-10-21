@@ -3,8 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
-let hoverTime = 0
-let touchTime = 0
+
 export default function Cognizethird() {
   const [changePage, setChangePage] = useState(0)
   const canvasDom = useRef()

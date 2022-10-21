@@ -15,14 +15,13 @@ import Mmse from '../Components/forms/MMSE'
 import Painful from '../Components/forms/Pains'
 import Psychology from '../Components/forms/Psychology'
 import Steps from '../Components/forms/Step-number'
-import Swallow from '../Components/Swallow'
+import Swallow from '../Components/forms/Swallow'
 import { Navigate } from 'react-router-dom'
 import Basicinfo from '../Components/hombasicinformation'
 import Evaluation from '../Evaluate-basci-info'
 import Search from '../Components/Search'
 import Queryresult from '../Components/forms/Query-result'
 import Evaluationdetail from '../Evaluation-detail'
-import Initailpage from '../Components/Login-initail'
 import Basicform from '../Components/forms/basic-form'
 import Scalenav from '../Components/Scale-nav'
 import Cognizefirst from '../Components/forms/Cognize/first'
@@ -30,6 +29,7 @@ import Cognizesecond from '../Components/forms/Cognize/second'
 import Cognizethird from '../Components/forms/Cognize/third'
 import Evaluationoutcome from '../Components/forms/evaluation-outcome'
 import CameraComponent from '../Components/forms/Cognize/Camera-photo'
+
 
 
 export const getRoutesConfig = (isLogin) => [
@@ -163,74 +163,4 @@ export const getRoutesConfig = (isLogin) => [
     ]
   }
 ]
-export const requiredList = [
-  {
-    title: '自制认知筛查表',
-    finishedNumber: 0,
-    defaultNumber: 10,
-    navUrl: '/evaluationdetail/cognize'
-  },
-  {
-    title: '简易精神状态检查量表MMSE',
-    finishedNumber: 0,
-    defaultNumber: 10,
-    navUrl: '/evaluationdetail/mmse'
-  },
-  {
-    title: 'BI评估表',
-    finishedNumber: 0,
-    defaultNumber: 10,
-    navUrl: '/evaluationdetail/bi'
-  },
-  {
-    title: '洛顿IADL表',
-    finishedNumber: 0,
-    defaultNumber: 10,
-    navUrl: '/evaluationdetail/iadl'
-  },
-  {
-    title: '心理问卷',
-    finishedNumber: 0,
-    defaultNumber: 2,
-    navUrl: '/evaluationdetail/psychology'
-  },
-  {
-    title: '吞咽二便功能',
-    finishedNumber: 0,
-    defaultNumber: 10,
-    navUrl: '/evaluationdetail/swallow'
-  },
-  {
-    title: '每日步行数',
-    finishedNumber: 0,
-    defaultNumber: 1,
-    navUrl: '/evaluationdetail/steps'
-  },
-]
 
-export const optionalList = [
-  {
-    title: '听力筛查表',
-    finishedNumber: 0,
-    defaultNumber: 10,
-    navUrl: '/evaluationdetail/hearing'
-  },
-  {
-    title: '视觉筛查表',
-    finishedNumber: 0,
-    defaultNumber: 15,
-    navUrl: '/evaluationdetail/eyesight'
-  },
-  {
-    title: '疼痛报告表',
-    finishedNumber: 0,
-    defaultNumber: 1,
-    navUrl: '/evaluationdetail/pain'
-  },
-  {
-    title: '冠心病/心率问题',
-    finishedNumber: 0,
-    defaultNumber: 1,
-    navUrl: '/evaluationdetail/heartrate'
-  },
-]

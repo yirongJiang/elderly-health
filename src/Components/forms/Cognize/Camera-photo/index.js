@@ -1,7 +1,8 @@
 
 import { But, Button, message } from 'antd';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { topicNumbercontext } from '../../../../store/topicNumbercontext';
 import './index.less'
 
 export default function CameraComponent() {
@@ -11,11 +12,14 @@ export default function CameraComponent() {
   let video = null;
   let canvas = null;
   let startButton = null;
+
   const nav = useNavigate()
-  const [changeNumber, setChangeNumber] = useState(0)
   useEffect(() => {
     startup()
-  })
+  }, [])
+
+  const topicContext = useContext(topicNumbercontext)
+
   function startup() {
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
@@ -79,6 +83,7 @@ export default function CameraComponent() {
   const subClock = () => {
     video.pause()
     nav('/evaluationdetail/scalenav')
+    topicContext.numberDispatch({ type: 'COGNIZEADD', selectedNumber: 3 })
     message.success('拍照完成啦')
   }
   return (

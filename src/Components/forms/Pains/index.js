@@ -1,10 +1,11 @@
 import { Cascader, Select, Input, Form, Rate, Button, message, Space } from 'antd';
 import { MehOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
 import pains from '../../../assect/img/pains.png'
 import './index.less'
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 
 const { Option } = Select;
 const commonRules = [
@@ -21,9 +22,12 @@ export default function Painful() {
   }
   const nav = useNavigate()
   const [form] = Form.useForm()
+
+  const topicContext = useContext(topicNumbercontext)
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     nav(-1)
+    topicContext.numberDispatch({ type: 'PAINSADD', selectedNumber: 1 })
     message.success('恭喜您，提交成功')
   };
   const formItemLayout = {
@@ -36,6 +40,9 @@ export default function Painful() {
       offset: 1
     },
   };
+
+
+
   return (
     <Commontitle title='疼痛报告' className='painful-wrapper'>
       <div className="question">疼痛部位 : </div>
@@ -207,16 +214,16 @@ export default function Painful() {
                     <Form.Item rules={commonRules} style={{ marginLeft: '4%' }} name="疼痛程度2"><Rate count={10} character={<MehOutlined />} /></Form.Item>
                     <img style={{ marginLeft: '3%' }} src={pains} alt="" />
                   </Form.Item>
-                  <Button  style={{ width: '40vw' }} type="dashed" onClick={() => remove(name)} block icon={<MinusCircleOutlined />}>
-                  删除部位
-                </Button>
+                  <Button style={{ width: '40vw' }} type="dashed" onClick={() => remove(name)} block icon={<MinusCircleOutlined />}>
+                    删除部位
+                  </Button>
                   <hr />
                 </Form.Item>
               ))}
               <Form.Item wrapperCol={{
-                span:2,
-                offset:0
-              
+                span: 2,
+                offset: 0
+
               }}>
                 <Button className='add-btn' style={{ width: '40vw' }} type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                   添加部位
