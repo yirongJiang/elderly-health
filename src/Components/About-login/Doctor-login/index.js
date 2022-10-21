@@ -68,7 +68,7 @@ export default function Doctorlogin() {
           }}
         >
           <Button  type="primary" htmlType="submit">
-            登陆
+            登录
           </Button>
         </Form.Item>
       </Form>
