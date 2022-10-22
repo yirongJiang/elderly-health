@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hx.collector.survey.dao.HeartMapper">
+    <insert id="insert" parameterType="com.hx.collector.survey.model.db.HeartDbBean">
+        insert into heart (id, q_one, create_date, update_date, user_id, del_flge)
+        values (#{id}, #{qOne}, #{createDate}, #{updateDate}, #{userId}, #{delFlge})
+    </insert>
+
+    <update id="modify" parameterType="com.hx.collector.survey.model.db.HeartDbBean">
+        update heart
+        <set>
+            <if test="qOne != null and qOne !=''">
+                q_one = #{qOne,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+            and del_flge = '1'
+    </update>
+</mapper>

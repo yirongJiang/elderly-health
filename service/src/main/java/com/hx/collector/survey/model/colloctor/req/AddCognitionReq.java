@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel(description = "新BI评估记录请求")
+@ApiModel(description = "新增自制认知筛查表请求")
 public class AddCognitionReq {
     @ApiModelProperty(value = "时间问题答案", example = "1:是，0：否", dataType = "String")
     private String answerTime;
