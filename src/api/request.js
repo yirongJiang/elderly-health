@@ -23,7 +23,7 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(res => {
   if (res.data.status === 401) {
     localStorage.removeItem('token')
-    message.error('token已经过期啦,请重新登陆')
+    message.error('token已经过期啦,请重新登录')
     window.location.href = '/login'
   }
   return res.data

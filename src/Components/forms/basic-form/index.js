@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Form, Input, message, Radio, Select } from 'antd';
 import './index.less'
 import TextArea from 'antd/lib/input/TextArea';
+import { postInfo } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
@@ -66,36 +67,36 @@ export default function Basicform() {
       >
         <Form.Item
           label="姓名"
-          name='姓名'
+          name='name'
           rules={commonRuls}
           style={{ width: '90%' }} >
           <Input placeholder="请输入您的姓名" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
 
         <Form.Item
-          rules={commonRuls} style={{ width: '90%' }} name="radio-group" label="性别">
+          rules={commonRuls} style={{ width: '90%' }} name="gender" label="性别">
           <Radio.Group>
-            <Radio value="男">男</Radio>
-            <Radio value="女">女</Radio>
+            <Radio value="1">男</Radio>
+            <Radio value="0">女</Radio>
           </Radio.Group>
         </Form.Item>
 
         <Form.Item
           label="年龄"
-          name='年龄'
+          name='age'
           rules={commonRuls} style={{ width: '90%' }}>
           <Input placeholder="请输入您的年龄" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
 
 
         <Form.Item
-          name='身高'
+          name='height'
           rules={commonRuls} style={{ width: '90%' }} label="身高 / cm">
           <Input placeholder="cm" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
 
         <Form.Item
-          name='体重'
+          name='weight'
           rules={commonRuls} style={{ width: '90%' }} label="体重 / kg">
           <Input placeholder="kg" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
@@ -103,7 +104,7 @@ export default function Basicform() {
         <Form.Item
           rules={commonRuls}
           style={{ width: '90%' }}
-          name="select"
+          name="edu"
           label="文化程度"
         >
           <Select style={{ width: '50%' }} size='middle' placeholder="点击选择文化程度">
@@ -118,7 +119,7 @@ export default function Basicform() {
         <Form.Item
           rules={commonRuls}
           style={{ width: '90%' }}
-          name="婚姻状况"
+          name="matrim"
           label="婚姻状况"
         >
           <Select style={{ width: '50%' }} size='middle' placeholder="点击选择文化婚姻">
@@ -128,11 +129,24 @@ export default function Basicform() {
           </Select>
         </Form.Item>
 
+        <Form.Item
+          rules={commonRuls}
+          style={{ width: '90%' }}
+          name="org"
+          label="机构来源"
+        >
+          <Select style={{ width: '50%' }} size='middle' placeholder="点击选择机构来源">
+            <Option value="四川大学华西医院">四川大学华西医院</Option>
+            <Option value="南京医科大学">南京医科大学</Option>
+            <Option value="中南大学湘雅医院">中南大学湘雅医院</Option>
+          </Select>
+        </Form.Item>
+
         {locationSpecial === 0 ?
           <Form.Item
             rules={commonRuls}
             style={{ width: '90%' }}
-            name="评估地点"
+            name="place"
             label="评估地点"
           >
             <Select style={{ width: '50%' }} size='middle' onChange={locationChange} placeholder="点击选择评估地点">
@@ -152,7 +166,7 @@ export default function Basicform() {
           <Form.Item
             rules={commonRuls}
             style={{ width: '90%' }}
-            name="填写人员"
+            name="staff"
             label="填写人员"
           >
             <Select style={{ width: '50%' }} size='middle' onChange={peopleChange} placeholder="点击选择填写人员">

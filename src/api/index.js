@@ -7,3 +7,9 @@ export function login(params){
 export function register(params){
   return request.post('rest/v1/user/register',params)
 }
+
+
+export function postInfo(params){
+  return request.post('rest/v1/user/info/creat',params)
+}
+

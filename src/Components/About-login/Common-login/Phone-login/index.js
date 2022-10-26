@@ -20,7 +20,7 @@ export default function Phonelogin() {
 
   return (
     <div className='phonelogin-wrapper'>
-      <Button type='primary'>普通用户登陆</Button>
+      <Button type='primary'>普通用登录</Button>
       <Form
         name="普通用户登陆"
         labelCol={{
