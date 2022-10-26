@@ -1,20 +1,20 @@
 .hearing-wrapper {
 
   Form {
+    span {
+      font-size: 16rem;
+      font-weight: 400;
+    }
+
     .ant-form-item-label {
-      height: 60rem;
-      display: flex;
-      justify-content: flex-start;
-      line-height: 16px;  //这个数值视具体情况而定
-      label {         
-        height: 70rem;  //这是关键
-        white-space: normal;
+      label {
         text-align: left;
-        padding-right: 18rem;
-        font-size: 17rem;
-        line-height: 30rem;
-        &:after {          
-          content: none !important;      //解决上面的样式label后面会有空格
+        font-size: 20rem;
+        height: auto;
+        font-weight: 400;
+
+        &:after {
+          content: none !important; //解决上面的样式label后面会有空格
         }
       }
     }

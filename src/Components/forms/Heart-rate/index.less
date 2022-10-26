@@ -1,7 +1,7 @@
 .heart-wrapper {
   min-height: 900rem;
-  font-size: 22rem;
-  font-weight: bold;
+  font-size: 23rem;
+  font-weight: lighter;
 
   .question {
     margin: 20rem;
@@ -9,6 +9,24 @@
 
   Form {
     padding: 0 10rem;
+
+    span {
+      font-size: 16rem;
+      font-weight: 400;
+    }
+
+    .ant-form-item-label {
+      label {
+        text-align: left;
+        font-size: 20rem;
+        height: auto;
+        font-weight: 400;
+
+        &:after {
+          content: none !important; //解决上面的样式label后面会有空格
+        }
+      }
+    }
 
     Button {
       position: absolute;
