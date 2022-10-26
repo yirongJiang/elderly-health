@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hx.collector.survey.dao.CognitionTwoMapper">
+    <insert id="insert" parameterType="com.hx.collector.survey.model.db.CognitionTwoDbBean">
+        insert into cognition_two (id, finger_status, gravity_angx, gravity_angy, gravity_angz, speed_angx, speed_angy, speed_angz,
+                               gyroscope_angx, gyroscope_angy, gyroscope_angz, pressure, collect_time, collect_long, create_date,
+                               update_date, user_id, del_flge)
+        values (#{id}, #{fingerStatus}, #{gravityAngx}, #{gravityAngy}, #{gravityAngz},  #{speedAngx}, #{speedAngy}, #{speedAngz}, #{gyroscopeAngx},
+                #{gyroscopeAngy}, #{gyroscopeAngz}, #{pressure}, #{collectTime},  #{collectLong}, #{createDate}, #{updateDate}, #{userId}, #{delFlge})
+    </insert>
+
+    <update id="modify" parameterType="com.hx.collector.survey.model.db.CognitionTwoDbBean">
+        update cognition_two
+        <set>
+            <if test="fingerStatus != null and fingerStatus !=''">
+                finger_status = #{fingerStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="gravityAngx != null and gravityAngx !=''">
+                gravity_angx = #{gravityAngx,jdbcType=VARCHAR},
+            </if>
+            <if test="gravityAngy != null and gravityAngy !=''">
+                gravity_angy = #{gravityAngy,jdbcType=VARCHAR},
+            </if>
+            <if test="gravityAngz != null and gravityAngz !=''">
+                gravity_angz = #{gravityAngz,jdbcType=VARCHAR},
+            </if>
+            <if test="speedAngx != null and speedAngx !=''">
+                speed_angx = #{speedAngx,jdbcType=VARCHAR},
+            </if>
+            <if test="speedAngy != null and speedAngy !=''">
+                speed_angy = #{speedAngy,jdbcType=VARCHAR},
+            </if>
+            <if test="speedAngz != null and speedAngz !=''">
+                speed_angz = #{speedAngz,jdbcType=VARCHAR},
+            </if>
+            <if test="gyroscopeAngx != null and gyroscopeAngx !=''">
+                gyroscope_angx = #{gyroscopeAngx,jdbcType=VARCHAR},
+            </if>
+            <if test="gyroscopeAngy != null and gyroscopeAngy !=''">
+                gyroscope_angy = #{gyroscopeAngy,jdbcType=VARCHAR},
+            </if>
+            <if test="gyroscopeAngz != null and gyroscopeAngz !=''">
+                gyroscope_angz = #{gyroscopeAngz,jdbcType=VARCHAR},
+            </if>
+            <if test="pressure != null and pressure !=''">
+                pressure = #{pressure,jdbcType=VARCHAR},
+            </if>
+            <if test="collectTime != null and collectTime !=''">
+                collect_time = #{collectTime,jdbcType=VARCHAR},
+            </if>
+            <if test="collectLong != null and collectLong !=''">
+                collect_long = #{collectLong,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+            and del_flge = '1'
+    </update>
+</mapper>

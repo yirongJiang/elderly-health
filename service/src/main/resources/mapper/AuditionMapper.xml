@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hx.collector.survey.dao.AuditionMapper">
+    <insert id="insert" parameterType="com.hx.collector.survey.model.db.AuditionDbBean">
+        insert into audition (id, q_one, q_two, q_three, q_four, q_five, q_six, q_seven, q_eight, q_nine, q_ten, create_date, update_date, user_id, del_flge)
+        values (#{id}, #{qOne}, #{qTwo}, #{qThree}, #{qFour}, #{qFive}, #{qSix}, #{qSeven}, #{qEight}, #{qNine}, #{qTen}, #{createDate}, #{updateDate}, #{userId}, #{delFlge})
+    </insert>
+
+    <update id="modify" parameterType="com.hx.collector.survey.model.db.AuditionDbBean">
+        update audition
+        <set>
+            <if test="qOne != null and qOne !=''">
+                q_one = #{qOne,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwo != null and qTwo !=''">
+                q_two = #{qTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="qThree != null and qThree !=''">
+                q_three = #{qThree,jdbcType=VARCHAR},
+            </if>
+            <if test="qFour != null and qFour !=''">
+                q_four = #{qFour,jdbcType=VARCHAR},
+            </if>
+            <if test="qFive != null and qFive !=''">
+                q_five = #{qFive,jdbcType=VARCHAR},
+            </if>
+            <if test="qSix != null and qSix !=''">
+                q_six = #{qSix,jdbcType=VARCHAR},
+            </if>
+            <if test="qSeven != null and qSeven !=''">
+                q_seven = #{qSeven,jdbcType=VARCHAR},
+            </if>
+            <if test="qEight != null and qEight !=''">
+                q_eight = #{qEight,jdbcType=VARCHAR},
+            </if>
+            <if test="qNine != null and qNine !=''">
+                q_nine = #{qNine,jdbcType=VARCHAR},
+            </if>
+            <if test="qTen != null and qTen !=''">
+                q_ten = #{qTen,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+            and del_flge = '1'
+    </update>
+</mapper>
