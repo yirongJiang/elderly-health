@@ -10,7 +10,7 @@ const request = axios.create({
 //添加请求拦截器
 request.interceptors.request.use(config => {
   if (localStorage.getItem('X-Auth-Token')) {
-    config.headers['X-Auth-Token']= localStorage.getItem('X-Auth-Token')
+    config.headers['X-Auth-Token'] = localStorage.getItem('X-Auth-Token')
   }
 
   return config
@@ -23,11 +23,7 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(res => {
   if (res.data.status === 401) {
     localStorage.removeItem('token')
-<<<<<<< HEAD
-    message.error('token已经过期啦,请重登录')
-=======
     message.error('token已经过期啦,请重新登录')
->>>>>>> dev_jyr
     window.location.href = '/login'
   }
   return res.data

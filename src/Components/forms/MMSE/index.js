@@ -51,6 +51,7 @@ export default function Mmse() {
         * 填写人为医务人员时，可选填此表，自评则不需转跳至此表）<br />
         正确为“1”，不正确为“0”
       </div> */}
+      <h2>说明:（回答正确为1，回答错误为0）</h2>
       <Form
         onFieldsChange={formChange}
         form={form}

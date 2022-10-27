@@ -57,18 +57,16 @@ export default function Cognizefirst() {
         <Form.Item
           rules={commonRuls} name="cognizefirst-group" label="1. 现在是上午还是下午？">
           <Radio.Group>
-            <Radio value="上午">上午</Radio>
-            <Radio value="下午">下午</Radio>
-            <Radio value="晚上">晚上</Radio>
+            <Radio value="回答正确">回答正确</Radio>
+            <Radio value="回答错误">回答错误</Radio>
           </Radio.Group>
         </Form.Item>
 
         <Form.Item
           rules={commonRuls} name="cognizesecond-group" label="2. 石头是否能浮在水面？">
           <Radio.Group>
-            <Radio value="上午">上午</Radio>
-            <Radio value="下午">下午</Radio>
-            <Radio value="晚上">晚上</Radio>
+            <Radio value="回答正确">回答正确</Radio>
+            <Radio value="回答错误">回答错误</Radio>
           </Radio.Group>
         </Form.Item>
 

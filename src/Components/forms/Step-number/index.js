@@ -43,6 +43,7 @@ export default function Steps() {
     topicContext.numberDispatch({ type: 'STEPADD', selectedNumber: selectedNumber })
     formdataContext.formDispatch({ type: 'STEPFORM', formdata: formdata })
   }
+
   useEffect(() => {
     form.setFieldsValue({ ...formdataContext.stepFormdata })
   }, [])
@@ -56,15 +57,23 @@ export default function Steps() {
         {...formItemLayout}
         onFinish={onFinish}
       >
-        <Form.Item rules={commonRules} name="每日步行情况" label="每日步行情况">
+        <h2 style={{margin:'10rem',color:'red',fontFamily:'宋体',fontWeight:'bold'}}>每日步行情况 , 二选一进行填写</h2>
+        <Form.Item  name="步行情况">
           <Radio.Group>
-            <Radio value="步行数（步）">步行数（步）</Radio>
-            <Radio value="公里数（km）">公里数（km）</Radio>
+            <Radio value="步行">步行数（步）</Radio>
+            <Form.Item name='具体步数'>
+              <Input size='large' placeholder="请输入您的步数" style={{ border: 'none', borderBottom: '2px gray solid' }} />
+            </Form.Item>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="公里或者步数" >
-          <Input size='large' placeholder="请输入您的步数或" style={{ border: 'none', borderBottom: '2px gray solid' }} />
+        <Form.Item name="公里情况" >
+          <Radio.Group>
+            <Radio value="公里">公里数（km）</Radio>
+            <Form.Item name='具体公里数'>
+              <Input size='large' placeholder="请输入您的步数或公里数" style={{ border: 'none', borderBottom: '2px gray solid' }} />
+            </Form.Item>
+          </Radio.Group>
         </Form.Item>
         <Form.Item rules={commonRules}
           style={{ width: '80%' }}
@@ -79,6 +88,6 @@ export default function Steps() {
         </Form.Item>
       </Form>
 
-    </Commontitle>
+    </Commontitle >
   )
 }

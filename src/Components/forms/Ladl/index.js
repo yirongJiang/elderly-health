@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
+import { postIadl } from '../../../api';
 
 const commonRuls = [
   {

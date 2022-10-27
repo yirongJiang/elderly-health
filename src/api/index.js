@@ -13,3 +13,7 @@ export function postInfo(params){
   return request.post('rest/v1/user/info/creat',params)
 }
 
+export function postIadl(params){
+  return request.post('rest/v1/iadl/creat',params)
+}
+

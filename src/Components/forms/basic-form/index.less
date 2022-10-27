@@ -1,27 +1,33 @@
 .basicform-wrapper {
   height: 981rem;
 
-  span {
-    font-size: 16rem;
-    font-weight: 400;
-  }
-
-  .ant-form-item-label {
-    label {
-      text-align: left;
-      font-size: 20rem;
-      height: auto;
+  Form {
+    span {
+      font-size: 16rem;
       font-weight: 400;
+    }
+    .ant-select:not(.ant-select-customize-input), .ant-select-selector ,.ant-select-selection-overflow{
+      max-width: 88vw;
+    }
 
-      &:after {
-        content: none !important; //解决上面的样式label后面会有空格
+    .ant-form-item-label {
+      label {
+        text-align: left;
+        font-size: 20rem;
+        height: auto;
+        font-weight: 400;
+
+        &:after {
+          content: none !important; //解决上面的样式label后面会有空格
+        }
       }
     }
-  }
 
-  input[type='text'] {
-    width: 50vw;
-    font-size: 16rem;
+    input[type='text'] {
+      width: 50vw;
+      font-size: 16rem;
+    }
+
   }
 
   .basicform-heade {
