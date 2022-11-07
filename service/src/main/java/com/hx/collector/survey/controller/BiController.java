@@ -2,11 +2,8 @@ package com.hx.collector.survey.controller;
 
 import com.hx.collector.survey.model.Result;
 import com.hx.collector.survey.model.colloctor.dto.BiDetail;
-import com.hx.collector.survey.model.colloctor.dto.CognitionDetail;
 import com.hx.collector.survey.model.colloctor.req.AddBiReq;
-import com.hx.collector.survey.model.colloctor.req.AddCognitionReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyBiReq;
-import com.hx.collector.survey.model.colloctor.req.ModifyCognitionReq;
 import com.hx.collector.survey.model.db.BiDbBean;
 import com.hx.collector.survey.service.BiService;
 import io.swagger.annotations.Api;
