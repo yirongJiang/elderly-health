@@ -84,8 +84,10 @@ public class VisionService extends BaseService{
         Field[] fields = visionDbBean.getClass().getDeclaredFields();
         int sum = 0;
         for (Field field : Arrays.asList(fields)) {
-            if (field.getName()) {
-
+            if ("delFlge".equals(field.getName()) || "userId".equals(field.getName())
+                    || "createDate".equals(field.getName()) || "id".equals(field.getName())
+                    || "updateDate".equals(field.getName())) {
+                continue;
             }
             field.setAccessible(true);
             try {

@@ -47,4 +47,10 @@ public class MmseController extends BaseController{
         MmseDbBean mmseDbBean = mmseService.modify(modifyMmseReq, token);
         return mmseService.modifyInfo(mmseDbBean);
     }
+
+    @ApiOperation("获取MMSE记录分数")
+    @PostMapping(value = "/mmse/grade")
+    public Result getGrade(@RequestHeader(name = TOKEN)String token) {
+        return mmseService.getGrade(token);
+    }
 }

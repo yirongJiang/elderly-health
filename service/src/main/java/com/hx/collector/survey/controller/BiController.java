@@ -40,4 +40,10 @@ public class BiController extends BaseController{
         BiDbBean biDbBean = biService.modify(modifyBiReq, token);
         return biService.modifyInfo(biDbBean);
     }
+
+    @ApiOperation("获取认BI评估表分数")
+    @PostMapping(value = "/bi/grade")
+    public Result getGrade(@RequestHeader(name = TOKEN)String token) {
+        return biService.getGrade(token);
+    }
 }

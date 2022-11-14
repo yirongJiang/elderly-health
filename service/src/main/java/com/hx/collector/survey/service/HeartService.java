@@ -10,6 +10,7 @@ import com.hx.collector.survey.model.colloctor.req.AddHeartReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyAuditionReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyHeartReq;
 import com.hx.collector.survey.model.db.AuditionDbBean;
+import com.hx.collector.survey.model.db.CognitionDbBean;
 import com.hx.collector.survey.model.db.HeartDbBean;
 import com.hx.collector.utils.UuidUtil;
 
@@ -73,6 +74,30 @@ public class HeartService extends BaseService{
             res.setBody("modify heart success!");
             return res;
         }
+        return res;
+    }
+
+    public Result getGrade(String token){
+        Result res = new Result("not find data!");
+        QueryWrapper<HeartDbBean> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", getUserId(token));
+        HeartDbBean heartDbBean = heartMapper.selectOne(wrapper);
+        if (heartDbBean == null) {
+            return res;
+        }
+        int data = Integer.valueOf(heartDbBean.getQOne());
+        int sum = 1;
+        if (data >= 7) {
+            sum = 1;
+        } else if (data >= 5 && data < 7) {
+            sum = 2;
+        } else if (data >= 2 && data < 5) {
+            sum = 3;
+        } else {
+            sum = 4;
+        }
+        res.setCode(200);
+        res.setBody(sum);
         return res;
     }
 }

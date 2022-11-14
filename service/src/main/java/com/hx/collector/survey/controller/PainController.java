@@ -43,7 +43,7 @@ public class PainController extends BaseController{
         return painService.modifyInfo(painDbBean);
     }
 
-    @ApiOperation("获取视觉筛查记录分数")
+    @ApiOperation("获取疼痛记录分数")
     @PostMapping(value = "/pain/grade")
     public Result getGrade(@RequestHeader(name = TOKEN)String token) {
         return painService.getGrade(token);

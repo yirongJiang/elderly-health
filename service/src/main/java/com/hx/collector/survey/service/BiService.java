@@ -7,12 +7,15 @@ import com.hx.collector.survey.model.colloctor.dto.BiDetail;
 import com.hx.collector.survey.model.colloctor.req.AddBiReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyBiReq;
 import com.hx.collector.survey.model.db.BiDbBean;
+import com.hx.collector.survey.model.db.VisionDbBean;
 import com.hx.collector.utils.UuidUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Date;
 
 @Service
@@ -66,5 +69,73 @@ public class BiService extends BaseService{
             return res;
         }
         return res;
+    }
+
+    public Result getGrade(String token){
+        Result res = new Result("not find data!");
+        QueryWrapper<BiDbBean> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", getUserId(token));
+        BiDbBean biDbBean = biMapper.selectOne(wrapper);
+        if (biDbBean == null) {
+            return res;
+        }
+        Field[] fields = biDbBean.getClass().getDeclaredFields();
+        int sum = 0;
+        for (Field field : Arrays.asList(fields)) {
+            if ("delFlge".equals(field.getName()) || "userId".equals(field.getName())
+                    || "createDate".equals(field.getName()) || "id".equals(field.getName())
+                    || "updateDate".equals(field.getName())) {
+                continue;
+            }
+            field.setAccessible(true);
+            try {
+                if ("qTwo".equals(field.getName()) || "qSix".equals(field.getName())) {
+                    sum = gradeSubVision(sum, field.get(biDbBean).toString());
+                }
+                sum = gradeVision(sum, field.get(biDbBean).toString());
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        res.setCode(200);
+        res.setBody(sum);
+        return res;
+    }
+
+    private int gradeVision(int sum, String ans) {
+        switch (ans) {
+            case "1":
+                sum = sum + 10;
+                break;
+            case "2":
+                sum = sum + 5;
+                break;
+            case "3":
+                sum = sum + 0;
+                break;
+            default:
+                break;
+        }
+        return sum;
+    }
+
+    private int gradeSubVision(int sum, String ans) {
+        switch (ans) {
+            case "1":
+                sum = sum + 15;
+                break;
+            case "2":
+                sum = sum + 10;
+                break;
+            case "3":
+                sum = sum + 5;
+                break;
+            case "4":
+                sum = sum + 0;
+                break;
+            default:
+                break;
+        }
+        return sum;
     }
 }

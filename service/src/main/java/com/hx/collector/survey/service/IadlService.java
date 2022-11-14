@@ -12,12 +12,15 @@ import com.hx.collector.survey.model.colloctor.req.ModifyBiReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyIadlReq;
 import com.hx.collector.survey.model.db.BiDbBean;
 import com.hx.collector.survey.model.db.IadlDbBean;
+import com.hx.collector.survey.model.db.VisionDbBean;
 import com.hx.collector.utils.UuidUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Date;
 
 @Service
@@ -71,5 +74,50 @@ public class IadlService extends BaseService{
             return res;
         }
         return res;
+    }
+
+    public Result getGrade(String token){
+        Result res = new Result("not find data!");
+        QueryWrapper<IadlDbBean> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", getUserId(token));
+        IadlDbBean iadlDbBean = iadlMapper.selectOne(wrapper);
+        if (iadlDbBean == null) {
+            return res;
+        }
+        Field[] fields = iadlDbBean.getClass().getDeclaredFields();
+        int sum = 0;
+        for (Field field : Arrays.asList(fields)) {
+            if ("delFlge".equals(field.getName()) || "userId".equals(field.getName())
+                    || "createDate".equals(field.getName()) || "id".equals(field.getName())
+                    || "updateDate".equals(field.getName())) {
+                continue;
+            }
+            field.setAccessible(true);
+            try {
+                sum = gradeVision(sum, field.get(iadlDbBean).toString());
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        res.setCode(200);
+        res.setBody(sum);
+        return res;
+    }
+
+    private int gradeVision(int sum, String ans) {
+        switch (ans) {
+            case "1":
+                sum = sum + 1;
+                break;
+            case "2":
+                sum = sum + 2;
+                break;
+            case "3":
+                sum = sum + 3;
+                break;
+            default:
+                break;
+        }
+        return sum;
     }
 }

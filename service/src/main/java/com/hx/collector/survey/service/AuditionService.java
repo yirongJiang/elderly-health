@@ -85,6 +85,11 @@ public class AuditionService extends BaseService{
         Field[] fields = auditionDbBean.getClass().getDeclaredFields();
         int sum = 0;
         for (Field field : Arrays.asList(fields)) {
+            if ("delFlge".equals(field.getName()) || "userId".equals(field.getName())
+                    || "createDate".equals(field.getName()) || "id".equals(field.getName())
+                    || "updateDate".equals(field.getName())) {
+                continue;
+            }
             field.setAccessible(true);
             try {
                 sum = gradeVision(sum, field.get(auditionDbBean).toString());

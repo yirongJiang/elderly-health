@@ -11,6 +11,7 @@ import com.hx.collector.survey.model.colloctor.req.ModifyAuditionReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyMmseReq;
 import com.hx.collector.survey.model.db.AuditionDbBean;
 import com.hx.collector.survey.model.db.MmseDbBean;
+import com.hx.collector.survey.model.db.VisionDbBean;
 import com.hx.collector.utils.UuidUtil;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -19,6 +20,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -74,5 +77,47 @@ public class MmseService extends BaseService{
             return res;
         }
         return res;
+    }
+
+    public Result getGrade(String token){
+        Result res = new Result("not find data!");
+        QueryWrapper<MmseDbBean> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", getUserId(token));
+        MmseDbBean mmseDbBean = mmseMapper.selectOne(wrapper);
+        if (mmseDbBean == null) {
+            return res;
+        }
+        Field[] fields = mmseDbBean.getClass().getDeclaredFields();
+        int sum = 0;
+        for (Field field : Arrays.asList(fields)) {
+            if ("delFlge".equals(field.getName()) || "userId".equals(field.getName())
+                    || "createDate".equals(field.getName()) || "id".equals(field.getName())
+                    || "updateDate".equals(field.getName())) {
+                continue;
+            }
+            field.setAccessible(true);
+            try {
+                sum = gradeVision(sum, field.get(mmseDbBean).toString());
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        res.setCode(200);
+        res.setBody(sum);
+        return res;
+    }
+
+    private int gradeVision(int sum, String ans) {
+        switch (ans) {
+            case "1":
+                sum = sum + 1;
+                break;
+            case "0":
+                sum = sum + 0;
+                break;
+            default:
+                break;
+        }
+        return sum;
     }
 }
