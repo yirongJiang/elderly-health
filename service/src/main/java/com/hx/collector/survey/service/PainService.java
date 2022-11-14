@@ -5,6 +5,7 @@ import com.hx.collector.survey.model.Result;
 import com.hx.collector.survey.model.colloctor.dto.PainDetail;
 import com.hx.collector.survey.model.colloctor.req.AddPainReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyPainReq;
+import com.hx.collector.survey.model.db.AuditionDbBean;
 import com.hx.collector.survey.model.db.PainDbBean;
 import com.hx.collector.utils.UuidUtil;
 
@@ -14,6 +15,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -69,5 +72,45 @@ public class PainService extends BaseService{
             return res;
         }
         return res;
+    }
+
+    public Result getGrade(String token){
+        Result res = new Result("not find data!");
+        QueryWrapper<PainDbBean> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", getUserId(token));
+        PainDbBean painDbBean = painMapper.selectOne(wrapper);
+        if (painDbBean == null) {
+            return res;
+        }
+        Field[] fields = painDbBean.getClass().getDeclaredFields();
+        int sum = 0;
+        for (Field field : Arrays.asList(fields)) {
+            field.setAccessible(true);
+            try {
+                sum = gradeVision(sum, field.get(painDbBean).toString());
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        res.setCode(200);
+        res.setBody(sum);
+        return res;
+    }
+
+    private int gradeVision(int sum, String ans) {
+        switch (ans) {
+            case "1": // 不是，0分
+                sum = sum + 0;
+                break;
+            case "2": // 有时，2分
+                sum = sum + 2;
+                break;
+            case "3": // 是的，4分
+                sum = sum + 4;
+                break;
+            default:
+                break;
+        }
+        return sum;
     }
 }

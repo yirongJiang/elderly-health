@@ -84,6 +84,9 @@ public class VisionService extends BaseService{
         Field[] fields = visionDbBean.getClass().getDeclaredFields();
         int sum = 0;
         for (Field field : Arrays.asList(fields)) {
+            if (field.getName()) {
+
+            }
             field.setAccessible(true);
             try {
                 sum = gradeVision(sum, field.get(visionDbBean).toString());
