@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hx.collector.survey.dao.UserInfoMapper">
+
+    <insert id="insert" parameterType="com.hx.collector.survey.model.db.UserInfoDbBean">
+        insert into user_info (id, user_id, name, gender, height, weight, age, matrim, edu, disease, org, place, staff, create_date, update_date, del_flge)
+        values (#{id}, #{userId}, #{name}, #{gender}, #{height}, #{weight}, #{age}, #{matrim}, #{edu}, #{disease}, #{org}, #{place}, #{staff}, #{createDate}, #{updateDate}, #{delFlge})
+    </insert>
+
+    <update id="modify" parameterType="com.hx.collector.survey.model.db.UserInfoDbBean">
+        update user_info
+        <set>
+            <if test="name != null and name !=''">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null and gender !=''">
+                gender = #{gender},
+            </if>
+            <if test="height != null and height !=''">
+                height = #{height},
+            </if>
+            <if test="weight != null and weight !=''">
+                weight = #{weight},
+            </if>
+            <if test="age != null and age !=''">
+                age = #{age},
+            </if>
+            <if test="matrim != null and matrim !=''">
+                matrim = #{matrim},
+            </if>
+            <if test="edu != null and edu !=''">
+                edu = #{edu},
+            </if>
+            <if test="disease != null and disease !=''">
+                disease = #{disease},
+            </if>
+            <if test="org != null and org !=''">
+                org = #{org},
+            </if>
+            <if test="place != null and place !=''">
+                place = #{place},
+            </if>
+            <if test="staff != null and staff !=''">
+                staff = #{staff},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+            and del_flge = '1'
+    </update>
+</mapper>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hx.collector.survey.dao.MmseMapper">
+    <insert id="insert" parameterType="com.hx.collector.survey.model.db.MmseDbBean">
+        insert into mmse (id, q_one, q_two, q_three, q_four, q_five, q_six, q_seven, q_eight, q_nine, q_ten,
+                              q_eleven, q_twelve, q_thirteen, q_fourteen, q_fifteen, q_sixteen, q_seventeen, q_eighteen, q_nineteen, q_twenty,
+                              q_twenty_one, q_twenty_two, q_twenty_three, q_twenty_four, q_twenty_five, q_twenty_six,
+                              q_twenty_seven, q_twenty_eight, q_twenty_nine, q_thirty,
+                              create_date, update_date, user_id, del_flge)
+        values (#{id}, #{qOne}, #{qTwo}, #{qThree}, #{qFour}, #{qFive}, #{qSix}, #{qSeven}, #{qEight}, #{qNine}, #{qTen},
+                #{qEleven}, #{qTwelve}, #{qThirteen}, #{qFourteen}, #{qFifteen}, #{qSixteen}, #{qSeventeen}, #{qEighteen}, #{qNineteen}, #{qTwenty},
+                #{qTwentyOne}, #{qTwentyTwo}, #{qTwentyThree}, #{qTwentyFour}, #{qTwentyFive}, #{qTwentySix}, #{qTwentySeven}, #{qTwentyEight},
+                #{qTwentyNine}, #{qThirty}, #{createDate}, #{updateDate}, #{userId}, #{delFlge})
+    </insert>
+
+    <update id="modify" parameterType="com.hx.collector.survey.model.db.MmseDbBean">
+        update mmse
+        <set>
+            <if test="qOne != null and qOne !=''">
+                q_one = #{qOne,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwo != null and qTwo !=''">
+                q_two = #{qTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="qThree != null and qThree !=''">
+                q_three = #{qThree,jdbcType=VARCHAR},
+            </if>
+            <if test="qFour != null and qFour !=''">
+                q_four = #{qFour,jdbcType=VARCHAR},
+            </if>
+            <if test="qFive != null and qFive !=''">
+                q_five = #{qFive,jdbcType=VARCHAR},
+            </if>
+            <if test="qSix != null and qSix !=''">
+                q_six = #{qSix,jdbcType=VARCHAR},
+            </if>
+            <if test="qSeven != null and qSeven !=''">
+                q_seven = #{qSeven,jdbcType=VARCHAR},
+            </if>
+            <if test="qEight != null and qEight !=''">
+                q_eight = #{qEight,jdbcType=VARCHAR},
+            </if>
+            <if test="qNine != null and qNine !=''">
+                q_nine = #{qNine,jdbcType=VARCHAR},
+            </if>
+            <if test="qTen != null and qTen !=''">
+                q_ten = #{qTen,jdbcType=VARCHAR},
+            </if>
+            <if test="qEleven != null and qEleven !=''">
+                q_eleven = #{qEleven,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwelve != null and qTwelve !=''">
+                q_twelve = #{qTwelve,jdbcType=VARCHAR},
+            </if>
+            <if test="qThirteen != null and qThirteen !=''">
+                q_thirteen = #{qThirteen,jdbcType=VARCHAR},
+            </if>
+            <if test="qFourteen != null and qFourteen !=''">
+                q_fourteen = #{qFourteen,jdbcType=VARCHAR},
+            </if>
+            <if test="qFifteen != null and qFifteen !=''">
+                q_fifteen = #{qFifteen,jdbcType=VARCHAR},
+            </if>
+            <if test="qSixteen != null and qSixteen !=''">
+                q_sixteen = #{qSixteen,jdbcType=VARCHAR},
+            </if>
+            <if test="qSeventeen != null and qSeventeen !=''">
+                q_seventeen = #{qSeventeen,jdbcType=VARCHAR},
+            </if>
+            <if test="qEighteen != null and qEighteen !=''">
+                q_eighteen = #{qEighteen,jdbcType=VARCHAR},
+            </if>
+            <if test="qNineteen != null and qNineteen !=''">
+                q_nineteen = #{qNineteen,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwenty != null and qTwenty !=''">
+                q_twenty = #{qTwenty,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentyOne != null and qTwentyOne !=''">
+                q_twenty_one = #{qTwentyOne,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentyTwo != null and qTwentyTwo !=''">
+                q_twenty_two = #{qTwentyTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentyThree != null and qTwentyThree !=''">
+                q_twenty_three = #{qTwentyThree,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentyFour != null and qTwentyFour !=''">
+                q_twenty_four = #{qTwentyFour,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentyFive != null and qTwentyFive !=''">
+                q_twenty_five = #{qTwentyFive,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentySix != null and qTwentySix !=''">
+                q_twenty_six = #{qTwentySix,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentySeven != null and qTwentySeven !=''">
+                q_twenty_seven = #{qTwentySeven,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentyEight != null and qTwentyEight !=''">
+                q_twenty_eight = #{qTwentyEight,jdbcType=VARCHAR},
+            </if>
+            <if test="qTwentyNine != null and qTwentyNine !=''">
+                q_twenty_nine = #{qTwentyNine,jdbcType=VARCHAR},
+            </if>
+            <if test="qThirty != null and qThirty !=''">
+                q_thirty = #{qThirty,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+            and del_flge = '1'
+    </update>
+</mapper>

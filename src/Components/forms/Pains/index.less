@@ -1,0 +1,53 @@
+.painful-wrapper {
+  width: 100%;
+  font-weight: bold;
+  position: relative;
+
+  .question {
+    margin: 20rem;
+    font-size: 23rem;
+  }
+
+  Form {
+    span {
+      font-size: 16rem;
+      font-weight: 400;
+    }
+
+    .ant-form-item-label {
+      label {
+        text-align: left;
+        font-size: 20rem;
+        height: auto;
+        font-weight: 400;
+
+        &:after {
+          content: none !important; //解决上面的样式label后面会有空格
+        }
+      }
+    }
+
+    img {
+      width: 282px;
+    }
+
+    .add-btn {
+      width: 20vh;
+      height: 50rem;
+      font-size: 20rem;
+      font-weight: bold;
+    }
+
+    .submit-btn {
+      margin: 0 auto;
+      width: 20vh;
+      height: 50rem;
+      border-radius: 10rem;
+      position: absolute;
+      top: 200%;
+      display: block;
+      left: 30rem;
+      font-size: 20rem;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.bi-wrapper {
+  Form {
+    span {
+      font-size: 16rem;
+      font-weight: 400;
+    }
+
+    .ant-form-item-label {
+      label {
+        text-align: left;
+        font-size: 21rem;
+        height: auto;
+        font-weight: 400;
+
+        &:after {
+          content: none !important; //解决上面的样式label后面会有空格
+        }
+      }
+    }
+
+
+    Button {
+      width: 40vw;
+      height: 60rem;
+      border-radius: 10rem;
+      margin: 20rem auto;
+      font-size: 20rem;
+    }
+  }
+}

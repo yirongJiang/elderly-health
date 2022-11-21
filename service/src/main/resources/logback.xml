@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- <include resource="org/springframework/boot/logging/logback/base.xml"/> -->
+    <jmxConfigurator/>
+    <property name="log_dir" value="/data/hx/log/admin"/>
+    <property name="maxHistory" value="30"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%M[%L] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INFOFIlE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/%d{yyyy-MM-dd}.%i.info.log.zip</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>20GB</totalSizeCap>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%M[%L] - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ERRORFIlE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/%d{yyyy-MM-dd}.%i.error.log.zip</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>20GB</totalSizeCap>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%M[%L] - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!--myibatis log configure-->
+    <!--<logger name="com.apache.ibatis" level="DEBUG"/>-->
+    <!--<logger name="java.sql.Connection" level="DEBUG"/>-->
+    <!--<logger name="java.sql.Statement" level="DEBUG"/>-->
+    <!--<logger name="java.sql.PreparedStatement" level="DEBUG"/>-->
+    <!--控制com.ghca.gcadapt包中的日志级别，正式环境改为INFO-->
+    <logger name="com.huawei.vmware.admin" level="INFO"/>
+    <!-- root级别 INFO -->
+    <root level="INFO">
+        <!-- 控制台输出 -->
+        <appender-ref ref="STDOUT"/>
+        <!-- 文件输出 -->
+        <appender-ref ref="INFOFIlE"/>
+        <appender-ref ref="ERRORFIlE"/>
+    </root>
+</configuration>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hx.collector.survey.dao.PainMapper">
+    <insert id="insert" parameterType="com.hx.collector.survey.model.db.PainDbBean">
+        insert into pain (id, position_one, level_one, position_two, level_two, create_date, update_date, user_id, del_flge)
+        values (#{id}, #{positionOne}, #{levelOne}, #{positionTwo}, #{levelTwo}, #{createDate}, #{updateDate}, #{userId}, #{delFlge})
+    </insert>
+
+    <update id="modify" parameterType="com.hx.collector.survey.model.db.PainDbBean">
+        update pain
+        <set>
+            <if test="positionOne != null and positionOne !=''">
+                position_one = #{positionOne,jdbcType=VARCHAR},
+            </if>
+            <if test="levelOne != null and levelOne !=''">
+                level_one = #{levelOne,jdbcType=VARCHAR},
+            </if>
+            <if test="positionTwo != null and positionTwo !=''">
+                position_two = #{positionTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="levelTwo != null and levelTwo !=''">
+                level_two = #{levelTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+            and del_flge = '1'
+    </update>
+</mapper>
