@@ -5,6 +5,7 @@ import Commontitle from '../../../UI/Nav-head';
 import Checkfive from './check5';
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import './index.less';
+import { postEyesight } from '../../../api';
 
 
 
@@ -17,8 +18,11 @@ const commonRules = [
 export default function Eyesight() {
   const [nextStep, setNextStep] = useState(0)
   const [form] = Form.useForm()
-  const onFinish = (values) => {
+  
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
+    // const res=await postEyesight(values)
+    // console.log(res)
     setNextStep(1)
   };
   const formItemLayout = {
@@ -55,7 +59,7 @@ export default function Eyesight() {
         {...formItemLayout}
         onFinish={onFinish}
       >
-        <Form.Item rules={commonRules} name="eyesight1" label="1.您是否有因视力不佳有走路困难吗(即使配戴眼镜) ?">
+        <Form.Item rules={commonRules} name="qone" label="1.您是否有因视力不佳有走路困难吗(即使配戴眼镜) ?">
           <Radio.Group>
             <Space size={45}>
               <Radio value="是的">是的</Radio>
@@ -65,7 +69,7 @@ export default function Eyesight() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="eyesight2" label="2.你看东西、阅读、看电视有困难吗(即使配戴眼镜) ?">
+        <Form.Item rules={commonRules} name="qtwo" label="2.你看东西、阅读、看电视有困难吗(即使配戴眼镜) ?">
           <Radio.Group>
             <Space size={45}>
               <Radio value="是的">是的</Radio>
@@ -75,7 +79,7 @@ export default function Eyesight() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="eyesight3" label="3.您是否有被诊断过白内障？">
+        <Form.Item rules={commonRules} name="qthree" label="3.您是否有被诊断过白内障？">
           <Radio.Group>
             <Space size={160}>
               <Radio value="是的">是的</Radio>
@@ -84,7 +88,7 @@ export default function Eyesight() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="eyesight4" label="4.您是否有进行过白内障手术？ ">
+        <Form.Item rules={commonRules} name="qfour" label="4.您是否有进行过白内障手术？ ">
           <Radio.Group>
             <Space size={160}>
               <Radio value="是的">是的</Radio>
@@ -93,7 +97,7 @@ export default function Eyesight() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="eyesight5" label="5.您是否有被诊断过其他眼部疾病？ ">
+        <Form.Item rules={commonRules} name="qfive" label="5.您是否有被诊断过其他眼部疾病？ ">
           <Radio.Group>
             <Space size={160} >
               <Radio value="是的">是的</Radio>

@@ -40,9 +40,7 @@ const numberReducer = (state, action) => {
     case 'HEARTRATEADD':
       newNumberGroup.heartrateNumber = action.selectedNumber
       return newNumberGroup
-
   }
-
 }
 
 const formReducer = (state, action) => {
@@ -101,6 +99,7 @@ export default function Evaluationdetail() {
     painsNumber: 0,
     heartrateNumber: 0,
   })
+  
   const [formGroup, formDispatch] = useReducer(formReducer, {
     cognizeFormdata: {},
     mmseFormdata: {},

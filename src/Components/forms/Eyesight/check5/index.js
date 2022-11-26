@@ -7,11 +7,14 @@ export default function Checkfive() {
   const [size, setSize] = useState(260)
   const nav = useNavigate()
   const [form] = Form.useForm()
+  const {eyesightFormdata} = useContext(topicFormDatacontext)
+
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    nav('/evaluationdetail/scalenav')
+    const finalValues={...eyesightFormdata,...values}
+    console.log(finalValues)
     message.success("恭喜您，提交成功")
   };
+
   const formItemLayout = {
     labelCol: {
       span: 3,
@@ -50,7 +53,7 @@ export default function Checkfive() {
         onFinish={onFinish}
       >
 
-        <Form.Item rules={[{ required: true, message: '请填写完整' }]} name="eyesight5" label="5.您是否看得清逐渐缩小的'5' ? ">
+        <Form.Item rules={[{ required: true, message: '请填写完整' }]} name="eyesight5" label="6.您是否看得清逐渐缩小的'5' ? ">
           <Radio.Group>
             <Radio value="是的">是的</Radio>
             <Radio value="不是">不是</Radio>

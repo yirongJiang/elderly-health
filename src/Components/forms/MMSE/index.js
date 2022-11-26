@@ -5,6 +5,7 @@ import './index.less'
 import rectangel from '../../../assect/img/画图.png'
 import Commontitle from '../../../UI/Nav-head';
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
+import { postMmse } from '../../../api';
 
 
 
@@ -12,8 +13,10 @@ export default function Mmse() {
   const [form] = Form.useForm()
   const nav = useNavigate()
 
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     console.log('Received values of form: ', values);
+    const res=await postMmse(values)
+    console.log(res)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，完成填写！')
   };
@@ -55,7 +58,7 @@ export default function Mmse() {
       <Form
         onFieldsChange={formChange}
         form={form}
-        name="validate_other"
+        name="MMSE-FORM"
         {...formItemLayout}
         onFinish={onFinish}
       >
@@ -67,7 +70,7 @@ export default function Mmse() {
               message: '请选择完整',
             },
           ]}
-          name="mmse1" label="1、今年是哪一年？ ">
+          name="qone" label="1、今年是哪一年？ ">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -83,7 +86,7 @@ export default function Mmse() {
               message: '请选择完整',
             },
           ]}
-          name="mmse2" label="2、现在是什么季节？">
+          name="qtwo" label="2、现在是什么季节？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -99,7 +102,7 @@ export default function Mmse() {
               message: '请选择完整',
             },
           ]}
-          name="mmse3" label="3、现在是几月份？ ">
+          name="qthree" label="3、现在是几月份？ ">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -115,7 +118,7 @@ export default function Mmse() {
               message: '请选择完整',
             },
           ]}
-          name="mmse4" label="4、今天是几号？">
+          name="qfour" label="4、今天是几号？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -130,7 +133,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse5" label="5、今天是星期几？">
+          ]} name="qfive" label="5、今天是星期几？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -145,7 +148,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse6" label="6、你现在在哪个省（市）？">
+          ]} name="qsix" label="6、你现在在哪个省（市）？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -160,7 +163,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse7" label="7、你现在在哪个县（区）？">
+          ]} name="qseven" label="7、你现在在哪个县（区）？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -175,7 +178,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse8" label="8、你现在在哪个乡（镇、街道）？">
+          ]} name="qeight" label="8、你现在在哪个乡（镇、街道）？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -190,7 +193,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse9" label="9、你现在在第几层楼？">
+          ]} name="qnine" label="9、你现在在第几层楼？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -205,7 +208,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse10" label="10、这里是什么地方？">
+          ]} name="qten" label="10、这里是什么地方？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -220,7 +223,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse11" label="11、复述：皮球 ">
+          ]} name="qeleven" label="11、复述：皮球 ">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -235,7 +238,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse12" label="12、复述：国旗 ">
+          ]} name="qtwelve" label="12、复述：国旗 ">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -250,7 +253,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse13" label="13、复述：树木">
+          ]} name="qthirteen" label="13、复述：树木">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -265,7 +268,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse14" label="14、计算100－7＝？">
+          ]} name="qfourteen" label="14、计算100－7＝？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -280,7 +283,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse15" label="15、－7＝？">
+          ]} name="qfifteen" label="15、－7＝？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -295,7 +298,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse16" label="16、－7＝？">
+          ]} name="qsixteen" label="16、－7＝？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -310,7 +313,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse17" label="17、－7＝？">
+          ]} name="qseventeen" label="17、－7＝？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -325,7 +328,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse18" label="18、－7＝？">
+          ]} name="qeighteen" label="18、－7＝？">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -340,7 +343,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse19" label="19、回忆：皮球 ">
+          ]} name="qnineteen" label="19、回忆：皮球 ">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -355,7 +358,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse20" label="20、回忆：国旗 ">
+          ]} name="qtwenty" label="20、回忆：国旗 ">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -370,7 +373,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse21" label="21、回忆：树木">
+          ]} name="qtwentyOne" label="21、回忆：树木">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -385,7 +388,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse22" label="22、辨认：手表">
+          ]} name="qtwentyTwo" label="22、辨认：手表">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -400,7 +403,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse23" label="23、辨认：铅笔">
+          ]} name="qtwentyThree" label="23、辨认：铅笔">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -415,7 +418,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse24" label="24、复述：四十四只石狮子">
+          ]} name="qtwentyFour" label="24、复述：四十四只石狮子">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -430,7 +433,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse25" label="25、按卡片上的指令去做“闭上您的眼睛">
+          ]} name="qtwentyFive" label="25、按卡片上的指令去做“闭上您的眼睛">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -445,7 +448,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse26" label="26、用右手拿这张纸">
+          ]} name="qtwentySix" label="26、用右手拿这张纸">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -460,23 +463,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="mmse27" label="27、再用双手把纸对折">
-          <Radio.Group>
-            <Space size={180}>
-              <Radio value="1">1</Radio>
-              <Radio value="0">0</Radio>
-            </Space>
-          </Radio.Group>
-        </Form.Item>
-
-        <Form.Item
-          rules={[
-            {
-              required: true,
-              message: '请选择完整',
-            },
-          ]}
-          name="mmse28" label="28、将纸放在大腿上">
+          ]} name="qtwentySeven" label="27、再用双手把纸对折">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -492,7 +479,7 @@ export default function Mmse() {
               message: '请选择完整',
             },
           ]}
-          name="mmse29" label="29、请说一句完整的句子">
+          name="qtwentyEight" label="28、将纸放在大腿上">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>
@@ -508,7 +495,23 @@ export default function Mmse() {
               message: '请选择完整',
             },
           ]}
-          name="mmse30" label="30、请您按样子在下框中画图">
+          name="qtwentyNine" label="29、请说一句完整的句子">
+          <Radio.Group>
+            <Space size={180}>
+              <Radio value="1">1</Radio>
+              <Radio value="0">0</Radio>
+            </Space>
+          </Radio.Group>
+        </Form.Item>
+
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: '请选择完整',
+            },
+          ]}
+          name="qthirty" label="30、请您按样子在下框中画图">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>

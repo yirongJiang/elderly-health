@@ -3,7 +3,7 @@ import axios from "axios";
 
 const request = axios.create({
   baseURL: 'http://47.109.58.67:8090/',
-  timeout: 5000
+  timeout: 5000,
 })
 
 
@@ -22,7 +22,7 @@ request.interceptors.request.use(config => {
 // 添加响应拦截器
 request.interceptors.response.use(res => {
   if (res.data.status === 401) {
-    localStorage.removeItem('token')
+    localStorage.removeItem('X-Auth-Token')
     message.error('token已经过期啦,请重新登录')
     window.location.href = '/login'
   }
@@ -36,7 +36,7 @@ request.interceptors.response.use(res => {
         message.error('请求出错')
         break;
       case 401:
-        localStorage.removeItem('token');
+        localStorage.removeItem('X-Auth-Token');
         message.err("未授权或登录权限已过期")
         window.location.href = '/login'
         break

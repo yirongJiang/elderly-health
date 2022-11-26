@@ -9,6 +9,8 @@ import DeviceOrientationTest from '../DeviceOrientation'
 export default function Cognizethird() {
   const arr = []
   const arr1 = []
+  let drawingTime = 0; 
+  const position={}
   const startTime = +new Date()
   const [changePage, setChangePage] = useState(0)
   const canvasDom = useRef()
@@ -28,7 +30,10 @@ export default function Cognizethird() {
   }
 
   useEffect(() => {
-    let beginX; let beginY; let timer; let drawingTime = 0; let timer1;
+    let beginX; 
+    let beginY; 
+    let timer; 
+    let timer1;
     const canvas = canvasDom.current
     const ctx = canvas.getContext('2d')
     ctx.fillStyle = '#fff'
@@ -53,19 +58,20 @@ export default function Cognizethird() {
       writing(beginX, beginY, stopX, stopY, ctx)
       beginX = stopX // 这一步很关键，需要不断更新起点，否则画出来的是射线簇
       beginY = stopY
+
       if (timer) { return }
       timer = setTimeout(() => {
-        console.log(drawingTime)
         console.log('beginX')
         console.log(beginX)
+        position[beginX]=beginY
         timer = null
       }, 33.2)
       if (timer1) { return }
+
       timer1 = setTimeout(() => {
         drawingTime++
         console.log('drawingTime')
         console.log(drawingTime)
-        console.log()
         timer1 = null
       }, 1000);
     })
@@ -103,17 +109,22 @@ export default function Cognizethird() {
   const sure = () => {
     const url = canvasDom.current.toDataURL("image/jpeg", 1.0)
     const endTime = +new Date()
+    console.log('dratime')
+    console.log(drawingTime)
+    console.log('totalTime')
     console.log(endTime - startTime)
     console.log(url)
     console.log('arr')
     console.log(arr)
     console.log('arr1')
     console.log(arr1)
-    setChangePage(1)
-    setTimeout(() => {
-      nav(-1)
-      message.success('恭喜您提交成功,请开始画钟')
-    }, 1000);
+    console.log('position')
+    console.log(position)
+    // setChangePage(1)
+    // setTimeout(() => {
+    //   nav(-1)
+    //   message.success('恭喜您提交成功,请开始画钟')
+    // }, 1000);
   }
 
   const download = () => {
