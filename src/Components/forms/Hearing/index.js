@@ -65,9 +65,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qone" label="1.在与人初次见面时，听力问题是否会使您感到尴尬？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -76,9 +76,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qtwo" label="2.在和家人交谈时，听力问题是否会使您感到沮丧？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -87,9 +87,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qthree" label="3.有人对您低声耳语时，听力问题是否会使您感到困难？ ">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -98,9 +98,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qfour" label="4.您是否觉得有听力问题是一种残疾？ ">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -108,9 +108,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qfive" label="5.在探亲访友时，听力问题是否会使您感到困难？ ">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -118,9 +118,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qsix" label="6.是否由于听力问题，您不愿像以往那样经常出席正式的场合了（比如会议、仪式等等）？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -128,9 +128,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qseven" label="7.听力问题会引起您与家人的争吵吗？ ">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -138,9 +138,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qeight" label="8.在看电视或听广播时，听力问题是否会使您感到困难？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -148,9 +148,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qnine" label="9.您是否觉得听力问题限制或者阻碍了您的个人生活或社会交往？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -158,9 +158,9 @@ export default function Hearing() {
         <Form.Item rules={commonRules} name="qten" label="10.在餐馆与亲戚朋友聚餐时，听力问题是否会使您感到困难？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
