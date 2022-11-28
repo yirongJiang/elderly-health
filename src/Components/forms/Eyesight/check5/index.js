@@ -1,6 +1,7 @@
 import { Button, Form, message, Radio } from 'antd';
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { postEyesight } from '../../../../api';
 import { topicNumbercontext, topicFormDatacontext } from '../../../../store/topicNumbercontext'
 
 export default function Checkfive() {
@@ -9,10 +10,12 @@ export default function Checkfive() {
   const [form] = Form.useForm()
   const {eyesightFormdata} = useContext(topicFormDatacontext)
 
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     const finalValues={...eyesightFormdata,...values}
     console.log(finalValues)
+    await postEyesight(finalValues)
     message.success("恭喜您，提交成功")
+    nav('/evaluationdetail/scalenav')
   };
 
   const formItemLayout = {
@@ -53,10 +56,10 @@ export default function Checkfive() {
         onFinish={onFinish}
       >
 
-        <Form.Item rules={[{ required: true, message: '请填写完整' }]} name="eyesight5" label="6.您是否看得清逐渐缩小的'5' ? ">
+        <Form.Item rules={[{ required: true, message: '请填写完整' }]} name="qsix" label="6.您是否看得清逐渐缩小的'5' ? ">
           <Radio.Group>
-            <Radio value="是的">是的</Radio>
-            <Radio value="不是">不是</Radio>
+            <Radio value="1">是的</Radio>
+            <Radio value="0">不是</Radio>
           </Radio.Group>
         </Form.Item>
 
