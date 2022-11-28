@@ -9,7 +9,7 @@ import { postHearing } from '../../../api';
 const commonRules = [
   {
     required: true,
-    message: "请填写完整"
+    message: "请填写完整哟"
   }
 ]
 export default function Hearing() {
