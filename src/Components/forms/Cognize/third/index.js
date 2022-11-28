@@ -1,14 +1,32 @@
 import { Button, message } from 'antd'
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+<<<<<<< HEAD
 import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
 
 export default function Cognizethird() {
+=======
+import DeviceMotionTest from '../DeviceMotion'
+import Commontitle from '../../../../UI/Nav-head'
+import './index.less'
+import DeviceOrientationTest from '../DeviceOrientation'
+
+export default function Cognizethird() {
+  const arr = []
+  const arr1 = []
+  let drawingTime = 0; 
+  const position={}
+  const startTime = +new Date()
+>>>>>>> main
   const [changePage, setChangePage] = useState(0)
   const canvasDom = useRef()
   const nav = useNavigate()
   const [canvasUrl, setCanvasUrl] = useState([])
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
   const writing = (beginX, beginY, stopX, stopY, ctx,) => {
     ctx.beginPath()  // 开启一条新路径
     ctx.globalAlpha = 1  // 设置图片的透明度
@@ -22,7 +40,14 @@ export default function Cognizethird() {
   }
 
   useEffect(() => {
+<<<<<<< HEAD
     let beginX; let beginY
+=======
+    let beginX; 
+    let beginY; 
+    let timer; 
+    let timer1;
+>>>>>>> main
     const canvas = canvasDom.current
     const ctx = canvas.getContext('2d')
     ctx.fillStyle = '#fff'
@@ -38,6 +63,10 @@ export default function Cognizethird() {
     }
     )
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     canvas.addEventListener('touchmove', (event) => {
       event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
       event = event.touches[0]
@@ -46,6 +75,25 @@ export default function Cognizethird() {
       writing(beginX, beginY, stopX, stopY, ctx)
       beginX = stopX // 这一步很关键，需要不断更新起点，否则画出来的是射线簇
       beginY = stopY
+<<<<<<< HEAD
+=======
+
+      if (timer) { return }
+      timer = setTimeout(() => {
+        console.log('beginX')
+        console.log(beginX)
+        position[beginX]=beginY
+        timer = null
+      }, 33.2)
+      if (timer1) { return }
+
+      timer1 = setTimeout(() => {
+        drawingTime++
+        console.log('drawingTime')
+        console.log(drawingTime)
+        timer1 = null
+      }, 1000);
+>>>>>>> main
     })
   }, [])
 
@@ -80,12 +128,32 @@ export default function Cognizethird() {
 
   const sure = () => {
     const url = canvasDom.current.toDataURL("image/jpeg", 1.0)
+<<<<<<< HEAD
     console.log(url)
     setChangePage(1)
     setTimeout(() => {
       nav(-1)
       message.success('恭喜您提交成功,请开始画钟')
     }, 1000);
+=======
+    const endTime = +new Date()
+    console.log('dratime')
+    console.log(drawingTime)
+    console.log('totalTime')
+    console.log(endTime - startTime)
+    console.log(url)
+    console.log('arr')
+    console.log(arr)
+    console.log('arr1')
+    console.log(arr1)
+    console.log('position')
+    console.log(position)
+    // setChangePage(1)
+    // setTimeout(() => {
+    //   nav(-1)
+    //   message.success('恭喜您提交成功,请开始画钟')
+    // }, 1000);
+>>>>>>> main
   }
 
   const download = () => {
@@ -105,6 +173,14 @@ export default function Cognizethird() {
     <Commontitle title='在空白处话初11点10分的钟表 ：' className='cognizethird-wrapper'>
       {changePage === 0 ?
         <div className='formal-content'>
+<<<<<<< HEAD
+=======
+          {
+
+          }
+          <DeviceMotionTest arr1={arr1} />
+          <DeviceOrientationTest arr={arr} />
+>>>>>>> main
           <div className="top-buttons">
             <button onClick={recallClick}>撤销</button>
             <button onClick={clearCanvas}>清除</button>
@@ -113,7 +189,13 @@ export default function Cognizethird() {
           <canvas className='set-canvas' ref={canvasDom} width="400" height="600" />
           <div className="bottom">
             <Button onClick={sure} type='primary' >绘制完成</Button>
+<<<<<<< HEAD
           </div></div> : <div className='buffer'>图片上传中<br />请稍作等待...</div>
+=======
+          </div>
+
+        </div> : <div className='buffer'>图片上传中<br />请稍作等待...</div>
+>>>>>>> main
       }
     </Commontitle>
   )

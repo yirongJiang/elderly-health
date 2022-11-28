@@ -2,8 +2,16 @@ package com.hx.collector.survey.controller;
 
 import com.hx.collector.survey.model.Result;
 import com.hx.collector.survey.model.colloctor.dto.BiDetail;
+<<<<<<< HEAD
 import com.hx.collector.survey.model.colloctor.req.AddBiReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyBiReq;
+=======
+import com.hx.collector.survey.model.colloctor.dto.CognitionDetail;
+import com.hx.collector.survey.model.colloctor.req.AddBiReq;
+import com.hx.collector.survey.model.colloctor.req.AddCognitionReq;
+import com.hx.collector.survey.model.colloctor.req.ModifyBiReq;
+import com.hx.collector.survey.model.colloctor.req.ModifyCognitionReq;
+>>>>>>> main
 import com.hx.collector.survey.model.db.BiDbBean;
 import com.hx.collector.survey.service.BiService;
 import io.swagger.annotations.Api;
@@ -40,10 +48,13 @@ public class BiController extends BaseController{
         BiDbBean biDbBean = biService.modify(modifyBiReq, token);
         return biService.modifyInfo(biDbBean);
     }
+<<<<<<< HEAD
 
     @ApiOperation("获取认BI评估表分数")
     @PostMapping(value = "/bi/grade")
     public Result getGrade(@RequestHeader(name = TOKEN)String token) {
         return biService.getGrade(token);
     }
+=======
+>>>>>>> main
 }

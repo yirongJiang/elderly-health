@@ -12,15 +12,24 @@ export default function Cognizesecond() {
         <span>3. 绘制时钟图</span>
         <div>请接下来在空白处画出11点10分的钟表，点击开始画钟：</div>
       </div>
+<<<<<<< HEAD
       <div className="bottom">
+=======
+      <div className="drawing-bottom">
+>>>>>>> main
         <Button onClick={() => { nav('/evaluationdetail/cognize/third') }} type='primary'>开始画钟</Button>
       </div>
       <div className="cognizesecond-head">
         <span>4. 画出时钟</span>
         <div>您也可以直接拍下您在纸上画的钟表，点击拍照：</div>
       </div>
+<<<<<<< HEAD
       <div className="bottom">
         <Button style={{ backgroundColor: 'pink' }} onClick={() => { nav('/evaluationdetail/cognize/camera') }} type='primary'>开始拍照</Button>
+=======
+      <div className="photo-bottom">
+        <Button  onClick={() => { nav('/evaluationdetail/cognize/camera') }} type='primary'>开始拍照</Button>
+>>>>>>> main
       </div>
 
     </Commontitle>

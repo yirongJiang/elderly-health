@@ -42,10 +42,13 @@ public class AuditionController extends BaseController{
         AuditionDbBean auditionDbBean = auditionService.modify(modifyAuditionReq, token);
         return auditionService.modifyInfo(auditionDbBean);
     }
+<<<<<<< HEAD
 
     @ApiOperation("获取听力筛查记录分数")
     @PostMapping(value = "/audition/grade")
     public Result getGrade(@RequestHeader(name = TOKEN)String token) {
         return auditionService.getGrade(token);
     }
+=======
+>>>>>>> main
 }

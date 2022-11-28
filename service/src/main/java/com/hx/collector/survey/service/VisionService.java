@@ -14,8 +14,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 import java.lang.reflect.Field;
 import java.util.Arrays;
+=======
+>>>>>>> main
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -72,6 +75,7 @@ public class VisionService extends BaseService{
         }
         return res;
     }
+<<<<<<< HEAD
 
     public Result getGrade(String token){
         Result res = new Result("not find data!");
@@ -117,4 +121,6 @@ public class VisionService extends BaseService{
         }
         return sum;
     }
+=======
+>>>>>>> main
 }

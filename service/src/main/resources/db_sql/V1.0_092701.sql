@@ -69,6 +69,7 @@ CREATE TABLE `user_info` (
 	`org` VARCHAR ( 255 ) NOT NULL COMMENT '测试者所在的医院机构',
 	`place` VARCHAR ( 255 ) NOT NULL COMMENT '测试者测试地点（门诊、住院、家里...）',
 	`staff` VARCHAR ( 50 ) NOT NULL COMMENT '填写人员（0：本人:1：医务人员...）',
+<<<<<<< HEAD
 	`institution` VARCHAR ( 50 ) NOT NULL COMMENT '1：四川大学华西医院、2：南京医科大学、3.中南大学湘雅医院',
 	`hospital` VARCHAR ( 50 ) NOT NULL COMMENT '一年内是否住过院0：否、  1~n:住过，次数为n。',
 	`fall` VARCHAR ( 50 ) NOT NULL COMMENT '一年内是否跌倒过0：否、  1~n:跌倒过，次数为n。',
@@ -80,6 +81,8 @@ CREATE TABLE `user_info` (
 	`illness_other` VARCHAR ( 50 ) NOT NULL COMMENT '疾病史（其他）默认为null，若疾病史有填写其他，则保存该字符串。
 	例如：此病患患有：帕金森、冠心病、抑郁症（其他）。
 	数据则保存为：抑郁症；',
+=======
+>>>>>>> main
 	`create_date` datetime DEFAULT NULL COMMENT '创建时间',
 	`update_date` datetime DEFAULT NULL COMMENT '更新时间',
 	`del_flge` VARCHAR ( 1 ) DEFAULT '0' COMMENT '是否有效,1有效，0无效',

@@ -10,7 +10,10 @@ import com.hx.collector.survey.model.colloctor.req.AddHeartReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyAuditionReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyHeartReq;
 import com.hx.collector.survey.model.db.AuditionDbBean;
+<<<<<<< HEAD
 import com.hx.collector.survey.model.db.CognitionDbBean;
+=======
+>>>>>>> main
 import com.hx.collector.survey.model.db.HeartDbBean;
 import com.hx.collector.utils.UuidUtil;
 
@@ -76,6 +79,7 @@ public class HeartService extends BaseService{
         }
         return res;
     }
+<<<<<<< HEAD
 
     public Result getGrade(String token){
         Result res = new Result("not find data!");
@@ -100,4 +104,6 @@ public class HeartService extends BaseService{
         res.setBody(sum);
         return res;
     }
+=======
+>>>>>>> main
 }

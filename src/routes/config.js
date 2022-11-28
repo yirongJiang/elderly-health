@@ -1,6 +1,5 @@
 import Initial from '../Initial'
 import Home from '../Home'
-import Login from '../Login'
 import Messagelogin from '../Components/About-login/Common-login/Message-login'
 import Phonelogin from '../Components/About-login/Common-login/Phone-login'
 import Doctorlogin from '../Components/About-login/Doctor-login'

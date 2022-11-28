@@ -1,6 +1,7 @@
 import { Button, Form, Input } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+<<<<<<< HEAD
 import './index.less'
 
 export default function Doctorlogin() {
@@ -12,6 +13,27 @@ export default function Doctorlogin() {
   };
 
 
+=======
+import { login } from '../../../api'
+import './index.less'
+
+export default function Doctorlogin() {
+  const nav = useNavigate()
+  const [form] = Form.useForm()
+  const onFinish = async (values) => {
+    
+    const result = await login({
+      passWord: "123456t",
+      phone: "13167827468",
+      role: "0",
+      userName: "admin"
+    })
+    console.log(result.body)
+    localStorage.setItem('X-Auth-Token',result.body)
+    nav('/home', { replace: true, state: { isScusses: false } })
+  };
+
+>>>>>>> main
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
@@ -67,7 +89,11 @@ export default function Doctorlogin() {
             span: 156,
           }}
         >
+<<<<<<< HEAD
           <Button  type="primary" htmlType="submit">
+=======
+          <Button type="primary" htmlType="submit">
+>>>>>>> main
             登录
           </Button>
         </Form.Item>

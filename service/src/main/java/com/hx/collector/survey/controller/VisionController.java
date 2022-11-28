@@ -42,10 +42,13 @@ public class VisionController extends BaseController{
         VisionDbBean auditionDbBean = visionService.modify(modifyVisionReq, token);
         return visionService.modifyInfo(auditionDbBean);
     }
+<<<<<<< HEAD
 
     @ApiOperation("获取视觉筛查记录分数")
     @PostMapping(value = "/vision/grade")
     public Result getGrade(@RequestHeader(name = TOKEN)String token) {
         return visionService.getGrade(token);
     }
+=======
+>>>>>>> main
 }

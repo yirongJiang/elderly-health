@@ -34,10 +34,13 @@ public class CognitionController extends BaseController {
     public Result modify(@RequestBody ModifyCognitionReq modifyCognitionReq, @RequestHeader(name = TOKEN)String token) {
         return cognitionService.modify(modifyCognitionReq, token);
     }
+<<<<<<< HEAD
 
     @ApiOperation("获取认知量表分数")
     @PostMapping(value = "/cognition/grade")
     public Result getGrade(@RequestHeader(name = TOKEN)String token) {
         return cognitionService.getGrade(token);
     }
+=======
+>>>>>>> main
 }

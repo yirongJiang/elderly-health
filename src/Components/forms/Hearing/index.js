@@ -4,21 +4,30 @@ import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
+import { postHearing } from '../../../api';
 
 const commonRules = [
   {
     required: true,
-    message: "请填写完整"
+    message: "请填写完整哟"
   }
 ]
 export default function Hearing() {
   const [form] = Form.useForm()
   const nav = useNavigate()
-  const onFinish = (values) => {
+
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.hearingFormdata })
+  }, [])
+
+  const onFinish =async (values) => {
     console.log('Received values of form: ', values);
+    const res=await postHearing(values)
+    console.log(res)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，提交成功！')
   };
+
   const formItemLayout = {
     labelCol: {
       span: 15,
@@ -40,9 +49,6 @@ export default function Hearing() {
     topicContext.numberDispatch({ type: 'HEARINGADD', selectedNumber: selectedNumber })
     formdataContext.formDispatch({ type: 'HEARINGFORM', formdata: formdata })
   }
-  useEffect(() => {
-    form.setFieldsValue({ ...formdataContext.hearingFormdata })
-  }, [])
 
   return (
     <Commontitle title='听力筛查表' className='hearing-wrapper'>
@@ -55,105 +61,105 @@ export default function Hearing() {
         onFinish={onFinish}
       >
 
-        <Form.Item rules={commonRules} name="hearing1" label="1.在与人初次见面时，听力问题是否会使您感到尴尬？">
+        <Form.Item rules={commonRules} name="qone" label="1.在与人初次见面时，听力问题是否会使您感到尴尬？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
 
-        <Form.Item rules={commonRules} name="hearing2" label="2.在和家人交谈时，听力问题是否会使您感到沮丧？">
+        <Form.Item rules={commonRules} name="qtwo" label="2.在和家人交谈时，听力问题是否会使您感到沮丧？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
 
-        <Form.Item rules={commonRules} name="hearing3" label="3.有人对您低声耳语时，听力问题是否会使您感到困难？ ">
+        <Form.Item rules={commonRules} name="qthree" label="3.有人对您低声耳语时，听力问题是否会使您感到困难？ ">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
 
-        <Form.Item rules={commonRules} name="hearing4" label="4.您是否觉得有听力问题是一种残疾？ ">
+        <Form.Item rules={commonRules} name="qfour" label="4.您是否觉得有听力问题是一种残疾？ ">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
-        <Form.Item rules={commonRules} name="hearing5" label="5.在探亲访友时，听力问题是否会使您感到困难？ ">
+        <Form.Item rules={commonRules} name="qfive" label="5.在探亲访友时，听力问题是否会使您感到困难？ ">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
-        <Form.Item rules={commonRules} name="hearing6" label="6.是否由于听力问题，您不愿像以往那样经常出席正式的场合了（比如会议、仪式等等）？">
+        <Form.Item rules={commonRules} name="qsix" label="6.是否由于听力问题，您不愿像以往那样经常出席正式的场合了（比如会议、仪式等等）？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
-        <Form.Item rules={commonRules} name="hearing7" label="7.听力问题会引起您与家人的争吵吗？ ">
+        <Form.Item rules={commonRules} name="qseven" label="7.听力问题会引起您与家人的争吵吗？ ">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
-        <Form.Item rules={commonRules} name="hearing8" label="8.在看电视或听广播时，听力问题是否会使您感到困难？">
+        <Form.Item rules={commonRules} name="qeight" label="8.在看电视或听广播时，听力问题是否会使您感到困难？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
-        <Form.Item rules={commonRules} name="hearing9" label="9.您是否觉得听力问题限制或者阻碍了您的个人生活或社会交往？">
+        <Form.Item rules={commonRules} name="qnine" label="9.您是否觉得听力问题限制或者阻碍了您的个人生活或社会交往？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
        
-        <Form.Item rules={commonRules} name="hearing10" label="10.在餐馆与亲戚朋友聚餐时，听力问题是否会使您感到困难？">
+        <Form.Item rules={commonRules} name="qten" label="10.在餐馆与亲戚朋友聚餐时，听力问题是否会使您感到困难？">
           <Radio.Group>
             <Space align='start' size={60}>
-              <Radio value="是的">是的</Radio>
-              <Radio value="有时">有时</Radio>
-              <Radio value="不是">不是</Radio>
+              <Radio value="3">是的</Radio>
+              <Radio value="2">有时</Radio>
+              <Radio value="1">不是</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>

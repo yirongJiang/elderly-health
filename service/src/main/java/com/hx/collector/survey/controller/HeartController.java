@@ -47,10 +47,13 @@ public class HeartController extends BaseController{
         HeartDbBean heartDbBean = heartService.modify(modifyHeartReq, token);
         return heartService.modifyInfo(heartDbBean);
     }
+<<<<<<< HEAD
 
     @ApiOperation("获取冠心/心率问题分数")
     @PostMapping(value = "/heart/grade")
     public Result getGrade(@RequestHeader(name = TOKEN)String token) {
         return heartService.getGrade(token);
     }
+=======
+>>>>>>> main
 }

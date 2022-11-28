@@ -45,10 +45,13 @@ public class IadlController extends BaseController{
         IadlDbBean iadlDbBean = iadlService.modify(modifyIadlReq, token);
         return iadlService.modifyInfo(iadlDbBean);
     }
+<<<<<<< HEAD
 
     @ApiOperation("获取认洛顿IADL分数")
     @PostMapping(value = "/iadl/grade")
     public Result getGrade(@RequestHeader(name = TOKEN)String token) {
         return iadlService.getGrade(token);
     }
+=======
+>>>>>>> main
 }

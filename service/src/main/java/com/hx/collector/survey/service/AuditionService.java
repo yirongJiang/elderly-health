@@ -6,7 +6,10 @@ import com.hx.collector.survey.model.colloctor.dto.AuditionDetail;
 import com.hx.collector.survey.model.colloctor.req.AddAuditionReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyAuditionReq;
 import com.hx.collector.survey.model.db.AuditionDbBean;
+<<<<<<< HEAD
 import com.hx.collector.survey.model.db.VisionDbBean;
+=======
+>>>>>>> main
 import com.hx.collector.utils.UuidUtil;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -15,8 +18,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 import java.lang.reflect.Field;
 import java.util.Arrays;
+=======
+>>>>>>> main
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -73,6 +79,7 @@ public class AuditionService extends BaseService{
         }
         return res;
     }
+<<<<<<< HEAD
 
     public Result getGrade(String token){
         Result res = new Result("not find data!");
@@ -118,4 +125,6 @@ public class AuditionService extends BaseService{
         }
         return sum;
     }
+=======
+>>>>>>> main
 }

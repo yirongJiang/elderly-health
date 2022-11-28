@@ -5,7 +5,10 @@ import com.hx.collector.survey.model.Result;
 import com.hx.collector.survey.model.colloctor.dto.PainDetail;
 import com.hx.collector.survey.model.colloctor.req.AddPainReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyPainReq;
+<<<<<<< HEAD
 import com.hx.collector.survey.model.db.AuditionDbBean;
+=======
+>>>>>>> main
 import com.hx.collector.survey.model.db.PainDbBean;
 import com.hx.collector.utils.UuidUtil;
 
@@ -15,8 +18,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 import java.lang.reflect.Field;
 import java.util.Arrays;
+=======
+>>>>>>> main
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -73,6 +79,7 @@ public class PainService extends BaseService{
         }
         return res;
     }
+<<<<<<< HEAD
 
     public Result getGrade(String token){
         Result res = new Result("not find data!");
@@ -97,4 +104,6 @@ public class PainService extends BaseService{
         res.setBody(sum);
         return res;
     }
+=======
+>>>>>>> main
 }

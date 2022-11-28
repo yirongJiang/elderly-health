@@ -7,15 +7,21 @@ import com.hx.collector.survey.model.colloctor.dto.BiDetail;
 import com.hx.collector.survey.model.colloctor.req.AddBiReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyBiReq;
 import com.hx.collector.survey.model.db.BiDbBean;
+<<<<<<< HEAD
 import com.hx.collector.survey.model.db.VisionDbBean;
+=======
+>>>>>>> main
 import com.hx.collector.utils.UuidUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+<<<<<<< HEAD
 import java.lang.reflect.Field;
 import java.util.Arrays;
+=======
+>>>>>>> main
 import java.util.Date;
 
 @Service
@@ -70,6 +76,7 @@ public class BiService extends BaseService{
         }
         return res;
     }
+<<<<<<< HEAD
 
     public Result getGrade(String token){
         Result res = new Result("not find data!");
@@ -138,4 +145,6 @@ public class BiService extends BaseService{
         }
         return sum;
     }
+=======
+>>>>>>> main
 }

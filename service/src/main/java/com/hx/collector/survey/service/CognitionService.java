@@ -7,7 +7,10 @@ import com.hx.collector.survey.model.colloctor.dto.CognitionDetail;
 import com.hx.collector.survey.model.colloctor.req.AddCognitionReq;
 import com.hx.collector.survey.model.colloctor.req.ModifyCognitionReq;
 import com.hx.collector.survey.model.db.CognitionDbBean;
+<<<<<<< HEAD
 import com.hx.collector.survey.model.db.PainDbBean;
+=======
+>>>>>>> main
 import com.hx.collector.utils.UuidUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -68,6 +71,7 @@ public class CognitionService extends BaseService{
     public int modifyInfo(CognitionDbBean bean) {
         return cognitionMapper.modify(bean);
     }
+<<<<<<< HEAD
 
     public Result getGrade(String token){
         Result res = new Result("not find data!");
@@ -83,4 +87,6 @@ public class CognitionService extends BaseService{
         res.setBody(sum);
         return res;
     }
+=======
+>>>>>>> main
 }
