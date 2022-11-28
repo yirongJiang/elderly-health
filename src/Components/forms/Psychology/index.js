@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
+import { postPsychology } from '../../../api';
 
 const commonRules = [
   {
@@ -14,8 +15,9 @@ const commonRules = [
 export default function Psychology() {
   const [form] = Form.useForm()
   const nav = useNavigate()
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
+    await postPsychology(values)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，提交成功')
   };
@@ -62,10 +64,10 @@ export default function Psychology() {
         <Form.Item rules={commonRules} name="psychology1" label="1、做什么事都没兴趣，没意思。">
           <Radio.Group>
             <Space align='start' direction="vertical">
-              <Radio value="完全不会">完全不会</Radio>
-              <Radio value="超过一半天数">超过一半天数</Radio>
-              <Radio value="几天">几天</Radio>
-              <Radio value="每天">每天</Radio>
+              <Radio value="1">完全不会</Radio>
+              <Radio value="2">超过一半天数</Radio>
+              <Radio value="3">几天</Radio>
+              <Radio value="4">每天</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
@@ -73,10 +75,10 @@ export default function Psychology() {
         <Form.Item rules={commonRules} name="psychology2" label="2、感到心情低落，抑郁，没希望。">
           <Radio.Group>
             <Space align='start' direction="vertical">
-              <Radio value="完全不会">完全不会</Radio>
-              <Radio value="超过一半天数">超过一半天数</Radio>
-              <Radio value="几天">几天</Radio>
-              <Radio value="每天">每天</Radio>
+              <Radio value="1">完全不会</Radio>
+              <Radio value="2">超过一半天数</Radio>
+              <Radio value="3">几天</Radio>
+              <Radio value="4">每天</Radio>
             </Space>
           </Radio.Group>
         </Form.Item>

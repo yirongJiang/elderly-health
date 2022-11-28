@@ -36,3 +36,9 @@ export function postEyesight(params){
 export function postHeart(params){
   return request.post('rest/v1/heart/creat',params)
 }
+export function postPsychology(params){
+  return request.post('rest/v1/psychology/creat',params)
+}
+export function postSwallow(params){
+  return request.post('rest/v1/swallow/creat',params)
+}

@@ -65,11 +65,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} name="qone">
             <Radio.Group>
               <Space align='start' direction="vertical">
-                <Radio value="电话自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="电话需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="电话依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group>
@@ -82,11 +82,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} name="qtwo">
             <Radio.Group>
               <Space align='start' direction="vertical">
-                <Radio value="交通自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="交通需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="交通依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group>
@@ -99,11 +99,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} name="qthree">
             <Radio.Group>
               <Space direction='vertical'>
-                <Radio value="购物自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="购物需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="购物依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group>
@@ -116,11 +116,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} name="qfour">
             <Radio.Group>
               <Space direction='vertical'>
-                <Radio value="准备食物自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="准备食物需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="准备食物依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group>
@@ -135,11 +135,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} name="qfive">
             <Radio.Group>
               <Space direction='vertical'>
-                <Radio value="家务活动自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="家务活动需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="家务活动依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group>
@@ -152,11 +152,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} name="qsix">
             <Radio.Group>
               <Space direction='vertical'>
-                <Radio value="家居维修自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="家居维修需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="家居维修依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group></Form.Item>
@@ -168,11 +168,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} name="qseven">
             <Radio.Group>
               <Space direction='vertical'>
-                <Radio value="卫生自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="卫生需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="卫生依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group></Form.Item>
@@ -184,11 +184,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} label="" name="qeight">
             <Radio.Group>
               <Space direction='vertical'>
-                <Radio value="服药自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="服药需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="服药依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group></Form.Item>
@@ -200,11 +200,11 @@ export default function Ladl() {
           <Form.Item rules={commonRuls} label="" name="qnine">
             <Radio.Group>
               <Space direction='vertical'>
-                <Radio value="财务管理自理">可以自己做，但做的时候有困难
+                <Radio value="1">可以自己做，但做的时候有困难
                 </Radio>
-                <Radio value="财务管理需要帮忙">需要一些帮忙
+                <Radio value="2">需要一些帮忙
                 </Radio>
-                <Radio value="财务管理依赖">完全不能自己做
+                <Radio value="3">完全不能自己做
                 </Radio>
               </Space>
             </Radio.Group>
