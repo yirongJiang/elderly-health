@@ -31,7 +31,7 @@ export default function Checkfive() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setSize(size - 30)
-      if (size < 180) {
+      if (size < 130) {
         setSize(260)
       }
     }, 1000);

@@ -1,21 +1,179 @@
 import { Button, message } from 'antd'
 import React, { useEffect, useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useFetcher, useNavigate } from 'react-router-dom'
 import DeviceMotionTest from '../DeviceMotion'
 import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
 import DeviceOrientationTest from '../DeviceOrientation'
+import { use } from 'echarts'
 
+const cgq_zl_angx = []
+const cgq_zl_angy = []
+const cgq_zl_angz = []
+const cgq_jsd_x = []
+const cgq_jsd_y = []
+const cgq_jsd_z = []
+const cgq_tly_x = []
+const cgq_tly_y = []
+const cgq_tly_z = []
+let xMoveLength = 0
+let yMoveLength = 0
+let isTap = false
 export default function Cognizethird() {
-  const arr = []
-  const arr1 = []
-  let drawingTime = 0; 
-  const position={}
+  let drawingTime = 0;
+  const position = {}
   const startTime = +new Date()
   const [changePage, setChangePage] = useState(0)
   const canvasDom = useRef()
   const nav = useNavigate()
   const [canvasUrl, setCanvasUrl] = useState([])
+  const [start, setStart] = useState(false)
+  // const [X, setX] = useState('')
+  // const [Y, setY] = useState('')
+  // const [Z, setZ] = useState('')
+  // const [X1, setX1] = useState()
+  // const [Y1, setY1] = useState()
+  // const [Z1, setZ1] = useState()
+
+
+
+  useEffect(() => {
+    let t1, timer
+    timer = setTimeout(() => {
+      window.addEventListener('devicemotion', function (event) {
+        if (t1) { return }
+        t1 = setTimeout(() => {
+          let x = event.acceleration.x;
+          let y = event.acceleration.y;
+          let z = event.acceleration.z;
+          let x1 = event.accelerationIncludingGravity.x;
+          let y1 = event.accelerationIncludingGravity.y;
+          let z1 = event.accelerationIncludingGravity.z;
+          // setX1(x1)
+          // setY1(y1)
+          // setZ1(z1)
+          cgq_jsd_x.push(x)
+          cgq_jsd_y.push(y)
+          cgq_jsd_z.push(z)
+          cgq_tly_x.push(x1)
+          cgq_tly_y.push(y1)
+          cgq_tly_z.push(z1)
+          console.log("angel acc", x, y, z)
+          console.log("angel acc", x1, y1, z1)
+          t1 = null
+        }, 1000);
+
+      })
+      return () => {
+        clearTimeout(timer)
+      }
+    }, 1000)
+  })
+
+  useEffect(() => {
+    let timer2;
+    let t;
+    timer2 = setTimeout(() => {
+      window.addEventListener("deviceorientation", function (event) {
+
+        if (t) { return }
+        t = setTimeout(() => {
+          let x = event.alpha;
+          let y = event.gamma;
+          let z = event.beta;
+          cgq_zl_angx.push(x)
+          cgq_zl_angy.push(y)
+          cgq_zl_angz.push(z)
+          console.log(x, y, z)
+          t = null
+          // setX(x)
+          // setY(y)
+          // setZ(z)
+        }, 1000);
+
+      });
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer2)
+    }
+  });
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      if (start) {
+        console.log('isTap 开始')
+        console.log(isTap)
+      }else{
+        console.log('还没有开始')
+      }
+
+    }, 1000);
+    return () => {
+      clearInterval(timer)
+    }
+  })
+
+
+  useEffect(() => {
+    let beginX;
+    let beginY;
+    let timer;
+    let timer1;
+    const canvas = canvasDom.current
+    const ctx = canvas.getContext('2d')
+    ctx.fillStyle = '#fff'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    canvas.addEventListener('touchstart', function (event) {
+      isTap = true
+      setStart(true)
+      event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
+      beginX = event.touches[0].clientX - this.offsetLeft
+      beginY = event.touches[0].pageY - this.offsetTop
+      setCanvasUrl(url => {
+        url.push(canvas.toDataURL())
+        return url
+      })
+    }
+    )
+    canvas.addEventListener('touchmove', (event) => {
+      event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
+      event = event.touches[0]
+      const stopX = event.clientX - canvas.offsetLeft
+      const stopY = event.pageY - canvas.offsetTop
+      writing(beginX, beginY, stopX, stopY, ctx)
+      xMoveLength += Math.abs(stopX - beginX)
+      yMoveLength += Math.abs(stopY - beginY)
+      beginX = stopX // 这一步很关键，需要不断更新起点，否则画出来的是射线簇
+      beginY = stopY
+
+      if (timer) { return }
+      timer = setTimeout(() => {
+        console.log('beginX')
+        console.log(beginX)
+        console.log('beginY')
+        console.log(beginY)
+        position[beginX] = beginY
+        timer = null
+      }, 33.2)
+
+      if (timer1) { return }
+      timer1 = setTimeout(() => {
+        drawingTime++
+        console.log('drawingTime')
+        console.log(drawingTime)
+        timer1 = null
+        console.log('isTap', isTap)
+      }, 1000);
+    })
+
+
+    canvas.addEventListener('touchend', () => {
+      isTap = false
+    })
+
+  }, [])
+
 
   const writing = (beginX, beginY, stopX, stopY, ctx,) => {
     ctx.beginPath()  // 开启一条新路径
@@ -29,53 +187,6 @@ export default function Cognizethird() {
     ctx.stroke()  // 实际地绘制出通过 moveTo() 和 lineTo() 方法定义的路径。默认颜色是黑色。
   }
 
-  useEffect(() => {
-    let beginX; 
-    let beginY; 
-    let timer; 
-    let timer1;
-    const canvas = canvasDom.current
-    const ctx = canvas.getContext('2d')
-    ctx.fillStyle = '#fff'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    canvas.addEventListener('touchstart', function (event) {
-      event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
-      beginX = event.touches[0].clientX - this.offsetLeft
-      beginY = event.touches[0].pageY - this.offsetTop
-      setCanvasUrl(url => {
-        url.push(canvas.toDataURL())
-        return url
-      })
-    }
-    )
-
-
-    canvas.addEventListener('touchmove', (event) => {
-      event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
-      event = event.touches[0]
-      const stopX = event.clientX - canvas.offsetLeft
-      const stopY = event.pageY - canvas.offsetTop
-      writing(beginX, beginY, stopX, stopY, ctx)
-      beginX = stopX // 这一步很关键，需要不断更新起点，否则画出来的是射线簇
-      beginY = stopY
-
-      if (timer) { return }
-      timer = setTimeout(() => {
-        console.log('beginX')
-        console.log(beginX)
-        position[beginX]=beginY
-        timer = null
-      }, 33.2)
-      if (timer1) { return }
-
-      timer1 = setTimeout(() => {
-        drawingTime++
-        console.log('drawingTime')
-        console.log(drawingTime)
-        timer1 = null
-      }, 1000);
-    })
-  }, [])
 
   const clearCanvas = () => {
     const canvas = canvasDom.current
@@ -109,15 +220,34 @@ export default function Cognizethird() {
   const sure = () => {
     const url = canvasDom.current.toDataURL("image/jpeg", 1.0)
     const endTime = +new Date()
-    console.log('dratime')
+    console.log('drawtime')
     console.log(drawingTime)
     console.log('totalTime')
     console.log(endTime - startTime)
+    console.log('xlength')
+    console.log(xMoveLength)
+    console.log('ylength')
+    console.log(yMoveLength)
     console.log(url)
-    console.log('arr')
-    console.log(arr)
-    console.log('arr1')
-    console.log(arr1)
+    console.log('x轴加速度')
+    console.log(cgq_jsd_x)
+    console.log('y轴加速度')
+    console.log(cgq_jsd_y)
+    console.log('z轴加速度')
+    console.log(cgq_jsd_z)
+    console.log('x轴angle加速度')
+    console.log(cgq_tly_x)
+    console.log('y轴angle加速度')
+    console.log(cgq_tly_y)
+    console.log('z轴angle加速度')
+    console.log(cgq_tly_z)
+    console.log('重力传感器采集的x轴角度')
+    console.log(cgq_zl_angx)
+    console.log('重力传感器采集的y轴角度')
+    console.log(cgq_zl_angy)
+    console.log('重力传感器采集的z轴角度')
+    console.log(cgq_zl_angz)
+
     console.log('position')
     console.log(position)
     // setChangePage(1)
@@ -147,8 +277,8 @@ export default function Cognizethird() {
           {
 
           }
-          <DeviceMotionTest arr1={arr1} />
-          <DeviceOrientationTest arr={arr} />
+          {/* <DeviceMotionTest arr1={arr1} />
+          <DeviceOrientationTest arr={arr} /> */}
           <div className="top-buttons">
             <button onClick={recallClick}>撤销</button>
             <button onClick={clearCanvas}>清除</button>
