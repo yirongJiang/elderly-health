@@ -42,3 +42,6 @@ export function postPsychology(params){
 export function postSwallow(params){
   return request.post('rest/v1/swallow/creat',params)
 }
+export function postCognitionTwo(params){
+  return request.post('rest/v1/cognitionTwo/creat',params)
+}

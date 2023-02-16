@@ -6,6 +6,7 @@ import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
 import DeviceOrientationTest from '../DeviceOrientation'
 import { use } from 'echarts'
+import { postCognitionTwo } from '../../../../api'
 
 const cgq_zl_angx = []
 const cgq_zl_angy = []
@@ -16,9 +17,10 @@ const cgq_jsd_z = []
 const cgq_tly_x = []
 const cgq_tly_y = []
 const cgq_tly_z = []
+const isTapArray = []
 let xMoveLength = 0
 let yMoveLength = 0
-let isTap = false
+let isTap = '0'
 export default function Cognizethird() {
   let drawingTime = 0;
   const position = {}
@@ -28,92 +30,22 @@ export default function Cognizethird() {
   const nav = useNavigate()
   const [canvasUrl, setCanvasUrl] = useState([])
   const [start, setStart] = useState(false)
-  // const [X, setX] = useState('')
-  // const [Y, setY] = useState('')
-  // const [Z, setZ] = useState('')
-  // const [X1, setX1] = useState()
-  // const [Y1, setY1] = useState()
-  // const [Z1, setZ1] = useState()
 
-
-
-  useEffect(() => {
-    let t1, timer
-    timer = setTimeout(() => {
-      window.addEventListener('devicemotion', function (event) {
-        if (t1) { return }
-        t1 = setTimeout(() => {
-          let x = event.acceleration.x;
-          let y = event.acceleration.y;
-          let z = event.acceleration.z;
-          let x1 = event.accelerationIncludingGravity.x;
-          let y1 = event.accelerationIncludingGravity.y;
-          let z1 = event.accelerationIncludingGravity.z;
-          // setX1(x1)
-          // setY1(y1)
-          // setZ1(z1)
-          cgq_jsd_x.push(x)
-          cgq_jsd_y.push(y)
-          cgq_jsd_z.push(z)
-          cgq_tly_x.push(x1)
-          cgq_tly_y.push(y1)
-          cgq_tly_z.push(z1)
-          console.log("angel acc", x, y, z)
-          console.log("angel acc", x1, y1, z1)
-          t1 = null
-        }, 1000);
-
-      })
-      return () => {
-        clearTimeout(timer)
-      }
-    }, 1000)
-  })
-
-  useEffect(() => {
-    let timer2;
-    let t;
-    timer2 = setTimeout(() => {
-      window.addEventListener("deviceorientation", function (event) {
-
-        if (t) { return }
-        t = setTimeout(() => {
-          let x = event.alpha;
-          let y = event.gamma;
-          let z = event.beta;
-          cgq_zl_angx.push(x)
-          cgq_zl_angy.push(y)
-          cgq_zl_angz.push(z)
-          console.log(x, y, z)
-          t = null
-          // setX(x)
-          // setY(y)
-          // setZ(z)
-        }, 1000);
-
-      });
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer2)
-    }
-  });
 
   useEffect(() => {
     let timer = setInterval(() => {
       if (start) {
         console.log('isTap 开始')
         console.log(isTap)
-      }else{
+        isTapArray.push(isTap)
+      } else {
         console.log('还没有开始')
       }
-
     }, 1000);
     return () => {
       clearInterval(timer)
     }
   })
-
 
   useEffect(() => {
     let beginX;
@@ -125,7 +57,7 @@ export default function Cognizethird() {
     ctx.fillStyle = '#fff'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     canvas.addEventListener('touchstart', function (event) {
-      isTap = true
+      isTap = '1'
       setStart(true)
       event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
       beginX = event.touches[0].clientX - this.offsetLeft
@@ -167,9 +99,45 @@ export default function Cognizethird() {
       }, 1000);
     })
 
+    let t
+    window.addEventListener("deviceorientation", function (event) {
+      if (t) { return }
+      t = setTimeout(() => {
+        let x = event.alpha;
+        let y = event.gamma;
+        let z = event.beta;
+        t = null
+        cgq_zl_angx.push(x)
+        cgq_zl_angy.push(y)
+        cgq_zl_angz.push(z)
+        console.log(x, y, z)
+      }, 1000);
+    });
+
+    let t1
+    window.addEventListener('devicemotion', function (event) {
+      if (t1) { return }
+      t1 = setTimeout(() => {
+        let x = event.acceleration.x;
+        let y = event.acceleration.y;
+        let z = event.acceleration.z;
+        let x1 = event.accelerationIncludingGravity.x;
+        let y1 = event.accelerationIncludingGravity.y;
+        let z1 = event.accelerationIncludingGravity.z;
+        cgq_jsd_x.push(x)
+        cgq_jsd_y.push(y)
+        cgq_jsd_z.push(z)
+        cgq_tly_x.push(x1)
+        cgq_tly_y.push(y1)
+        cgq_tly_z.push(z1)
+        console.log("angel acc", x, y, z)
+        console.log("angel acc", x1, y1, z1)
+        t1 = null
+      }, 1000);
+    })
 
     canvas.addEventListener('touchend', () => {
-      isTap = false
+      isTap = '0'
     })
 
   }, [])
@@ -217,9 +185,13 @@ export default function Cognizethird() {
 
   }
 
-  const sure = () => {
+  const sure = async () => {
     const url = canvasDom.current.toDataURL("image/jpeg", 1.0)
     const endTime = +new Date()
+    let totalTime = 0
+    let totalLength = 0
+    totalTime = endTime - startTime
+    totalLength = xMoveLength + yMoveLength
     console.log('drawtime')
     console.log(drawingTime)
     console.log('totalTime')
@@ -228,6 +200,8 @@ export default function Cognizethird() {
     console.log(xMoveLength)
     console.log('ylength')
     console.log(yMoveLength)
+    console.log('totalLength')
+    console.log(totalLength)
     console.log(url)
     console.log('x轴加速度')
     console.log(cgq_jsd_x)
@@ -247,9 +221,68 @@ export default function Cognizethird() {
     console.log(cgq_zl_angy)
     console.log('重力传感器采集的z轴角度')
     console.log(cgq_zl_angz)
-
     console.log('position')
     console.log(position)
+    const obj = {
+      "fingerStatus": isTapArray,
+      "gravityAngx": cgq_zl_angx,
+      "gravityAngy": cgq_zl_angy,
+      "gravityAngz": cgq_zl_angz,
+      "speedAngx":cgq_jsd_x,
+      "speedAngy":cgq_jsd_y,
+      "speedAngz": cgq_jsd_z,
+      "gyroscopeAngx": cgq_tly_x,
+      "gyroscopeAngy": cgq_tly_y,
+      "gyroscopeAngz": cgq_tly_z,
+      // "speedAngx": [
+      //   3.12,
+      //   13.12,
+      //   13.12,
+      //   13.12,
+      //   13.12
+      // ],
+      // "speedAngy": [
+      //   1.12,
+      //   12.12,
+      //   13.12,
+      //   43.12,
+      //   33.12
+      // ],
+      // "speedAngz": [
+      //   6.12,
+      //   17.12,
+      //   13.12,
+      //   23.12,
+      //   11.12
+      // ],
+      // "gyroscopeAngx": [
+      //   11.12,
+      //   11.12,
+      //   11.12,
+      //   11.12,
+      //   11.12
+      // ],
+      // "gyroscopeAngy": [
+      //   12.12,
+      //   12.12,
+      //   12.12,
+      //   12.12,
+      //   12.12
+      // ],
+      // "gyroscopeAngz": [
+      //   3.12,
+      //   13.12,
+      //   13.12,
+      //   13.12,
+      //   13.12
+      // ],
+      "pressure": 12.12,
+      "collectTime": totalTime,
+      "collectLong": totalLength
+    }
+    const result = await postCognitionTwo(obj)
+    console.log('result')
+    console.log(result)
     // setChangePage(1)
     // setTimeout(() => {
     //   nav(-1)
