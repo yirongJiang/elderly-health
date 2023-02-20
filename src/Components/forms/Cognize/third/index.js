@@ -1,10 +1,8 @@
 import { Button, message } from 'antd'
 import React, { useEffect, useState, useRef } from 'react'
 import { useFetcher, useNavigate } from 'react-router-dom'
-import DeviceMotionTest from '../DeviceMotion'
 import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
-import DeviceOrientationTest from '../DeviceOrientation'
 import { use } from 'echarts'
 import { postCognitionTwo } from '../../../../api'
 
@@ -20,7 +18,7 @@ const cgq_tly_z = []
 const isTapArray = []
 let xMoveLength = 0
 let yMoveLength = 0
-let isTap = '0'
+let isTap = 0
 export default function Cognizethird() {
   let drawingTime = 0;
   const position = {}
@@ -57,7 +55,7 @@ export default function Cognizethird() {
     ctx.fillStyle = '#fff'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     canvas.addEventListener('touchstart', function (event) {
-      isTap = '1'
+      isTap = 1
       setStart(true)
       event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
       beginX = event.touches[0].clientX - this.offsetLeft
@@ -234,51 +232,10 @@ export default function Cognizethird() {
       "gyroscopeAngx": cgq_tly_x,
       "gyroscopeAngy": cgq_tly_y,
       "gyroscopeAngz": cgq_tly_z,
-      // "speedAngx": [
-      //   3.12,
-      //   13.12,
-      //   13.12,
-      //   13.12,
-      //   13.12
-      // ],
-      // "speedAngy": [
-      //   1.12,
-      //   12.12,
-      //   13.12,
-      //   43.12,
-      //   33.12
-      // ],
-      // "speedAngz": [
-      //   6.12,
-      //   17.12,
-      //   13.12,
-      //   23.12,
-      //   11.12
-      // ],
-      // "gyroscopeAngx": [
-      //   11.12,
-      //   11.12,
-      //   11.12,
-      //   11.12,
-      //   11.12
-      // ],
-      // "gyroscopeAngy": [
-      //   12.12,
-      //   12.12,
-      //   12.12,
-      //   12.12,
-      //   12.12
-      // ],
-      // "gyroscopeAngz": [
-      //   3.12,
-      //   13.12,
-      //   13.12,
-      //   13.12,
-      //   13.12
-      // ],
-      "pressure": 12.12,
-      "collectTime": totalTime,
-      "collectLong": totalLength
+      "pressure": `12.12`,
+      "photoClock": url,
+      "collectTime":`${totalTime}`,
+      "collectLong": `${totalLength}`
     }
     const result = await postCognitionTwo(obj)
     console.log('result')
