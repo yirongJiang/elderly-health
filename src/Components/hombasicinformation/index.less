@@ -1,20 +1,30 @@
 .basicinfo-wrapper {
   width: 329rem;
-  height: 280rem;
+  height: 33vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 52% auto;
-  Button {
+  margin: 20vh auto;
+  position: relative;
+
+  .layOut {
+    width: 35vw;
+    color: #547bc6;
+    position: absolute;
+    top:-16vh;
+    left:54vw;
+  }
+
+  .add-btn,.search-btn {
     text-align: left;
     width: 329rem;
-    height: 40%;
+    height: 45%;
     text-indent: 1.5em;
     border-radius: 6rem;
     font-size: 26rem;
     font-weight: bold;
     background-repeat: no-repeat;
-    background-position:6rem center;
+    background-position: 6rem center;
     background-size: 66rem;
   }
 
@@ -22,7 +32,8 @@
     background-image: url(../../assect/img/加号.png);
   }
 
-  .check-btn ,.search-btn {
+  .check-btn,
+  .search-btn {
     background-image: url(../../assect/img/曲奇饼.png);
   }
 

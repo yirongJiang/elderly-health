@@ -7,8 +7,7 @@ import './index.less'
 export default function Doctorlogin() {
   const nav = useNavigate()
   const [form] = Form.useForm()
-  const onFinish = async (values) => {
-    
+  const onFinish = async (values) => {  
     const result = await login({
       passWord: "123456t",
       phone: "13167827468",

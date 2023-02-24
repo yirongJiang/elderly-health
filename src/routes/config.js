@@ -30,11 +30,12 @@ import Evaluationoutcome from '../Components/forms/evaluation-outcome'
 import CameraComponent from '../Components/forms/Cognize/Camera-photo'
 
 
-
-export const getRoutesConfig = (isLogin) => [
+export const getRoutesConfig = () => [
   {
     path: '*',
-    element: isLogin ? <Navigate to='initail' /> : <Initial />,
+    // element: isLogin ? <Navigate to='initail' /> : <Initial />,
+    element: <Initial />,
+
   },
   {
     path: '/initail',
@@ -60,7 +61,7 @@ export const getRoutesConfig = (isLogin) => [
   },
   {
     path: '/home',
-    element: isLogin ? <Home /> : <Navigate to='/initail' />,
+    element:  localStorage.getItem('X-Auth-Token')? <Home /> : <Navigate to='/initail' />,
     children: [
       {
         path: '',
@@ -79,7 +80,7 @@ export const getRoutesConfig = (isLogin) => [
   },
   {
     path: '/evaluationdetail',
-    element: isLogin ? <Evaluationdetail /> : <Navigate to='initail' />,
+    element: localStorage.getItem('X-Auth-Token') ? <Evaluationdetail /> : <Navigate to='/initail' />,
     children: [
       {
         path: '',

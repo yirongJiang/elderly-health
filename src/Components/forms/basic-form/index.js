@@ -126,11 +126,13 @@ export default function Basicform() {
   };
 
   return (
+
     <div className='basicform-wrapper'>
       <div className="basicform-heade">
         <div onClick={() => { nav('/home/evaluate') }} className="back"> &lt;  返回</div>
         <div className="title">请填写您的基本信息（全部必填）</div>
       </div>
+
       <Form
         size='large'
         layout="vertical"
@@ -138,16 +140,16 @@ export default function Basicform() {
         {...formItemLayout}
         onFinish={onFinish}
         form={form}
-
       >
+
         <Form.Item
           label="姓名"
           name='name'
           rules={commonRuls}
           style={{ width: '90%' }} >
-          <Input placeholder="请输入您的姓名" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
+          <Input placeholder="请输入您的姓名" bordered style={{ borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
-
+        <hr />
         <Form.Item
           rules={commonRuls} style={{ width: '90%' }} name="gender" label="性别">
           <Radio.Group>
@@ -155,27 +157,28 @@ export default function Basicform() {
             <Radio value="0">女</Radio>
           </Radio.Group>
         </Form.Item>
-
+        <hr />
         <Form.Item
           label="年龄"
           name='age'
           rules={commonRuls} style={{ width: '90%' }}>
-          <Input placeholder="请输入您的年龄" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
+          <Input placeholder="请输入您的年龄"  style={{  borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
+        <hr />
 
 
         <Form.Item
           name='height'
           rules={commonRuls} style={{ width: '90%' }} label="身高 / cm">
-          <Input placeholder="cm" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
+          <Input placeholder="cm"  style={{  borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
-
+        <hr />
         <Form.Item
           name='weight'
           rules={commonRuls} style={{ width: '90%' }} label="体重 / kg">
-          <Input placeholder="kg" bordered={false} style={{ border: 'none', borderBottom: '2px ##fcfcfc solid' }} />
+          <Input placeholder="kg"  style={{  borderBottom: '2px ##fcfcfc solid' }} />
         </Form.Item>
-
+        <hr />
         {hospitalSpecial === 0 ?
           <Form.Item
             rules={commonRuls}
