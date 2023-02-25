@@ -13,9 +13,9 @@ export default function Mmse() {
   const [form] = Form.useForm()
   const nav = useNavigate()
 
-  const onFinish = async(values) => {
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
-    const res=await postMmse(values)
+    const res = await postMmse(values)
     console.log(res)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，完成填写！')
@@ -45,7 +45,7 @@ export default function Mmse() {
   }
   useEffect(() => {
     form.setFieldsValue({ ...formdataContext.mmseFormdata })
-   
+
   }, [])
 
   return (
@@ -433,7 +433,8 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="qtwentyFive" label="25、按卡片上的指令去做“闭上您的眼睛">
+          ]} name="qtwentyFive" label="">
+          <p style={{wordWrap:'break-word',fontSize:'20rem',fontWeight:'400',width:'80vw'}}>25、按卡片上的指令,去做“闭上您的眼睛</p>
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>

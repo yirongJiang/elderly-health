@@ -6,12 +6,13 @@ import './index.less'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import { postIadl } from '../../../api';
 
-const commonRuls = [
+const {commonRuls} = [
   {
     required: true,
     message: '请填写完整',
   },
 ]
+
 export default function Ladl() {
   const [form] = Form.useForm()
   const nav = useNavigate()
@@ -54,15 +55,15 @@ export default function Ladl() {
       <Form
         form={form}
         onFieldsChange={formChange}
-        style={{ fontWeight: 'bold', fontSize: '20rem', padding: '0 10rem' }}
+        style={{ fontWeight: 'lighter', fontSize: '20rem', padding: '0 10rem' }}
         name="validate_other"
         {...formItemLayout}
         onFinish={onFinish}
       >
 
         <div>1. 电话的使用 </div>
-        <Form.Item label='你能不能自己用电话呢?” 包括找电话号码, 打及接听电话?' >
-          <Form.Item rules={commonRuls} name="qone">
+        <Form.Item  label='你能不能自己用电话呢?” 包括找电话号码, 打及接听电话?' >
+          <Form.Item rules={commonRuls} name="qone" >
             <Radio.Group>
               <Space align='start' direction="vertical">
                 <Radio value="1">可以自己做，但做的时候有困难
@@ -94,7 +95,7 @@ export default function Ladl() {
         </Form.Item>
 
         <div>3.购物</div>
-        <Form.Item label='你能不能自己买物品呢?” 包括自己选物品﹑付钱及带回家里
+        <Form.Item  label='你能不能自己买物品呢?” 包括自己选物品﹑付钱及带回家里
             (假设你必须要到附近商店买食物或日用品)'  >
           <Form.Item rules={commonRuls} name="qthree">
             <Radio.Group>

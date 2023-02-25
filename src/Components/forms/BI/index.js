@@ -30,11 +30,11 @@ export default function Bi() {
   const formItemLayout = {
     labelCol: {
       span: 6,
-      offset: 1
+      offset: 0,
     },
     wrapperCol: {
       span: 13,
-      offset: 0
+      offset: 1
     },
   };
   const topicContext = useContext(topicNumbercontext)
@@ -60,6 +60,7 @@ export default function Bi() {
         name="validate_other"
         {...formItemLayout}
         onFinish={onFinish}
+        style={{ padding: '0 10rem' }}
       >
         <Form.Item rules={commonRuls} name="qone" label="1.进食">
           <Radio.Group>

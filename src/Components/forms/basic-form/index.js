@@ -33,9 +33,11 @@ export default function Basicform() {
   const [hospitalSpecial, setHospitalSpecial] = useState(0)
   const [fallingSpecial, setFallingSpecial] = useState(0)
   const [diseaseHistory, setDiseaseHistory] = useState(0)
+  const [nameRight, setNameRight] = useState()
 
   const onFinish = (values) => {
-    localStorage.setItem('isPost', 1)
+    sessionStorage.setItem('isPost',1)
+    // localStorage.setItem('isPost', 1)
     console.log('Received values of form: ', values);
     nav(`/home/evaluate`)
     message.success('恭喜您，完成填写！')
@@ -59,8 +61,9 @@ export default function Basicform() {
     }
   }
 
-  const hospitalChange = (value) => {
-    if (value === '是') {
+  const hospitalChange = (e) => {
+    console.log(e.target.value)
+    if (e.target.value === '是') {
       setHospitalSpecial(1)
       form.setFieldsValue({
         hospital: null,
@@ -68,8 +71,8 @@ export default function Basicform() {
     }
   }
 
-  const fallingChange = (value) => {
-    if (value === '是') {
+  const fallingChange = (e) => {
+    if (e.target.value === '是') {
       setFallingSpecial(1)
       form.setFieldsValue({
         falling: null,
@@ -105,12 +108,12 @@ export default function Basicform() {
       event.stopPropagation();
     };
     // const rgb=['bold','lime','cyan','green','blue','red','purple','yellow','#D24D57','pink']
-    const rgb=['#560192','#8e0dc0','#9d16be','#c627be','#da30bb','#db30bc','#f062cb','#590299','##8c0dbe','#f07fd2']
-    const leng=rgb.length
-    const number=Math.ceil(Math.random()*(leng-1))
-    let r = Math.floor(Math.random() * 255)
-    let g = Math.floor(Math.random() * 118)
-    let b = Math.floor(Math.random() * 189)
+    const rgb = ['#560192', '#8e0dc0', '#9d16be', '#c627be', '#da30bb', '#db30bc', '#f062cb', '#590299', '##8c0dbe', '#f07fd2']
+    const leng = rgb.length
+    const number = Math.ceil(Math.random() * (leng - 1))
+    // let r = Math.floor(Math.random() * 255)
+    // let g = Math.floor(Math.random() * 118)
+    // let b = Math.floor(Math.random() * 189)
     return (
       <Tag
         // color={`rgb(${r},${g},${b},0.8)`}
@@ -118,12 +121,40 @@ export default function Basicform() {
         onMouseDown={onPreventMouseDown}
         closable={closable}
         onClose={onClose}
-        style={{fontSize:'18rem',padding:'5rem',margin:'2rem'}}
+        style={{ fontSize: '18rem', padding: '5rem', margin: '2rem' }}
       >
         {label}
       </Tag>
     );
   };
+
+  // let timer
+  // const nameChange = (e) => {
+  //   let reg = /^[\一-\龥]{2,6}$/
+  //   if (timer) {
+  //     clearTimeout(timer)
+  //   }
+  //   timer = setTimeout(() => {
+  //     console.log(reg.test(e.target))
+  //     console.log(e.target.value.trim().length)
+  //     if (e.target.value.trim().length === 0) {
+  //       setNameRight(0)
+  //       message.error('请输入正确的姓名')
+  //       return
+  //     }
+  //     if (e.target.value.trim().length > 0) {
+  //       if (!reg.test(e.target.value)) {
+  //         message.error('请输入正确的姓名')
+  //         setNameRight(0)
+  //       } else {
+  //         setNameRight(1)
+  //       }
+  //     } else {
+  //       setNameRight()
+  //     }
+
+  //   }, 1000)
+  // }
 
   return (
 
@@ -143,13 +174,21 @@ export default function Basicform() {
       >
 
         <Form.Item
+          hasFeedback
           label="姓名"
           name='name'
-          rules={commonRuls}
+          // validateStatus={nameRight === 0 ? "error" : nameRight === 1 ? "success" : ""}
+          rules={[
+            {
+              pattern: /^[\一-\龥]{2,6}$/,
+              required: true,
+              message: '请填写2-6位真实姓名',
+            }
+          ]}
           style={{ width: '90%' }} >
-          <Input placeholder="请输入您的姓名" bordered style={{ borderBottom: '2px ##fcfcfc solid' }} />
+          <Input placeholder="请输入您的姓名" bordered />
         </Form.Item>
-        <hr />
+
         <Form.Item
           rules={commonRuls} style={{ width: '90%' }} name="gender" label="性别">
           <Radio.Group>
@@ -157,41 +196,70 @@ export default function Basicform() {
             <Radio value="0">女</Radio>
           </Radio.Group>
         </Form.Item>
-        <hr />
+
         <Form.Item
+          hasFeedback
           label="年龄"
           name='age'
-          rules={commonRuls} style={{ width: '90%' }}>
-          <Input placeholder="请输入您的年龄"  style={{  borderBottom: '2px ##fcfcfc solid' }} />
+          rules={[
+            {
+              pattern: /[1-9/[0-9]/,
+              required: true,
+              message: '请填写0-100之间的年龄',
+            }
+          ]}
+          style={{ width: '90%' }}>
+          <Input placeholder="请输入您的年龄" />
         </Form.Item>
-        <hr />
+
 
 
         <Form.Item
+          hasFeedback
           name='height'
-          rules={commonRuls} style={{ width: '90%' }} label="身高 / cm">
-          <Input placeholder="cm"  style={{  borderBottom: '2px ##fcfcfc solid' }} />
+          rules={[
+            {
+              pattern: /1[0-9][0-9]/,
+              required: true,
+              message: '请填写100-200厘米之间的身高',
+            }
+          ]}
+          style={{ width: '90%' }} label="身高 / cm">
+          <Input placeholder="cm" />
         </Form.Item>
-        <hr />
+
         <Form.Item
+          hasFeedback
           name='weight'
-          rules={commonRuls} style={{ width: '90%' }} label="体重 / kg">
-          <Input placeholder="kg"  style={{  borderBottom: '2px ##fcfcfc solid' }} />
+          rules={[
+            {
+              pattern: /^(\d{1,2}$)/,
+              required: true,
+              message: '请填写1-100千克之间的体重',
+            }
+          ]} style={{ width: '90%' }} label="体重 / kg">
+          <Input placeholder="kg" />
         </Form.Item>
-        <hr />
+
         {hospitalSpecial === 0 ?
           <Form.Item
             rules={commonRuls}
             style={{ width: '90%' }}
             name="hospital"
             label="一年内是否住过院"
+            hasFeedback
           >
-            <Select style={{ width: '80%' }} size='large' onChange={hospitalChange} placeholder="点击进行选择">
+            <Radio.Group onChange={hospitalChange}>
+              <Radio value="是">是</Radio>
+              <Radio value="否">否</Radio>
+            </Radio.Group>
+            {/* <Select style={{ width: '80%' }} size='large' onChange={hospitalChange} placeholder="点击进行选择">
               <Option value="是">是</Option>
               <Option value="否">否</Option>
-            </Select>
+            </Select> */}
           </Form.Item> :
           <Form.Item
+            hasFeedback
             name='hospital'
             rules={commonRuls} label='一年内住院次数 : ' >
             <TextArea style={{ width: '80%' }} rows={2} placeholder='点击开始填写次数' />
@@ -200,17 +268,23 @@ export default function Basicform() {
 
         {fallingSpecial === 0 ?
           <Form.Item
+            hasFeedback
             rules={commonRuls}
             style={{ width: '90%' }}
             name="falling"
             label="一年内是否跌倒过"
           >
-            <Select style={{ width: '80%' }} size='large' onChange={fallingChange} placeholder="点击进行选择">
+            <Radio.Group onChange={fallingChange} >
+              <Radio value="是">是</Radio>
+              <Radio value="否">否</Radio>
+            </Radio.Group>
+            {/* <Select style={{ width: '80%' }} size='large' onChange={fallingChange} placeholder="点击进行选择">
               <Option value="是">是</Option>
               <Option value="否">否</Option>
-            </Select>
+            </Select> */}
           </Form.Item> :
           <Form.Item
+            hasFeedback
             name='falling'
             rules={commonRuls} label='一年内住院次数 ： ' >
             <TextArea style={{ width: '80%' }} rows={2} placeholder='点击开始填写次数' />
@@ -219,6 +293,7 @@ export default function Basicform() {
 
         {diseaseHistory === 0 ?
           <Form.Item
+            hasFeedback
             rules={commonRuls}
             style={{ width: '90%' }}
             name="disease"
@@ -231,6 +306,7 @@ export default function Basicform() {
           </Form.Item> :
           diseaseHistory === 1 ?
             <Form.Item
+              hasFeedback
               name='disease'
               rules={commonRuls} label='现有疾病供选择（多选）： ' >
               <Select
@@ -290,12 +366,13 @@ export default function Basicform() {
                 </Option>
               </Select>
             </Form.Item> :
-            <Form.Item name='disease' label='请填写您的其他疾病史' required='true'>
+            <Form.Item hasFeedback name='disease' label='请填写您的其他疾病史' required='true'>
               <TextArea rows={2} style={{ width: '70%', }} placeholder='点击开始填写说明' />
             </Form.Item>
         }
 
         <Form.Item
+          hasFeedback
           rules={commonRuls}
           style={{ width: '90%' }}
           name="edu"
@@ -311,6 +388,7 @@ export default function Basicform() {
         </Form.Item>
 
         <Form.Item
+          hasFeedback
           rules={commonRuls}
           style={{ width: '90%' }}
           name="matrim"
@@ -324,6 +402,7 @@ export default function Basicform() {
         </Form.Item>
 
         <Form.Item
+          hasFeedback
           rules={commonRuls}
           style={{ width: '90%' }}
           name="org"
@@ -338,6 +417,7 @@ export default function Basicform() {
 
         {locationSpecial === 0 ?
           <Form.Item
+            hasFeedback
             rules={commonRuls}
             style={{ width: '90%' }}
             name="place"
@@ -352,6 +432,7 @@ export default function Basicform() {
             </Select>
           </Form.Item> :
           <Form.Item
+            hasFeedback
             name='place'
             rules={commonRuls} label='评估地点说明' ><TextArea style={{ width: '88%' }} rows={2} placeholder='点击开始填写说明说明' /></Form.Item>
         }
@@ -359,6 +440,7 @@ export default function Basicform() {
 
         {peopleSpecial === 0 ?
           <Form.Item
+            hasFeedback
             rules={commonRuls}
             style={{ width: '90%' }}
             name="staff"
@@ -372,6 +454,7 @@ export default function Basicform() {
             </Select>
           </Form.Item> :
           <Form.Item
+            hasFeedback
             name='staff'
             rules={commonRuls} label='填写人员说明' >
             <TextArea rows={2} style={{ width: '88%', }} placeholder='点击开始填写说明' />
@@ -392,6 +475,6 @@ export default function Basicform() {
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </div >
   )
 }

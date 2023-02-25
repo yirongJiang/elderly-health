@@ -240,11 +240,11 @@ export default function Cognizethird() {
     const result = await postCognitionTwo(obj)
     console.log('result')
     console.log(result)
-    // setChangePage(1)
-    // setTimeout(() => {
-    //   nav(-1)
-    //   message.success('恭喜您提交成功,请开始画钟')
-    // }, 1000);
+    setChangePage(1)
+    setTimeout(() => {
+      nav(-1)
+      message.success('恭喜您提交成功,请开始画钟')
+    }, 1000);
   }
 
   const download = () => {
@@ -261,7 +261,7 @@ export default function Cognizethird() {
   }
 
   return (
-    <Commontitle title='在空白处话初11点10分的钟表 ：' className='cognizethird-wrapper'>
+    <Commontitle title='在空白处绘制11点10分的钟表 ：' className='cognizethird-wrapper'>
       {changePage === 0 ?
         <div className='formal-content'>
           {
