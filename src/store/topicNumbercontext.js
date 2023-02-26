@@ -27,3 +27,7 @@ export const topicFormDatacontext = React.createContext({
       painsFormdata: {},
       heartrateFormdata: {}
 })
+
+export const basicFormContext=React.createContext({
+      basicForm:{}
+})

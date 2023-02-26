@@ -5,6 +5,7 @@ import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import { postHearing } from '../../../api';
+import ToTopBtn from '../../../utility/ToTopBtn';
 
 const commonRules = [
   {
@@ -20,9 +21,9 @@ export default function Hearing() {
     form.setFieldsValue({ ...formdataContext.hearingFormdata })
   }, [])
 
-  const onFinish =async (values) => {
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
-    const res=await postHearing(values)
+    const res = await postHearing(values)
     console.log(res)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，提交成功！')
@@ -53,8 +54,10 @@ export default function Hearing() {
 
   return (
     <Commontitle title='听力筛查表' className='hearing-wrapper'>
+      <ToTopBtn />
       <Form
-      onFieldsChange={formChange}
+        scrollToFirstError
+        onFieldsChange={formChange}
         style={{ padding: '0 10rem' }}
         form={form}
         name="听力筛查表"
@@ -71,7 +74,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
 
         <Form.Item rules={commonRules} name="qtwo" label="2.在和家人交谈时，听力问题是否会使您感到沮丧？">
           <Radio.Group>
@@ -82,7 +85,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
 
         <Form.Item rules={commonRules} name="qthree" label="3.有人对您低声耳语时，听力问题是否会使您感到困难？ ">
           <Radio.Group>
@@ -93,7 +96,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
 
         <Form.Item rules={commonRules} name="qfour" label="4.您是否觉得有听力问题是一种残疾？ ">
           <Radio.Group>
@@ -104,7 +107,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
         <Form.Item rules={commonRules} name="qfive" label="5.在探亲访友时，听力问题是否会使您感到困难？ ">
           <Radio.Group>
             <Space align='start' size={60}>
@@ -114,7 +117,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
         <Form.Item rules={commonRules} name="qsix" label="6.是否由于听力问题，您不愿像以往那样经常出席正式的场合了（比如会议、仪式等等）？">
           <Radio.Group>
             <Space align='start' size={60}>
@@ -124,7 +127,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
         <Form.Item rules={commonRules} name="qseven" label="7.听力问题会引起您与家人的争吵吗？ ">
           <Radio.Group>
             <Space align='start' size={60}>
@@ -134,7 +137,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
         <Form.Item rules={commonRules} name="qeight" label="8.在看电视或听广播时，听力问题是否会使您感到困难？">
           <Radio.Group>
             <Space align='start' size={60}>
@@ -144,7 +147,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
         <Form.Item rules={commonRules} name="qnine" label="9.您是否觉得听力问题限制或者阻碍了您的个人生活或社会交往？">
           <Radio.Group>
             <Space align='start' size={60}>
@@ -154,7 +157,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
         <Form.Item rules={commonRules} name="qten" label="10.在餐馆与亲戚朋友聚餐时，听力问题是否会使您感到困难？">
           <Radio.Group>
             <Space align='start' size={60}>
@@ -164,7 +167,7 @@ export default function Hearing() {
             </Space>
           </Radio.Group>
         </Form.Item>
-       
+
 
         <Form.Item rules={commonRules}
           style={{ width: '80%' }}

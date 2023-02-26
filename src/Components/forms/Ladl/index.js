@@ -5,8 +5,9 @@ import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import { postIadl } from '../../../api';
+import ToTopBtn from '../../../utility/ToTopBtn';
 
-const {commonRuls} = [
+const  commonRuls  = [
   {
     required: true,
     message: '请填写完整',
@@ -20,11 +21,11 @@ export default function Ladl() {
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
     const res = await postIadl(values)
-     console.log(res)
+    console.log(res)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您提交成功')
   };
-  
+
   const formItemLayout = {
     labelCol: {
       span: 6,
@@ -52,7 +53,9 @@ export default function Ladl() {
 
   return (
     <Commontitle title='洛顿IADL评估' className='ladi-wrapper'>
+      <ToTopBtn />
       <Form
+       scrollToFirstError
         form={form}
         onFieldsChange={formChange}
         style={{ fontWeight: 'lighter', fontSize: '20rem', padding: '0 10rem' }}
@@ -61,9 +64,9 @@ export default function Ladl() {
         onFinish={onFinish}
       >
 
-        <div>1. 电话的使用 </div>
-        <Form.Item  label='你能不能自己用电话呢?” 包括找电话号码, 打及接听电话?' >
-          <Form.Item rules={commonRuls} name="qone" >
+        <div className='question'>1. 电话的使用 </div>
+        <Form.Item label='你能不能自己用电话呢?” 包括找电话号码, 打及接听电话?' >
+          <Form.Item name="qone" >
             <Radio.Group>
               <Space align='start' direction="vertical">
                 <Radio value="1">可以自己做，但做的时候有困难
@@ -77,7 +80,7 @@ export default function Ladl() {
           </Form.Item>
         </Form.Item>
 
-        <div>2.交通的使用</div>
+        <div className='question'>2.交通的使用</div>
         <Form.Item label='你能不能自己搭车呢?” 包括自己上到正确的车, 付车票钱/买车票, 上/下车
             (假设你必须要搭交通工具去一个远的地方，例如探朋友/看病)'  >
           <Form.Item rules={commonRuls} name="qtwo">
@@ -94,8 +97,8 @@ export default function Ladl() {
           </Form.Item>
         </Form.Item>
 
-        <div>3.购物</div>
-        <Form.Item  label='你能不能自己买物品呢?” 包括自己选物品﹑付钱及带回家里
+        <div className='question'>3.购物</div>
+        <Form.Item label='你能不能自己买物品呢?” 包括自己选物品﹑付钱及带回家里
             (假设你必须要到附近商店买食物或日用品)'  >
           <Form.Item rules={commonRuls} name="qthree">
             <Radio.Group>
@@ -111,7 +114,7 @@ export default function Ladl() {
           </Form.Item>
         </Form.Item>
 
-        <div>4.准备食物</div>
+        <div className='question'>4.准备食物</div>
         <Form.Item label='你能不能自己煮食呢? 包括自己计划食物﹑准备材料﹑煮熟食物及放入碗碟里
             (假设你必须要自己准备一顿饭)' >
           <Form.Item rules={commonRuls} name="qfour">
@@ -128,9 +131,7 @@ export default function Ladl() {
           </Form.Item>
         </Form.Item>
 
-
-
-        <div>5.家务活动</div>
+        <div className='question'>5.家务活动</div>
         <Form.Item label='你能不能自己做家务呢? 包括简单家务(如抹桌子﹑叠被子﹑洗碗)及较重的家务(如抹地/窗)
             (假设你必须要自己做家务)' >
           <Form.Item rules={commonRuls} name="qfive">
@@ -147,7 +148,7 @@ export default function Ladl() {
           </Form.Item>
         </Form.Item>
 
-        <div>6.家居维修</div>
+        <div className='question'>6.家居维修</div>
         <Form.Item label='你能不能应付简单的家居维修呢?” 例如换灯泡﹑維修桌子及上螺丝等
             (假设你必须要自己做)' >
           <Form.Item rules={commonRuls} name="qsix">
@@ -163,7 +164,7 @@ export default function Ladl() {
             </Radio.Group></Form.Item>
         </Form.Item>
 
-        <div>7.卫生</div>
+        <div className='question'>7.卫生</div>
         <Form.Item label='你能不能夠自己洗衣服呢?包括清洗及凉自己的衫﹑被﹑床单等
             (假设你必须要洗自己的衫﹑被﹑床单等)' >
           <Form.Item rules={commonRuls} name="qseven">
@@ -179,7 +180,7 @@ export default function Ladl() {
             </Radio.Group></Form.Item>
         </Form.Item>
 
-        <div>8.服药</div>
+        <div className='question'>8.服药</div>
         <Form.Item label='你能不能自己服用药物呢? 包括能依照指示在正确的时间內服用正确的份量
             (假设你必须要自己擦药或食药等)'   >
           <Form.Item rules={commonRuls} label="" name="qeight">
@@ -195,8 +196,9 @@ export default function Ladl() {
             </Radio.Group></Form.Item>
         </Form.Item>
 
-        <div>9.财务管理</div>
-        <Form.Item label='你能不能处理自己的财物呢? 包括日常的找零钱﹑交租/水电费及到银行提款
+        <div className='question'>9.财务管理</div>
+     
+        <Form.Item rules={commonRuls} label='你能不能处理自己的财物呢? 包括日常的找零钱﹑交租/水电费及到银行提款
             (假设你必须要买物品﹑自己交租/水电费及有钱在银行)' >
           <Form.Item rules={commonRuls} label="" name="qnine">
             <Radio.Group>

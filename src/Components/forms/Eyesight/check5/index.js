@@ -28,6 +28,7 @@ export default function Checkfive() {
       offset: 2
     },
   };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setSize(size - 30)
@@ -40,12 +41,11 @@ export default function Checkfive() {
     }
   }, [size])
 
-
   const topicContext = useContext(topicNumbercontext)
-
   const formChange = (e) => {
     topicContext.numberDispatch({ type: 'EYESIGHTADD', selectedNumber: 6 })
   }
+
   return (
     <div className='five-wrapper'>
       <Form
@@ -59,7 +59,7 @@ export default function Checkfive() {
         <Form.Item rules={[{ required: true, message: '请填写完整' }]} name="qsix" label="6.您是否看得清逐渐缩小的'5' ? ">
           <Radio.Group>
             <Radio value="1">是的</Radio>
-            <Radio value="0">不是</Radio>
+            <Radio value="3">不是</Radio>
           </Radio.Group>
         </Form.Item>
 

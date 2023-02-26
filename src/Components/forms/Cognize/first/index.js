@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Form, Radio, Button } from 'antd';
+import { Form, Radio, Button, message } from 'antd';
 import './index.less'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../../UI/Nav-head';
@@ -32,7 +32,9 @@ export default function Cognizefirst() {
 
   const topicContext = useContext(topicNumbercontext)
   const formdataContext = useContext(topicFormDatacontext)
-
+  const onFinishFailed = (errorInfo) => {
+    message.warn('请填写完整')
+  };
   const formChange = (e) => {
     const value = form.getFieldsValue(true)
     let formdata = value
@@ -48,6 +50,8 @@ export default function Cognizefirst() {
   return (
     <Commontitle title='自制认知筛查表' className='cognizefirst-wrapper'>
       <Form
+        scrollToFirstError
+        onFinishFailed={onFinishFailed}
         onFieldsChange={formChange}
         form={form}
         name="自制认知筛查表"

@@ -242,7 +242,7 @@ export default function Cognizethird() {
     console.log(result)
     setChangePage(1)
     setTimeout(() => {
-      nav(-1)
+      nav('/evaluationdetail/scalenav')
       message.success('恭喜您提交成功,请开始画钟')
     }, 1000);
   }

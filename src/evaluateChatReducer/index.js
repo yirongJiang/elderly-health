@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from 'react'
+import React, {  useReducer } from 'react'
 import { Outlet } from 'react-router-dom'
 import { topicNumbercontext, topicFormDatacontext } from '../store/topicNumbercontext'
 
@@ -80,12 +80,10 @@ const formReducer = (state, action) => {
     case 'HEARTRATEFORM':
       newFormdata.heartrateFormdata = action.formdata
       return newFormdata
-
   }
 }
 
-export default function Evaluationdetail() {
-
+export default function Evaluationdetail() { 
   const [numberGroup, numberDispatch] = useReducer(numberReducer, {
     cognizeNumber: 0,
     mmseNumber: 0,

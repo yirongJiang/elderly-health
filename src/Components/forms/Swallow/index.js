@@ -54,6 +54,7 @@ export default function Swallow() {
         请自我汇报最近两周的情况：
       </div>
       <Form
+       scrollToFirstError
         onFieldsChange={formChange}
         style={{ padding: '0 10rem' }}
         form={form}
@@ -62,7 +63,7 @@ export default function Swallow() {
         onFinish={onFinish}
       >
 
-        <Form.Item rules={commonRules} name="swallow1" label="1、进食或喝水时呛咳或其他吞咽障碍">
+        <Form.Item rules={commonRules} name="qone" label="1、进食或喝水时呛咳或其他吞咽障碍">
           <Radio.Group>
             <Space align='start' size={200}>
               <Radio value="0">无</Radio>
@@ -71,7 +72,7 @@ export default function Swallow() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="swallow2" label="2、非经口进食">
+        <Form.Item rules={commonRules} name="qtwo" label="2、非经口进食">
           <Radio.Group>
             <Space align='start' size={200}>
               <Radio value="0">无</Radio>
@@ -80,7 +81,7 @@ export default function Swallow() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="swallow3" label="3、尿频、尿急、尿不尽或尿失禁等小便控制障碍">
+        <Form.Item rules={commonRules} name="qthree" label="3、尿频、尿急、尿不尽或尿失禁等小便控制障碍">
           <Radio.Group>
             <Space align='start' size={200}>
               <Radio value="0">无</Radio>
@@ -89,7 +90,7 @@ export default function Swallow() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="swallow4" label="4、便秘或大便失禁等大便控制障碍">
+        <Form.Item rules={commonRules} name="qfour" label="4、便秘或大便失禁等大便控制障碍">
           <Radio.Group>
             <Space align='start' size={200}>
               <Radio value="0">无</Radio>

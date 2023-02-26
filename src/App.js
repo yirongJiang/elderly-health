@@ -1,10 +1,28 @@
 import { useRoutes } from 'react-router-dom'
 import './app.less'
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import { getRoutesConfig } from './routes/config';
+import { basicFormContext } from './store/topicNumbercontext';
+
+
+const basicFormReducer = (state, action) => {
+  const newForm = { ...state }
+  switch (action.type) {
+    default:
+      return state
+    case 'basicForm':
+      newForm.basicForm = action.formData
+      return newForm
+  }
+}
 
 export default function App() {
-  // const isLogin = false
+  const [basicFormGroup, basicFormGroupDispatch] = useReducer(basicFormReducer, {
+    basicForm: {}
+  })
   const routes = useRoutes(getRoutesConfig())
-  return routes
+  return (<basicFormContext.Provider value={{ ...basicFormGroup, basicFormGroupDispatch }} >
+    {routes}
+  </basicFormContext.Provider>)
+
 }

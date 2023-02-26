@@ -20,7 +20,7 @@ import Basicinfo from '../Components/hombasicinformation'
 import Evaluation from '../Evaluate-basci-info'
 import Search from '../Components/Search'
 import Queryresult from '../Components/forms/Query-result'
-import Evaluationdetail from '../Evaluation-detail'
+import Evaluationdetail from '../evaluateChatReducer'
 import Basicform from '../Components/forms/basic-form'
 import Scalenav from '../Components/Scale-nav'
 import Cognizefirst from '../Components/forms/Cognize/first'
@@ -34,7 +34,7 @@ export const getRoutesConfig = () => [
   {
     path: '*',
     // element: isLogin ? <Navigate to='initail' /> : <Initial />,
-    element: <Initial />,
+    element:  <Navigate to='initail' /> ,
 
   },
   {
@@ -80,12 +80,15 @@ export const getRoutesConfig = () => [
   },
   {
     path: '/evaluationdetail',
+    key:'/evaluationdetail',
     element: localStorage.getItem('X-Auth-Token') ? <Evaluationdetail /> : <Navigate to='/initail' />,
     children: [
       {
-        path: '',
+        path: 'basic',
+        key:'basic',
         element: <Basicform />
-      }, {
+      }, 
+      {
         path: 'scalenav',
         element: <Scalenav />
       },

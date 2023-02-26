@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Form, Input, message, Radio, Select, Tag } from 'antd';
 import './index.less'
 import TextArea from 'antd/lib/input/TextArea';
 import { postInfo } from '../../../api';
 import { useNavigate } from 'react-router-dom';
+import { basicFormContext } from '../../../store/topicNumbercontext';
 
 const { Option } = Select;
 const formItemLayout = {
@@ -16,15 +17,14 @@ const formItemLayout = {
     offset: 2
   },
 };
-
 const commonRuls = [
   {
     required: true,
     message: '请填写完整',
   },
 ]
-export default function Basicform() {
 
+export default function Basicform() {
 
   const nav = useNavigate()
   const [form] = Form.useForm();
@@ -33,11 +33,10 @@ export default function Basicform() {
   const [hospitalSpecial, setHospitalSpecial] = useState(0)
   const [fallingSpecial, setFallingSpecial] = useState(0)
   const [diseaseHistory, setDiseaseHistory] = useState(0)
-  const [nameRight, setNameRight] = useState()
+  const formdataContext = useContext(basicFormContext)
 
   const onFinish = (values) => {
-    sessionStorage.setItem('isPost',1)
-    // localStorage.setItem('isPost', 1)
+    sessionStorage.setItem('isPost', 1)
     console.log('Received values of form: ', values);
     nav(`/home/evaluate`)
     message.success('恭喜您，完成填写！')
@@ -77,7 +76,6 @@ export default function Basicform() {
       form.setFieldsValue({
         falling: null,
       });
-
     }
   }
 
@@ -87,7 +85,6 @@ export default function Basicform() {
       form.setFieldsValue({
         disease: [],
       });
-
     }
   }
 
@@ -98,8 +95,15 @@ export default function Basicform() {
         disease: [],
       });
     }
-
   };
+
+  const formChange = () => {
+    const value = form.getFieldsValue(true)
+    console.log(value)
+    let formData = value
+    formdataContext.basicFormGroupDispatch({ type: 'basicForm', formData: formData })
+    console.log(formdataContext.basicForm)
+  }
 
   const tagRender = (props) => {
     const { label, closable, onClose } = props;
@@ -107,16 +111,11 @@ export default function Basicform() {
       event.preventDefault();
       event.stopPropagation();
     };
-    // const rgb=['bold','lime','cyan','green','blue','red','purple','yellow','#D24D57','pink']
     const rgb = ['#560192', '#8e0dc0', '#9d16be', '#c627be', '#da30bb', '#db30bc', '#f062cb', '#590299', '##8c0dbe', '#f07fd2']
     const leng = rgb.length
     const number = Math.ceil(Math.random() * (leng - 1))
-    // let r = Math.floor(Math.random() * 255)
-    // let g = Math.floor(Math.random() * 118)
-    // let b = Math.floor(Math.random() * 189)
     return (
       <Tag
-        // color={`rgb(${r},${g},${b},0.8)`}
         color={rgb[number]}
         onMouseDown={onPreventMouseDown}
         closable={closable}
@@ -128,33 +127,9 @@ export default function Basicform() {
     );
   };
 
-  // let timer
-  // const nameChange = (e) => {
-  //   let reg = /^[\一-\龥]{2,6}$/
-  //   if (timer) {
-  //     clearTimeout(timer)
-  //   }
-  //   timer = setTimeout(() => {
-  //     console.log(reg.test(e.target))
-  //     console.log(e.target.value.trim().length)
-  //     if (e.target.value.trim().length === 0) {
-  //       setNameRight(0)
-  //       message.error('请输入正确的姓名')
-  //       return
-  //     }
-  //     if (e.target.value.trim().length > 0) {
-  //       if (!reg.test(e.target.value)) {
-  //         message.error('请输入正确的姓名')
-  //         setNameRight(0)
-  //       } else {
-  //         setNameRight(1)
-  //       }
-  //     } else {
-  //       setNameRight()
-  //     }
-
-  //   }, 1000)
-  // }
+  useEffect(() => {
+    form.setFieldsValue({ ...formdataContext.basicForm })
+  }, [])
 
   return (
 
@@ -165,7 +140,7 @@ export default function Basicform() {
       </div>
 
       <Form
-        size='large'
+        onFieldsChange={formChange} size='large'
         layout="vertical"
         name="validate_other"
         {...formItemLayout}
@@ -177,7 +152,6 @@ export default function Basicform() {
           hasFeedback
           label="姓名"
           name='name'
-          // validateStatus={nameRight === 0 ? "error" : nameRight === 1 ? "success" : ""}
           rules={[
             {
               pattern: /^[\一-\龥]{2,6}$/,

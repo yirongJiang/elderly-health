@@ -12,7 +12,9 @@ const commonRules = [
     message: '请选择完整',
   },
 ]
+
 export default function Psychology() {
+  
   const [form] = Form.useForm()
   const nav = useNavigate()
   const onFinish = async (values) => {
@@ -37,11 +39,13 @@ export default function Psychology() {
 
   const formChange = (e) => {
     const value = form.getFieldsValue(true)
+    console.log(value)
     let formdata = value
     let selectedNumber = Object.keys(value).length
     topicContext.numberDispatch({ type: 'PSYCHOLOGYADD', selectedNumber: selectedNumber })
     formdataContext.formDispatch({ type: 'PSYCHOLOGYFORM', formdata: formdata })
   }
+
   useEffect(() => {
     form.setFieldsValue({ ...formdataContext.psychologyFormdata })
   }, [])
@@ -61,7 +65,7 @@ export default function Psychology() {
         onFinish={onFinish}
       >
 
-        <Form.Item rules={commonRules} name="psychology1" label="1、做什么事都没兴趣，没意思。">
+        <Form.Item rules={commonRules} name="qone" label="1、做什么事都没兴趣，没意思。">
           <Radio.Group>
             <Space align='start' direction="vertical">
               <Radio value="1">完全不会</Radio>
@@ -72,7 +76,7 @@ export default function Psychology() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules} name="psychology2" label="2、感到心情低落，抑郁，没希望。">
+        <Form.Item rules={commonRules} name="qtwo" label="2、感到心情低落，抑郁，没希望。">
           <Radio.Group>
             <Space align='start' direction="vertical">
               <Radio value="1">完全不会</Radio>
@@ -83,7 +87,7 @@ export default function Psychology() {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item rules={commonRules}
+        <Form.Item
           style={{ width: '80%' }}
           wrapperCol={{
             span: 9,

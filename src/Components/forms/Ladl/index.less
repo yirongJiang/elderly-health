@@ -1,30 +1,37 @@
 .ladi-wrapper {
-  div{
+  .question{
     font-size: 20rem;
     font-weight: lighter;
+    background-image: url(../../../assect/img/import.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    text-indent: 0.8em; //首行缩进
   }
-  Form{
-    .ant-row{
+
+  Form {
+    .ant-row {
       display: block;
     }
-   
-    span{
+
+    span {
       font-size: 17rem;
       font-weight: 400;
     }
+
     .ant-form-item-label {
-      label  {
+      label {
         text-align: left;
         font-size: 17rem;
         height: auto;
         font-weight: 400;
+
         &:after {
           content: none !important; //解决上面的样式label后面会有空格
         }
       }
     }
-    
-    Button{
+
+    Button {
       width: 40vw;
       font-size: 20rem;
       height: 60rem;

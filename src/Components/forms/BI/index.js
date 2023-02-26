@@ -5,6 +5,7 @@ import Commontitle from '../../../UI/Nav-head'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import './index.less'
 import { postBi } from '../../../api';
+import ToTopBtn from '../../../utility/ToTopBtn';
 
 
 const commonRuls = [
@@ -18,15 +19,15 @@ export default function Bi() {
   const [form] = Form.useForm()
   const nav = useNavigate()
 
-  const onFinish = async(values) => {
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
     console.log(values)
-    const res=await postBi(values)
+    const res = await postBi(values)
     console.log(res)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，提交成功')
   };
-  
+
   const formItemLayout = {
     labelCol: {
       span: 6,
@@ -53,8 +54,9 @@ export default function Bi() {
 
   return (
     <Commontitle title='BI评估表' className='bi-wrapper'>
-
+      <ToTopBtn />
       <Form
+       scrollToFirstError
         onFieldsChange={formChange}
         form={form}
         name="validate_other"
