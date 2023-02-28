@@ -45,3 +45,6 @@ export function postSwallow(params){
 export function postCognitionTwo(params){
   return request.post('rest/v1/cognitionTwo/creat',params)
 }
+export function postWalk(params){
+  return request.post('rest/v1/walk/creat',params)
+}

@@ -14,12 +14,14 @@ const commonRules = [
 ]
 
 export default function Psychology() {
-  
+
   const [form] = Form.useForm()
   const nav = useNavigate()
+
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
     await postPsychology(values)
+    topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，提交成功')
   };

@@ -22,6 +22,7 @@ export default function Ladl() {
     console.log('Received values of form: ', values);
     const res = await postIadl(values)
     console.log(res)
+    topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您提交成功')
   };

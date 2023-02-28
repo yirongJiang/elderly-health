@@ -24,6 +24,7 @@ export default function Bi() {
     console.log(values)
     const res = await postBi(values)
     console.log(res)
+    topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，提交成功')
   };

@@ -39,7 +39,7 @@ export const requiredList = [
   {
     title: '每日步行数',
     finishedNumber: 'stepNumber',
-    defaultNumber: 2,
+    defaultNumber: 1,
     navUrl: '/evaluationdetail/steps'
   },
 ]

@@ -20,6 +20,7 @@ export default function Swallow() {
     console.log('Received values of form: ', values);
     await postSwallow(values)
     nav('/evaluationdetail/scalenav')
+    topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     message.success('恭喜您，提交成功')
   };
   const formItemLayout = {

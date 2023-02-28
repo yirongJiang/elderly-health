@@ -1,4 +1,4 @@
-import React, {  useReducer } from 'react'
+import React, { useReducer } from 'react'
 import { Outlet } from 'react-router-dom'
 import { topicNumbercontext, topicFormDatacontext } from '../store/topicNumbercontext'
 
@@ -40,6 +40,10 @@ const numberReducer = (state, action) => {
     case 'HEARTRATEADD':
       newNumberGroup.heartrateNumber = action.selectedNumber
       return newNumberGroup
+    case 'TOTALADD':
+      newNumberGroup.totalNumber += action.selectedNumber
+      return newNumberGroup
+
   }
 }
 
@@ -83,7 +87,7 @@ const formReducer = (state, action) => {
   }
 }
 
-export default function Evaluationdetail() { 
+export default function Evaluationdetail() {
   const [numberGroup, numberDispatch] = useReducer(numberReducer, {
     cognizeNumber: 0,
     mmseNumber: 0,
@@ -96,8 +100,9 @@ export default function Evaluationdetail() {
     eyesightNumber: 0,
     painsNumber: 0,
     heartrateNumber: 0,
+    totalNumber: 0
   })
-  
+
   const [formGroup, formDispatch] = useReducer(formReducer, {
     cognizeFormdata: {},
     mmseFormdata: {},

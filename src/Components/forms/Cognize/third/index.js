@@ -5,6 +5,8 @@ import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
 import { use } from 'echarts'
 import { postCognitionTwo } from '../../../../api'
+import { useContext } from 'react'
+import { topicNumbercontext } from '../../../../store/topicNumbercontext'
 
 const cgq_zl_angx = []
 const cgq_zl_angy = []
@@ -28,7 +30,7 @@ export default function Cognizethird() {
   const nav = useNavigate()
   const [canvasUrl, setCanvasUrl] = useState([])
   const [start, setStart] = useState(false)
-
+  const ctx=useContext(topicNumbercontext)
 
   useEffect(() => {
     let timer = setInterval(() => {
@@ -240,6 +242,8 @@ export default function Cognizethird() {
     const result = await postCognitionTwo(obj)
     console.log('result')
     console.log(result)
+    ctx.numberDispatch({ type: 'COGNIZEADD', selectedNumber: 3 })
+    ctx.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setChangePage(1)
     setTimeout(() => {
       nav('/evaluationdetail/scalenav')

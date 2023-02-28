@@ -16,6 +16,7 @@ export default function Mmse() {
     console.log('Received values of form: ', values);
     const res = await postMmse(values)
     console.log(res)
+    topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，完成填写！')
   };
@@ -24,7 +25,7 @@ export default function Mmse() {
   const formItemLayout = {
     labelCol: {
       span: 3,
-      offset: 2
+      offset: 1
     },
     wrapperCol: {
       span: 16,
@@ -51,9 +52,9 @@ export default function Mmse() {
     <Commontitle title='简易精神状态检查量表(MMSE)' className='mmse-wrapper'>
       <h2>说明:（回答正确为1，回答错误为0）</h2>
       {/* <Button className='goTop' type='primary' ghost onClick={handleScroll}>回到顶部</Button> */}
-   <ToTopBtn/>
+      <ToTopBtn />
       <Form
-       scrollToFirstError
+        scrollToFirstError
         onFieldsChange={formChange}
         form={form}
         name="MMSE-FORM"
@@ -431,8 +432,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="qtwentyFive" label="">
-          <p style={{ wordWrap: 'break-word', fontSize: '20rem', fontWeight: '400', width: '80vw' }}>25、按卡片上的指令,去做“闭上您的眼睛</p>
+          ]} name="qtwentyFive" label="25、按卡片上的指令,去做“闭上您的眼睛">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>

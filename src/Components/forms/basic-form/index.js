@@ -177,7 +177,7 @@ export default function Basicform() {
           name='age'
           rules={[
             {
-              pattern: /[1-9/[0-9]/,
+              pattern: /^([1-9][0-9]?)$/,
               required: true,
               message: '请填写0-100之间的年龄',
             }
@@ -227,10 +227,7 @@ export default function Basicform() {
               <Radio value="是">是</Radio>
               <Radio value="否">否</Radio>
             </Radio.Group>
-            {/* <Select style={{ width: '80%' }} size='large' onChange={hospitalChange} placeholder="点击进行选择">
-              <Option value="是">是</Option>
-              <Option value="否">否</Option>
-            </Select> */}
+          
           </Form.Item> :
           <Form.Item
             hasFeedback
@@ -252,15 +249,11 @@ export default function Basicform() {
               <Radio value="是">是</Radio>
               <Radio value="否">否</Radio>
             </Radio.Group>
-            {/* <Select style={{ width: '80%' }} size='large' onChange={fallingChange} placeholder="点击进行选择">
-              <Option value="是">是</Option>
-              <Option value="否">否</Option>
-            </Select> */}
           </Form.Item> :
           <Form.Item
             hasFeedback
             name='falling'
-            rules={commonRuls} label='一年内住院次数 ： ' >
+            rules={commonRuls} label='一年内跌倒次数 ： ' >
             <TextArea style={{ width: '80%' }} rows={2} placeholder='点击开始填写次数' />
           </Form.Item>
         }
