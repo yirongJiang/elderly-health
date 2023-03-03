@@ -432,7 +432,7 @@ export default function Mmse() {
               required: true,
               message: '请选择完整',
             },
-          ]} name="qtwentyFive" label="25、按卡片上的指令,去做“闭上您的眼睛">
+          ]} name="qtwentyFive" label="25、按卡片上的指令去做“闭上您的眼睛”">
           <Radio.Group>
             <Space size={180}>
               <Radio value="1">1</Radio>

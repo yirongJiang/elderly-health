@@ -126,6 +126,7 @@ export default function Basicform() {
       </Tag>
     );
   };
+  const options = []
 
   useEffect(() => {
     form.setFieldsValue({ ...formdataContext.basicForm })
@@ -154,7 +155,7 @@ export default function Basicform() {
           name='name'
           rules={[
             {
-              pattern: /^[\一-\龥]{2,6}$/,
+              pattern: /^[\一-\龥]{2,6}$|[a-zA-Z]/,
               required: true,
               message: '请填写2-6位真实姓名',
             }
@@ -177,9 +178,9 @@ export default function Basicform() {
           name='age'
           rules={[
             {
-              pattern: /^([1-9][0-9]?)$/,
+              pattern: /^[1-9]\d?$|^1[01]\d$|^120$|^0$/,
               required: true,
-              message: '请填写0-100之间的年龄',
+              message: '请填写0-120之间的年龄',
             }
           ]}
           style={{ width: '90%' }}>
@@ -221,19 +222,25 @@ export default function Basicform() {
             style={{ width: '90%' }}
             name="hospital"
             label="一年内是否住过院"
-            hasFeedback
+          // hasFeedback
           >
             <Radio.Group onChange={hospitalChange}>
               <Radio value="是">是</Radio>
               <Radio value="否">否</Radio>
             </Radio.Group>
-          
+
           </Form.Item> :
           <Form.Item
             hasFeedback
             name='hospital'
             rules={commonRuls} label='一年内住院次数 : ' >
-            <TextArea style={{ width: '80%' }} rows={2} placeholder='点击开始填写次数' />
+            <Select style={{ width: '80%' }} size='large' placeholder="请选择多少次">
+              {
+                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+                  return <Option key={item} value={`${index}`}>{index}</Option>
+                })
+              }
+            </Select>
           </Form.Item>
         }
 
@@ -254,7 +261,13 @@ export default function Basicform() {
             hasFeedback
             name='falling'
             rules={commonRuls} label='一年内跌倒次数 ： ' >
-            <TextArea style={{ width: '80%' }} rows={2} placeholder='点击开始填写次数' />
+            <Select style={{ width: '80%' }} size='large' placeholder="请选择多少次">
+              {
+                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+                  return <Option key={item} value={`${index}`}>{index}</Option>
+                })
+              }
+            </Select>
           </Form.Item>
         }
 
@@ -379,7 +392,23 @@ export default function Basicform() {
             <Option value="四川大学华西医院">四川大学华西医院</Option>
             <Option value="南京医科大学">南京医科大学</Option>
             <Option value="中南大学湘雅医院">中南大学湘雅医院</Option>
+            <Option value="中国康复研究中心">中国康复研究中心</Option>
           </Select>
+        </Form.Item>
+
+        <Form.Item
+          hasFeedback
+          label="填写医生"
+          name='doctor'
+          rules={[
+            {
+              pattern: /^[\一-\龥]{2,6}$|[a-zA-Z]/,
+              required: true,
+              message: '请填写2-6位真实姓名',
+            }
+          ]}
+          style={{ width: '90%' }} >
+          <Input placeholder="请输入医生姓名" bordered />
         </Form.Item>
 
         {locationSpecial === 0 ?

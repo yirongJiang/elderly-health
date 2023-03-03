@@ -34,7 +34,7 @@ export const getRoutesConfig = () => [
   {
     path: '*',
     // element: isLogin ? <Navigate to='initail' /> : <Initial />,
-    element:  <Navigate to='initail' /> ,
+    element: <Navigate to='initail' />,
 
   },
   {
@@ -61,16 +61,11 @@ export const getRoutesConfig = () => [
   },
   {
     path: '/home',
-    element:  localStorage.getItem('X-Auth-Token')? <Home /> : <Navigate to='/initail' />,
+    element: localStorage.getItem('X-Auth-Token') ? <Home /> : <Navigate to='/initail' />,
     children: [
       {
         path: '',
         element: <Basicinfo />
-      },
-      {
-        key: 'evaluate',
-        path: 'evaluate',
-        element: <Evaluation />
       },
       {
         path: 'search',
@@ -79,15 +74,20 @@ export const getRoutesConfig = () => [
     ]
   },
   {
+    path: '/home/addEvaluate',
+    element: <Evaluation />,
+    key: '/home/addEvaluate'
+  },
+  {
     path: '/evaluationdetail',
-    key:'/evaluationdetail',
+    key: '/evaluationdetail',
     element: localStorage.getItem('X-Auth-Token') ? <Evaluationdetail /> : <Navigate to='/initail' />,
     children: [
       {
         path: 'basic',
-        key:'basic',
+        key: 'basic',
         element: <Basicform />
-      }, 
+      },
       {
         path: 'scalenav',
         element: <Scalenav />

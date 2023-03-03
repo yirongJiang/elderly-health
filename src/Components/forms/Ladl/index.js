@@ -34,7 +34,7 @@ export default function Ladl() {
     },
     wrapperCol: {
       span: 13,
-      offset: 0
+      offset: 1
     },
   };
 
@@ -166,8 +166,7 @@ export default function Ladl() {
         </Form.Item>
 
         <div className='question'>7.卫生</div>
-        <Form.Item label='你能不能夠自己洗衣服呢?包括清洗及凉自己的衫﹑被﹑床单等
-            (假设你必须要洗自己的衫﹑被﹑床单等)' >
+        <Form.Item label='你能不能够自己洗衣服呢?包括清洗及晾晒自己的衬衫﹑被子﹑床单等(假设你必须要洗自己的衬衫﹑被子﹑床单等)' >
           <Form.Item rules={commonRuls} name="qseven">
             <Radio.Group>
               <Space direction='vertical'>

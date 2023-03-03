@@ -30,7 +30,7 @@ export default function Cognizethird() {
   const nav = useNavigate()
   const [canvasUrl, setCanvasUrl] = useState([])
   const [start, setStart] = useState(false)
-  const ctx=useContext(topicNumbercontext)
+  const ctx = useContext(topicNumbercontext)
 
   useEffect(() => {
     let timer = setInterval(() => {
@@ -98,21 +98,24 @@ export default function Cognizethird() {
         console.log('isTap', isTap)
       }, 1000);
     })
-
-    let t
-    window.addEventListener("deviceorientation", function (event) {
-      if (t) { return }
-      t = setTimeout(() => {
-        let x = event.alpha;
-        let y = event.gamma;
-        let z = event.beta;
-        t = null
-        cgq_zl_angx.push(x)
-        cgq_zl_angy.push(y)
-        cgq_zl_angz.push(z)
-        console.log(x, y, z)
-      }, 1000);
-    });
+    if (window.DeviceOrientationEvent) {
+      let t
+      window.addEventListener("deviceorientation", function (event) {
+        if (t) { return }
+        t = setTimeout(() => {
+          let x = event.alpha;
+          let y = event.gamma;
+          let z = event.beta;
+          t = null
+          cgq_zl_angx.push(x)
+          cgq_zl_angy.push(y)
+          cgq_zl_angz.push(z)
+          console.log(x, y, z)
+        }, 1000);
+      });
+    } else {
+      document.querySelector('body').innerHTML = '你的浏览器不支持陀螺仪';
+    }
 
     let t1
     window.addEventListener('devicemotion', function (event) {
@@ -228,15 +231,15 @@ export default function Cognizethird() {
       "gravityAngx": cgq_zl_angx,
       "gravityAngy": cgq_zl_angy,
       "gravityAngz": cgq_zl_angz,
-      "speedAngx":cgq_jsd_x,
-      "speedAngy":cgq_jsd_y,
+      "speedAngx": cgq_jsd_x,
+      "speedAngy": cgq_jsd_y,
       "speedAngz": cgq_jsd_z,
       "gyroscopeAngx": cgq_tly_x,
       "gyroscopeAngy": cgq_tly_y,
       "gyroscopeAngz": cgq_tly_z,
       "pressure": `12.12`,
       "photoClock": url,
-      "collectTime":`${totalTime}`,
+      "collectTime": `${totalTime}`,
       "collectLong": `${totalLength}`
     }
     const result = await postCognitionTwo(obj)

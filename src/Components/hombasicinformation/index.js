@@ -33,7 +33,7 @@ export default function Basicinfo() {
       >
         退出登录
       </Button >
-      <Button onClick={() => { nav('/home/evaluate', { state: { isScuess: false } }) }} className='add-btn' type='primary' >新增评估病例</Button>
+      <Button onClick={() => { nav('/home/addEvaluate', { state: { isScuess: false } }) }} className='add-btn' type='primary' >新增评估病例</Button>
       <Button onClick={() => { nav('/evaluationdetail/queryresult') }} className='search-btn' type='primary' >查询历史评估结果</Button>
     </div>
   )

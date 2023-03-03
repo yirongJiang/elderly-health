@@ -87,7 +87,7 @@ export default function Queryresult() {
       </Form>
       <hr />
       <div className="result-wrapper">
-        <table >
+        <table>
           <thead>
             <tr>
               <th>姓名</th>
@@ -165,7 +165,7 @@ export default function Queryresult() {
           </tbody>
         </table>
       </div>
-      <Navfooter />
+      {/* <Navfooter /> */}
     </Commontitle >
   )
 }

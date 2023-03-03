@@ -1,4 +1,4 @@
-import { Radio, Form, Input, Button, message } from 'antd';
+import { Radio, Form, Input, Button, message, Space } from 'antd';
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
@@ -16,7 +16,7 @@ const commonRules = [
 ]
 
 export default function Steps() {
-
+  const formRef = React.useRef(null);
   const [flag, setFlag] = useState()
   const nav = useNavigate()
   const [form] = Form.useForm()
@@ -58,19 +58,17 @@ export default function Steps() {
   useEffect(() => {
     form.setFieldsValue({ ...formdataContext.stepFormdata })
   }, [])
-  const kiloChange = () => {
-    setFlag(0)
 
-    sessionStorage.setItem('stepSelected', 1)
-  }
-  const stepChange = () => {
-    setFlag(1)
-    sessionStorage.setItem('kiloSelected', 1)
+  const radioChange = (e) => {
+    console.log(e.target.value)
+    formRef.current?.resetFields();
+    setFlag(e.target.value)
   }
 
   return (
     <Commontitle title='每日步行数' className='step-wrapper'>
       <Form
+        ref={formRef}
         onFieldsChange={formChange}
         form={form}
         name="validate_other"
@@ -78,21 +76,33 @@ export default function Steps() {
         onFinish={onFinish}
       >
         <h2 style={{ margin: '10rem', color: 'red', fontFamily: '宋体', fontWeight: 'bold' }}>每日步行情况 , 二选一进行填写</h2>
-        <Form.Item >
-          <Radio.Group defaultValue={sessionStorage.getItem('kiloSelected') ? 1 : null} disabled={flag === 0 ? true : sessionStorage.getItem('stepSelected') ? true : false} onChange={stepChange}>
-            <Radio  value={1}>步行数（步）</Radio>
-            <Form.Item  name={flag === 0 ? null : 'walkNum'}>
-              <Input disabled={flag === 0 ? true : false} size='large' placeholder="请输入您的步数" style={{ border: 'none', borderBottom: '2px gray solid' }} />
-            </Form.Item>
-          </Radio.Group>
-        </Form.Item>
 
-        <Form.Item  >
-          <Radio.Group defaultValue={sessionStorage.getItem('stepSelected') ? 1 : null} disabled={flag === 1 ? true : sessionStorage.getItem('kiloSelected') ? true : false}>
-            <Radio  onChange={kiloChange} value={1}>公里数（km）</Radio>
-            <Form.Item name={flag === 1 ? null : 'kilometreNum'}>
-              <Input disabled={flag === 1 ? true : false} size='large' placeholder="请输入您的公里数" style={{ border: 'none', borderBottom: '2px gray solid' }} />
-            </Form.Item>
+        <Form.Item >
+          <Radio.Group onChange={radioChange} >
+            <Space direction="vertical">
+              <Radio value={1}>步行数（步）</Radio>
+              <Form.Item name='number' rules={[
+                {
+                  pattern: /^[0-9]{1,2}$/,
+                  
+                  message: '请填写完整',
+                }
+              ]} >
+                <Input type="text" />
+              </Form.Item>
+
+              <Radio value={2}>公里数（km</Radio>
+              <Form.Item name='kilo' hasFeedback rules={[
+                {
+                  pattern: /^[0-9]{1,2}$/,
+               
+                  message: '请填写完整',
+                }
+              ]}>
+                <Input type="text" />
+              </Form.Item>
+
+            </Space>
           </Radio.Group>
         </Form.Item>
         <Form.Item rules={commonRules}
