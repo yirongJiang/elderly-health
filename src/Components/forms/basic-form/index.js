@@ -38,7 +38,7 @@ export default function Basicform() {
   const onFinish = (values) => {
     sessionStorage.setItem('isPost', 1)
     console.log('Received values of form: ', values);
-    nav(`/home/evaluate`)
+    nav(-1)
     message.success('恭喜您，完成填写！')
   };
 
@@ -126,8 +126,6 @@ export default function Basicform() {
       </Tag>
     );
   };
-  const options = []
-
   useEffect(() => {
     form.setFieldsValue({ ...formdataContext.basicForm })
   }, [])
@@ -136,7 +134,7 @@ export default function Basicform() {
 
     <div className='basicform-wrapper'>
       <div className="basicform-heade">
-        <div onClick={() => { nav('/home/evaluate') }} className="back"> &lt;  返回</div>
+        <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
         <div className="title">请填写您的基本信息（全部必填）</div>
       </div>
 

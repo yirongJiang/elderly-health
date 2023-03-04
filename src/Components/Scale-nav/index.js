@@ -10,7 +10,7 @@ export default function Scalenav() {
   const nav = useNavigate()
   const topicNumberContext = useContext(topicNumbercontext)
   return (
-    <Commontitle navHome='true' title='评估表单（请依次认真完成以下表单，
+    <Commontitle  title='评估表单（请依次认真完成以下表单，
     此过程可能会花费一些时间）' className='scalenav-wrapper'>
       <div className='span'>下列量表必填</div>
       <div className="necessary-list">
