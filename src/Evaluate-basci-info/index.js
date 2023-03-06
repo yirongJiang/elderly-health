@@ -5,6 +5,8 @@ import lockimg from '../assect/img/lock.png'
 import { useNavigate } from 'react-router-dom'
 import Footer from '../UI/footer'
 import Header from '../UI/Header'
+import HomeBtn from '../UI/HeaderBtn'
+import { CaretLeftFilled } from '@ant-design/icons'
 
 export default function Evaluation() {
 
@@ -21,7 +23,8 @@ export default function Evaluation() {
     <>
       <Header change={1} />
       <div className='evaluation-wrapper'>
-        <div className='backHome' onClick={backHome}> &lt; 返回</div>
+        <div className='backHome' onClick={backHome}><CaretLeftFilled  /> 返回</div>
+        <HomeBtn/>
         <div className='span'>  （为了完成您的认知评估测试，请依次并认真完成基本信息和评估量表的填写）
         </div>
         <div className="content">

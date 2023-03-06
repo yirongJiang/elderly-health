@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 
-import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
+import { topicNumbercontext, topicFormDatacontext, basicFormContext } from '../../../store/topicNumbercontext'
 import { useState } from 'react';
 import { postWalk } from '../../../api';
 
@@ -45,6 +45,7 @@ export default function Steps() {
   const topicContext = useContext(topicNumbercontext)
   const formdataContext = useContext(topicFormDatacontext)
 
+
   const formChange = (e) => {
     const value = form.getFieldsValue(true)
     let formdata = value
@@ -52,7 +53,7 @@ export default function Steps() {
     let selectedNumber = Object.keys(value).length
     console.log(selectedNumber)
     topicContext.numberDispatch({ type: 'STEPADD', selectedNumber: 1 })
-    formdataContext.formDispatch({ type: 'STEPFORM', formdata: formdata })
+   
   }
 
   useEffect(() => {
@@ -84,7 +85,7 @@ export default function Steps() {
               <Form.Item name='number' rules={[
                 {
                   pattern: /^[0-9]{1,2}$/,
-                  
+
                   message: '请填写完整',
                 }
               ]} >
@@ -95,7 +96,7 @@ export default function Steps() {
               <Form.Item name='kilo' hasFeedback rules={[
                 {
                   pattern: /^[0-9]{1,2}$/,
-               
+
                   message: '请填写完整',
                 }
               ]}>

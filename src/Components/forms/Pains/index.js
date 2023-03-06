@@ -6,6 +6,7 @@ import Commontitle from '../../../UI/Nav-head';
 import pains from '../../../assect/img/pains.png'
 import './index.less'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
+import { useState } from 'react';
 
 const { Option } = Select;
 const commonRules = [
@@ -116,9 +117,10 @@ export default function Painful() {
   const nav = useNavigate()
   const [form] = Form.useForm()
   const topicContext = useContext(topicNumbercontext)
+  const [number, setNumber] = useState(1)
 
   const onFinish = (values) => {
-  console.log(values)
+    console.log(values)
     console.log('Received values of form: ',);
     nav(-1)
     topicContext.numberDispatch({ type: 'PAINSADD', selectedNumber: 1 })
@@ -152,113 +154,54 @@ export default function Painful() {
         onFinish={onFinish}
       >
 
-        <Form.Item
-          label="部位1: :"
-        >
-
-          <Form.Item
-
-            name="部位1具体部位"
-
-            style={itemStyle}
-          >
-            <Select options={position} placeholder="无" />
-          </Form.Item>
-
-          <Form.Item
-            name="部位1方位"
-
-            style={itemStyle}
-          >
-            <Select options={detailPosition} placeholder="无" allowClear>
-            </Select>
-          </Form.Item>
-
-        </Form.Item>
-
-        <Form.Item label="疼痛程度： ： ">
-          <Form.Item name="疼痛程度1"  >
-            <Rate style={{ marginLeft: '4%' }} count={10} character={<MehOutlined />} />
-          </Form.Item>
-          <img style={{ marginLeft: '3%' }} src={pains} alt="" />
-        </Form.Item>
-        <hr />
-
-        <Form.Item
-          label="部位2 ：："
-          style={{
-            marginBottom: 0,
-          }}
-        >
-          <Form.Item
-            name="部位2具体部位"
-            style={itemStyle}
-          >
-            <Select options={position} placeholder="无" />
-          </Form.Item>
-
-          <Form.Item
-            name="部位2方位"
-            style={itemStyle}
-          >
-            <Select options={detailPosition} placeholder="无" allowClear>
-            </Select>
-          </Form.Item>
-
-          <Form.Item label="疼痛程度 ： ：">
-            <Form.Item style={{ marginLeft: '4%' }} name="疼痛程度2"><Rate count={10} character={<MehOutlined />} /></Form.Item>
-            <img style={{ marginLeft: '3%' }} src={pains} alt="" />
-          </Form.Item>
-
-        </Form.Item>
-        <hr />
         <Form.List name="newPosition">
           {(fields, { add, remove }) => (
             <>
-              {fields.map(({ key, name, ...restField }) => (
-                <Form.Item
-                  key={key}
-
-                >
-
+              {fields.map((field, index) => (
+                <Form.Item key={field.key} >
                   <Form.Item
-                    {...restField}
-                    name={[name, '新增部位']}
-                    rules={commonRules}
-                    style={itemStyle}
+                    noStyle
+                    shouldUpdate={(prevValues, curValues) =>
+                      prevValues.area !== curValues.area || prevValues.sights !== curValues.sights
+                    }
                   >
+                    {() => (
+                      <Form.Item
+                        style={itemStyle}
+                        {...field}
+                        label={`部位${++index}`}
+                        name={[field.name, `部位${index}`]}
+                      >
+                        <Select options={position} placeholder="无" />
+                      </Form.Item>
 
-                    <Select options={position} placeholder="无" />
+                    )}
                   </Form.Item>
-
                   <Form.Item
-                    style={itemStyle}
-                    {...restField}
-                    name={[name, '新增的具体方向']}
-                    rules={commonRules}
+                    style={{ display: 'inline-block', marginTop: '10vw', marginLeft: '10vw', width: ' 120rem' }}
+                    {...field}
+                    name={[field.name, `具体方位`]}
                   >
-                    <Select options={detailPosition} placeholder="无" >
-                    </Select>
+                    <Select options={detailPosition} placeholder="无" />
                   </Form.Item>
 
-
-
-                  <Form.Item style={{ marginLeft: '4%' }} name="新增的疼痛程度疼痛程度">
-                    <Rate count={10} character={<MehOutlined />} />
+                  <Form.Item label="疼痛程度 ： ：" style={{ marginLeft: '4%' }}>
+                    <Form.Item style={{ marginLeft: '4%' }} name={[field.name, `疼痛程度`]} ><Rate count={10} character={<MehOutlined />} /></Form.Item>
+                    <img style={{ marginLeft: '3%' }} src={pains} alt="" />
                   </Form.Item>
-                  <img style={{ marginLeft: '3%' }} src={pains} alt="" />
 
-                  <Button style={{ width: '40vw' }} type="dashed" onClick={() => remove(name)} block icon={<MinusCircleOutlined />}>
-                    删除部位
-                  </Button>
+                  <Button onClick={() => remove(field.name)} icon={<MinusCircleOutlined />}>删除部位</Button>
                   <hr />
                 </Form.Item>
+
               ))}
+
+
               <Form.Item wrapperCol={{
                 span: 2,
                 offset: 0
               }}>
-                <Button className='add-btn' style={{ width: '40vw' }} type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                <Button className='add-btn' style={{ width: '40vw' }} type="dashed" onClick={() => { setNumber((prevstate) => prevstate++); add(); }} block icon={<PlusOutlined />}>
                   添加部位
                 </Button>
               </Form.Item>

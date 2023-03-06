@@ -131,9 +131,9 @@ export default function Bi() {
             </Radio>
             <Radio value="2">需要稍微的扶持或口头指导方可行走50公尺以上
             </Radio>
-            <Radio value="2">虽无法行走，但可独立操纵轮椅（包括转弯、进门、及接近桌子/床沿）并可推行轮椅50公尺以上
+            <Radio value="3">虽无法行走，但可独立操纵轮椅（包括转弯、进门、及接近桌子/床沿）并可推行轮椅50公尺以上
             </Radio>
-            <Radio value="3">需要别人帮忙
+            <Radio value="4">需要别人帮忙
             </Radio>
           </Radio.Group>
         </Form.Item>

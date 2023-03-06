@@ -12,6 +12,7 @@ export const topicNumbercontext = React.createContext({
       eyesightNumber: 0,
       painsNumber: 0,
       heartrateNumber: 0,
+      totalNumber:0
 })
 
 export const topicFormDatacontext = React.createContext({

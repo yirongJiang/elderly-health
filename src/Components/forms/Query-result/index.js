@@ -4,6 +4,7 @@ import { Button, Col, DatePicker, Divider, Form, Input, Row, Select } from 'antd
 import './index.less'
 import Navfooter from '../../../UI/nav-footer';
 import { useNavigate } from 'react-router-dom';
+import HomeBtn from '../../../UI/HeaderBtn';
 
 const { Option } = Select;
 
@@ -29,7 +30,8 @@ export default function Queryresult() {
     console.log('Failed:', errorInfo);
   };
   return (
-    <Commontitle title='查询评估结果' className='queryresult-wrapper'>
+    <Commontitle title='查询评估结果'  basicPage className='queryresult-wrapper'>
+      <HomeBtn/>
       <Form
         form={form}
         {...layout}

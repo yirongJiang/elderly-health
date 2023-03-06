@@ -13,6 +13,7 @@ import { TitleComponent, TooltipComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 import './index.less'
 import Navfooter from '../../../UI/nav-footer';
+import HomeBtn from '../../../UI/HeaderBtn';
 
 // 注册必须的组件
 echarts.use([
@@ -59,7 +60,8 @@ export default function Evaluationoutcome() {
     ]
   };
   return (
-    <Commontitle title='您得评估结果如下 ： ' className='echart-wrapper'>
+    <Commontitle  basicPage title='您得评估结果如下 ： ' className='echart-wrapper'>
+      <HomeBtn/>
       <Chart options={options} />
       <table >
         <thead>
@@ -92,9 +94,13 @@ export default function Evaluationoutcome() {
           <td>感觉</td>
           <td>60</td>
         </tr>
+        <tr>
+          <td>感觉</td>
+          <td>60</td>
+        </tr>
       </table>
       <Button className='Button' onClick={() => { nav('/home') }} type='primary'>完成</Button>
-      <Navfooter />
+      {/* <Navfooter /> */}
     </Commontitle>
   )
 }

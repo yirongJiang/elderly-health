@@ -5,6 +5,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import { postInfo } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import { basicFormContext } from '../../../store/topicNumbercontext';
+import { CaretLeftFilled } from '@ant-design/icons';
 
 const { Option } = Select;
 const formItemLayout = {
@@ -134,7 +135,7 @@ export default function Basicform() {
 
     <div className='basicform-wrapper'>
       <div className="basicform-heade">
-        <div onClick={() => { nav(-1) }} className="back"> &lt;  返回</div>
+        <div onClick={() => { nav(-1) }} className="back"> <CaretLeftFilled />  返回</div>
         <div className="title">请填写您的基本信息（全部必填）</div>
       </div>
 
