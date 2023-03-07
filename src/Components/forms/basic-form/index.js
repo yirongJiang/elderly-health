@@ -215,60 +215,34 @@ export default function Basicform() {
           <Input placeholder="kg" />
         </Form.Item>
 
-        {hospitalSpecial === 0 ?
-          <Form.Item
-            rules={commonRuls}
-            style={{ width: '90%' }}
-            name="hospital"
-            label="一年内是否住过院"
-          // hasFeedback
-          >
-            <Radio.Group onChange={hospitalChange}>
-              <Radio value="是">是</Radio>
-              <Radio value="否">否</Radio>
-            </Radio.Group>
 
-          </Form.Item> :
-          <Form.Item
-            hasFeedback
-            name='hospital'
-            rules={commonRuls} label='一年内住院次数 : ' >
-            <Select style={{ width: '80%' }} size='large' placeholder="请选择多少次">
-              {
-                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
-                  return <Option key={item} value={`${index}`}>{index}</Option>
-                })
-              }
-            </Select>
-          </Form.Item>
-        }
+        <Form.Item
+          style={{ width: '90%' }}
+          hasFeedback
+          name='hospital'
+          rules={commonRuls} label='一年内住院次数 : ' >
+          <Select style={{ width: '80%' }} size='large' placeholder="请选择多少次">
+            {
+              [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+                return <Option key={item} value={`${index}`}>{index}</Option>
+              })
+            }
+          </Select>
+        </Form.Item>
 
-        {fallingSpecial === 0 ?
-          <Form.Item
-            hasFeedback
-            rules={commonRuls}
-            style={{ width: '90%' }}
-            name="falling"
-            label="一年内是否跌倒过"
-          >
-            <Radio.Group onChange={fallingChange} >
-              <Radio value="是">是</Radio>
-              <Radio value="否">否</Radio>
-            </Radio.Group>
-          </Form.Item> :
-          <Form.Item
-            hasFeedback
-            name='falling'
-            rules={commonRuls} label='一年内跌倒次数 ： ' >
-            <Select style={{ width: '80%' }} size='large' placeholder="请选择多少次">
-              {
-                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
-                  return <Option key={item} value={`${index}`}>{index}</Option>
-                })
-              }
-            </Select>
-          </Form.Item>
-        }
+        <Form.Item
+          style={{ width: '90%' }}
+          hasFeedback
+          name='falling'
+          rules={commonRuls} label='一年内跌倒次数 ： ' >
+          <Select style={{ width: '80%' }} size='large' placeholder="请选择多少次">
+            {
+              [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+                return <Option key={item} value={`${index}`}>{index}</Option>
+              })
+            }
+          </Select>
+        </Form.Item>
 
         {diseaseHistory === 0 ?
           <Form.Item
@@ -285,10 +259,12 @@ export default function Basicform() {
           </Form.Item> :
           diseaseHistory === 1 ?
             <Form.Item
+              style={{ width: '80%' }}
               hasFeedback
               name='disease'
               rules={commonRuls} label='现有疾病供选择（多选）： ' >
               <Select
+                style={{ width: '90%' }}
                 mode="multiple"
                 placeholder="点击选择疾病"
                 onChange={handleChange}
@@ -345,7 +321,7 @@ export default function Basicform() {
                 </Option>
               </Select>
             </Form.Item> :
-            <Form.Item hasFeedback name='disease' label='请填写您的其他疾病史' required='true'>
+            <Form.Item style={{ width: '90%' }} hasFeedback name='disease' label='请填写您的其他疾病史' required='true'>
               <TextArea rows={2} style={{ width: '70%', }} placeholder='点击开始填写说明' />
             </Form.Item>
         }

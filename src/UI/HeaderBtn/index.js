@@ -10,7 +10,7 @@ export default function HomeBtn(props) {
 
   return (
     <>{isLeft ?
-      <Button icon={<HomeOutlined style={{ fontSize: '22px', color: 'white' }} />} className='homeLeft' type='primary'>首页</Button> :
-      <Button icon={<HomeOutlined style={{ fontSize: '22px', color: 'white' }} />} className='homeRight' onClick={() => { nav('/home') }} type='primary'>首页</Button>}</>
+      <Button icon={<HomeOutlined style={{ fontSize: '25rem', color: 'white' }} />} className='homeLeft' type='primary'>首页</Button> :
+      <Button icon={<HomeOutlined style={{ fontSize: '25rem', color: 'white' }} />} className='homeRight' onClick={() => { nav('/home') }} type='primary'>首页</Button>}</>
   )
 }

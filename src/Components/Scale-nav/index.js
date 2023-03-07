@@ -42,7 +42,7 @@ export default function Scalenav() {
         {
           console.log(topicNumberContext.totalNumber)
         }
-        <Button type='primary' disabled={topicNumberContext.totalNumber === 7 ? false : true} onClick={() => {
+        <Button type='primary' disabled={topicNumberContext.totalNumber  ? false : true} onClick={() => {
           nav('/evaluationdetail/evaluateoutcome')
         }}>查看评估结果</Button>
       </div>
