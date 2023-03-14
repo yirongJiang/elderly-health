@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
 import { requiredList, optionalList } from '../../routes/requiredList'
 import Commontitle from '../../UI/Nav-head'
+import { postCountGrade } from '../../api';
 import { basicFormContext, topicNumbercontext } from '../../store/topicNumbercontext'
 
 export default function Scalenav() {
@@ -12,14 +13,16 @@ export default function Scalenav() {
   const topicNumberContext = useContext(topicNumbercontext)
   const formdataContext = useContext(basicFormContext)
 
-  const clearAll = () => {
-    formdataContext.basicFormGroupDispatch({ type: 'basicForm', formData: {} })
+
+  const clearAll = async () => {
+    const res = await postCountGrade()
+    console.log(res)
     sessionStorage.removeItem('isPost')
     nav('/evaluationdetail/evaluateoutcome')
   }
 
   return (
-    <Commontitle basicPage title='评估表单（请依次认真完成以下表单，
+    <Commontitle basicPage navHome title='评估表单（请依次认真完成以下表单，
     此过程可能会花费一些时间）' className='scalenav-wrapper'>
       <div className='tips'>下列量表必填
         <span className='userName'>{formdataContext.basicForm.name}患者</span>
@@ -50,7 +53,8 @@ export default function Scalenav() {
         {
           console.log(topicNumberContext.totalNumber)
         }
-        <Button type='primary' disabled={topicNumberContext.totalNumber ? false : true} onClick={clearAll}>查看评估结果</Button>
+        {/* <Button type='primary' disabled={topicNumberContext.totalNumber ? false : true} onClick={clearAll}>查看评估结果</Button> */}
+        <Button type='primary' onClick={clearAll}>查看评估结果</Button>
       </div>
     </Commontitle>
   )

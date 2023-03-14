@@ -36,9 +36,45 @@ export default function Basicform() {
   const [diseaseHistory, setDiseaseHistory] = useState(0)
   const formdataContext = useContext(basicFormContext)
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
+    console.log('Received values of form: ', values.disease);
     sessionStorage.setItem('isPost', 1)
-    console.log('Received values of form: ', values);
+    const illnessList = values.disease.toString()
+    const userId = sessionStorage.getItem("adminUserId")
+    console.log(illnessList)
+    const result = await postInfo(
+      {
+        ...values,
+        "disease": illnessList,
+        "adminUserId": userId,
+        "illness": '0',
+        "illnessNum": "0",
+        "illnessOther": "0",
+        "org":'华西'
+      })
+
+    // const result = await postInfo({
+    //   "adminUserId": "8476cc47e1467b22f349de2cc77c804d",
+    //   "age": "55",
+    //   "disease": "2",
+    //   "edu": "本科",
+    //   "fall": "0",
+    //   "gender": "1",
+    //   "height": "177.5",
+    //   "hospital": "0",
+    //   "illness": "0",
+    //   "illnessNum": "0",
+    //   "illnessOther": "0",
+    //   "institution": "0",
+    //   "matrim": "0",
+    //   "name": "测试",
+    //   "org": "华西",
+    //   "place": "1",
+    //   "staff": "0",
+    //   "weight": "64.5"
+    // })
+    console.log(result)
+    localStorage.setItem('X-Auth-Token', result.body)
     nav(-1)
     message.success('恭喜您，完成填写！')
   };
@@ -233,7 +269,7 @@ export default function Basicform() {
         <Form.Item
           style={{ width: '90%' }}
           hasFeedback
-          name='falling'
+          name='fall'
           rules={commonRuls} label='一年内跌倒次数 ： ' >
           <Select style={{ width: '80%' }} size='large' placeholder="请选择多少次">
             {
@@ -254,7 +290,7 @@ export default function Basicform() {
           >
             <Select style={{ width: '80%' }} size='large' onChange={diseaseHistoryChange} placeholder="点击选择疾病">
               <Option value="有(请注明)">有(请注明)</Option>
-              <Option value="无">无</Option>
+              <Option value="0">无</Option>
             </Select>
           </Form.Item> :
           diseaseHistory === 1 ?
@@ -271,49 +307,49 @@ export default function Basicform() {
                 optionLabelProp="label"
                 tagRender={tagRender}
               >
-                <Option value="脑卒中" label="脑卒中">
+                <Option value="1" label="脑卒中">
                   脑卒中
                 </Option>
-                <Option value="帕金森" label="帕金森">
+                <Option value="2" label="帕金森">
                   帕金森
                 </Option>
-                <Option value="阿尔兹海默" label="阿尔兹海默">
+                <Option value="3" label="阿尔兹海默">
                   阿尔兹海默
                 </Option>
-                <Option value="精神疾病" label="精神疾病">
+                <Option value="4" label="精神疾病">
                   精神疾病
                 </Option>
-                <Option value="糖尿病周围神经病" label="糖尿病周围神经病">
+                <Option value="5" label="糖尿病周围神经病">
                   糖尿病周围神经病
                 </Option>
-                <Option value="颈椎病" label="颈椎病">
+                <Option value="6" label="颈椎病">
                   颈椎病
                 </Option>
-                <Option value="腰椎间盘突出" label="腰椎间盘突出">
+                <Option value="7" label="腰椎间盘突出">
                   腰椎间盘突出
                 </Option>
-                <Option value="髋/膝骨关节炎" label="髋/膝骨关节炎">
+                <Option value="8" label="髋/膝骨关节炎">
                   髋/膝骨关节炎
                 </Option>
-                <Option value="类风湿性关节炎" label="类风湿性关节炎">
+                <Option value="9" label="类风湿性关节炎">
                   类风湿性关节炎
                 </Option>
-                <Option value="髋部骨折" label="髋部骨折">
+                <Option value="10" label="髋部骨折">
                   髋部骨折
                 </Option>
-                <Option value="骨质疏松性骨折" label="骨质疏松性骨折">
+                <Option value="11" label="骨质疏松性骨折">
                   骨质疏松性骨折
                 </Option>
-                <Option value="冠心病" label="冠心病">
+                <Option value="12" label="冠心病">
                   冠心病
                 </Option>
-                <Option value="慢性心律失常" label="慢性心律失常">
+                <Option value="13" label="慢性心律失常">
                   慢性心律失常
                 </Option>
-                <Option value="COPD" label="COPD">
+                <Option value="14" label="COPD">
                   COPD
                 </Option>
-                <Option value="肺癌" label="肺癌">
+                <Option value="15" label="肺癌">
                   肺癌
                 </Option>
                 <Option value="其他" label="其他">
@@ -321,7 +357,7 @@ export default function Basicform() {
                 </Option>
               </Select>
             </Form.Item> :
-            <Form.Item style={{ width: '90%' }} hasFeedback name='disease' label='请填写您的其他疾病史' required='true'>
+            <Form.Item style={{ width: '90%' }} hasFeedback name='illnessOther' label='请填写您的其他疾病史' required='true'>
               <TextArea rows={2} style={{ width: '70%', }} placeholder='点击开始填写说明' />
             </Form.Item>
         }
@@ -350,9 +386,9 @@ export default function Basicform() {
           label="婚姻状况"
         >
           <Select style={{ width: '80%' }} size='large' placeholder="点击选择文化婚姻">
-            <Option value="已婚">已婚</Option>
-            <Option value="未婚">未婚</Option>
-            <Option value="离异">离异</Option>
+            <Option value="0">已婚</Option>
+            <Option value="1">未婚</Option>
+            <Option value="2">离异</Option>
           </Select>
         </Form.Item>
 
@@ -360,21 +396,21 @@ export default function Basicform() {
           hasFeedback
           rules={commonRuls}
           style={{ width: '90%' }}
-          name="org"
+          name="institution"
           label="机构来源"
         >
           <Select style={{ width: '80%' }} size='large' placeholder="点击选择机构来源">
-            <Option value="四川大学华西医院">四川大学华西医院</Option>
-            <Option value="南京医科大学">南京医科大学</Option>
-            <Option value="中南大学湘雅医院">中南大学湘雅医院</Option>
-            <Option value="中国康复研究中心">中国康复研究中心</Option>
+            <Option value="0">四川大学华西医院</Option>
+            <Option value="1">南京医科大学</Option>
+            <Option value="2">中南大学湘雅医院</Option>
+            <Option value="3">中国康复研究中心</Option>
           </Select>
         </Form.Item>
 
         <Form.Item
           hasFeedback
           label="填写医生"
-          name='doctor'
+          name='staff'
           rules={[
             {
               pattern: /^[\一-\龥]{2,6}$|[a-zA-Z]/,
@@ -395,10 +431,10 @@ export default function Basicform() {
             label="评估地点"
           >
             <Select style={{ width: '80%' }} size='large' onChange={locationChange} placeholder="点击选择评估地点">
-              <Option value="住院">住院</Option>
-              <Option value="社区">社区</Option>
-              <Option value="养老院">养老院</Option>
-              <Option value="家中">家中</Option>
+              <Option value="1">住院</Option>
+              <Option value="2">社区</Option>
+              <Option value="3">养老院</Option>
+              <Option value="4">家中</Option>
               <Option value="其他(请注明)">其他(请注明)</Option>
             </Select>
           </Form.Item> :
@@ -408,7 +444,7 @@ export default function Basicform() {
             rules={commonRuls} label='评估地点说明' ><TextArea style={{ width: '88%' }} rows={2} placeholder='点击开始填写说明说明' /></Form.Item>
         }
 
-
+        {/* 
         {peopleSpecial === 0 ?
           <Form.Item
             hasFeedback
@@ -431,7 +467,7 @@ export default function Basicform() {
             <TextArea rows={2} style={{ width: '88%', }} placeholder='点击开始填写说明' />
           </Form.Item>}
 
-
+ */}
 
         <Form.Item
           rules={commonRuls}

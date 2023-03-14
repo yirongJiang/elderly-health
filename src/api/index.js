@@ -48,3 +48,12 @@ export function postCognitionTwo(params){
 export function postWalk(params){
   return request.post('rest/v1/walk/creat',params)
 }
+//分数计算
+export function postCountGrade(){
+  return request.post('rest/v1/evaluate/count/grade')
+}
+
+//分数查询
+export function postGetGrade(params){
+  return request.post('/rest/v1/evaluate/get/grade',params)
+}

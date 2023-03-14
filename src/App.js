@@ -17,10 +17,13 @@ const basicFormReducer = (state, action) => {
 }
 
 export default function App() {
+
   const [basicFormGroup, basicFormGroupDispatch] = useReducer(basicFormReducer, {
     basicForm: {}
   })
+
   const routes = useRoutes(getRoutesConfig())
+  
   return (<basicFormContext.Provider value={{ ...basicFormGroup, basicFormGroupDispatch }} >
     {routes}
   </basicFormContext.Provider>)

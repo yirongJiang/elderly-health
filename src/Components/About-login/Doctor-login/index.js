@@ -1,27 +1,33 @@
 import { Button, Form, Input } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../../api'
 import './index.less'
 
 export default function Doctorlogin() {
+
   const nav = useNavigate()
   const [form] = Form.useForm()
-  const onFinish = async (values) => {  
+
+  const onFinish = async (values) => {
+    console.log(values)
     const result = await login({
-      passWord: "123456t",
+      passWord: `${values.passWord}`,
       phone: "13167827468",
       role: "0",
-      userName: "admin"
+      userName: `${values.username}`
     })
     console.log(result.body)
-    localStorage.setItem('X-Auth-Token',result.body)
+    const { userId } = result.body
+    localStorage.setItem('adminUserId', userId)
     nav('/home', { replace: true, state: { isScusses: false } })
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
 
   return (
     <div className='doctorlogin-wrapper'>

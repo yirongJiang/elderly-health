@@ -5,16 +5,19 @@ import { basicFormContext } from '../../store/topicNumbercontext'
 import './index.less'
 
 export default function Commontitle(props) {
+
   const basicdataContext = useContext(basicFormContext)
   const nav = useNavigate()
   const {basicPage}=props
+
   const navChange = () => {
     if (props.navHome) {
-      nav('/home/evaluate')
+      nav('/home/addEvaluate')
     }else{
       nav(-1)
     }
   }
+  
   return (
     <div className={`common-wrapper ${props.className}`}>
       <div className="common-heade">

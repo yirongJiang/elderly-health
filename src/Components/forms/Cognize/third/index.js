@@ -250,7 +250,7 @@ export default function Cognizethird() {
     setChangePage(1)
     setTimeout(() => {
       nav('/evaluationdetail/scalenav')
-      message.success('恭喜您提交成功,请开始画钟')
+      message.success('恭喜您提交成功')
     }, 1000);
   }
 

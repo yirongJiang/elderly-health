@@ -1,8 +1,7 @@
 import React from 'react'
 import Commontitle from '../../../UI/Nav-head'
-import { Button, Col, DatePicker, Divider, Form, Input, Row, Select } from 'antd';
+import { Button, Col, DatePicker,  Form, Input, Row, Select } from 'antd';
 import './index.less'
-import Navfooter from '../../../UI/nav-footer';
 import { useNavigate } from 'react-router-dom';
 import HomeBtn from '../../../UI/HeaderBtn';
 
@@ -18,26 +17,39 @@ const layout = {
 }
 
 export default function Queryresult() {
-  const nav=useNavigate()
+  const nav = useNavigate()
   const [form] = Form.useForm();
   const style = {
     height: '30rem'
   };
+
   const onFinish = (values) => {
     console.log(values);
   };
+  
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  const formChange = () => {
+    console.log('first')
+    console.log(form.getFieldsValue(true))
+  }
+
+  const onChange = (date, dateString) => {
+    console.log(dateString);
+  };
+
   return (
-    <Commontitle title='查询评估结果'  basicPage className='queryresult-wrapper'>
-      <HomeBtn/>
+    <Commontitle title='查询评估结果' basicPage className='queryresult-wrapper'>
+      <HomeBtn />
       <Form
         form={form}
         {...layout}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         layout="horizontal"
+        onFieldsChange={formChange}
       >
         <Form.Item >
           <Row style={style}  >
@@ -45,7 +57,7 @@ export default function Queryresult() {
               <div>姓名</div>
             </Col>
             <Col span={12}>
-              <Form.Item name='姓名'>
+              <Form.Item name='name'>
                 <Input />
               </Form.Item>
             </Col>
@@ -58,7 +70,7 @@ export default function Queryresult() {
               <div>机构来源</div>
             </Col>
             <Col span={12}>
-              <Form.Item name='机构来源'>
+              <Form.Item name='institution'>
                 <Select>
                   <Option value="四川大学华西医院">四川大学华西医院</Option>
                   <Option value="南京医科大学">南京医科大学</Option>
@@ -75,8 +87,8 @@ export default function Queryresult() {
               <div>评估时间</div>
             </Col>
             <Col span={12}>
-              <Form.Item name='评估时间'>
-                <DatePicker />
+              <Form.Item name='createDate'>
+                <DatePicker onChange={onChange} />
               </Form.Item>
             </Col>
           </Row>

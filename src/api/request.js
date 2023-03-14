@@ -23,8 +23,8 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(res => {
   if (res.data.status === 401) {
     localStorage.removeItem('X-Auth-Token')
-    message.error('token已经过期啦,请重新登录')
     window.location.href = '/login'
+    message.error('token已经过期啦,请重新登录')
   }
   return res.data
 }, err => {
@@ -34,6 +34,7 @@ request.interceptors.response.use(res => {
     switch (err.response.status) {
       case 400:
         message.error('请求出错')
+        alert('error')
         break;
       case 401:
         localStorage.removeItem('X-Auth-Token');
