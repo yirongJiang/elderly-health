@@ -21,10 +21,17 @@ const isTapArray = []
 let xMoveLength = 0
 let yMoveLength = 0
 let isTap = 0
+
 export default function Cognizethird() {
+
   let drawingTime = 0;
   const position = {}
   const startTime = +new Date()
+  //测试传感器
+  const [aX,setAx]=useState(0)
+  const [gX,setGx]=useState(0)
+  const [agX,setAgx]=useState(0)
+
   const [changePage, setChangePage] = useState(0)
   const canvasDom = useRef()
   const nav = useNavigate()
@@ -38,7 +45,7 @@ export default function Cognizethird() {
         console.log('isTap 开始')
         console.log(isTap)
         isTapArray.push(isTap)
-      } else {
+      } else {                                            
         console.log('还没有开始')
       }
     }, 1000);
@@ -56,9 +63,10 @@ export default function Cognizethird() {
     const ctx = canvas.getContext('2d')
     ctx.fillStyle = '#fff'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
+
     canvas.addEventListener('touchstart', function (event) {
-      isTap = 1
       setStart(true)
+      isTap = 1
       event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
       beginX = event.touches[0].clientX - this.offsetLeft
       beginY = event.touches[0].pageY - this.offsetTop
@@ -98,7 +106,7 @@ export default function Cognizethird() {
         console.log('isTap', isTap)
       }, 1000);
     })
-    if (window.DeviceOrientationEvent) {
+
       let t
       window.addEventListener("deviceorientation", function (event) {
         if (t) { return }
@@ -110,12 +118,11 @@ export default function Cognizethird() {
           cgq_zl_angx.push(x)
           cgq_zl_angy.push(y)
           cgq_zl_angz.push(z)
+          setAgx(x)
+
           console.log(x, y, z)
         }, 1000);
       });
-    } else {
-      document.querySelector('body').innerHTML = '你的浏览器不支持陀螺仪';
-    }
 
     let t1
     window.addEventListener('devicemotion', function (event) {
@@ -127,6 +134,8 @@ export default function Cognizethird() {
         let x1 = event.accelerationIncludingGravity.x;
         let y1 = event.accelerationIncludingGravity.y;
         let z1 = event.accelerationIncludingGravity.z;
+        setAx(x)
+        setGx(x1)
         cgq_jsd_x.push(x)
         cgq_jsd_y.push(y)
         cgq_jsd_z.push(z)
@@ -276,6 +285,7 @@ export default function Cognizethird() {
           }
           {/* <DeviceMotionTest arr1={arr1} />
           <DeviceOrientationTest arr={arr} /> */}
+          <div>{aX},{gX},{agX}</div>
           <div className="top-buttons">
             <button onClick={recallClick}>撤销</button>
             <button onClick={clearCanvas}>清除</button>

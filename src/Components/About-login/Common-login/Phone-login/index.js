@@ -5,9 +5,9 @@ import { login, register } from '../../../../api';
 import './index.less'
 
 export default function Phonelogin() {
+  
   const nav = useNavigate()
   const onFinish = async (values) => {
-    // console.log('Success:', values);
     const res = await login({ ...values, role: '1' })
     console.log(res)
     localStorage.setItem('X-Auth-Token', res.body)

@@ -2,7 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 
 const request = axios.create({
-  baseURL: 'http://47.109.58.67:8090/',
+  baseURL: 'http://43.138.153.236:8090/',
   timeout: 5000,
 })
 

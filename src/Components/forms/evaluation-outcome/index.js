@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
 import Chart from '../../../utility/echart';
 import { Button } from 'antd'
@@ -13,10 +13,12 @@ import { TitleComponent, TooltipComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 import './index.less'
 import HomeBtn from '../../../UI/HeaderBtn';
-import { postCountGrade, postGetGrade } from '../../../api';
+import { postGetGrade } from '../../../api';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
 import { basicFormContext } from '../../../store/topicNumbercontext';
+import { useState } from 'react';
+import qs from "query-string";
 
 // 注册必须的组件
 echarts.use([
@@ -26,22 +28,19 @@ echarts.use([
   CanvasRenderer
 ]);
 
-const arr = ["四川大学华西医院", "南京医科大学", "中南大学湘雅医院", "中国康复研究中心"]
-
 export default function Evaluationoutcome() {
 
+  const [sevenInfo, setSevenInfo] = useState({})
   const formdataContext = useContext(basicFormContext)
   const nav = useNavigate()
-  const date = dayjs().format('YYYY-MM-DD')
-  console.log(date)
-  // const {basicFormGroup:{name,org:institution}} = useContext(basicFormContext)
-  const { basicForm: { name, org, staff } } = useContext(basicFormContext)
-  const institution = String(arr.indexOf(org) + 1)
+  let location = useLocation();
+
 
   const outCome = async () => {
-    // const res = await postGetGrade({ "createDate": date, "name": name, "institution": institution, "staff": staff, "adminUserId": localStorage.getItem('adminUserId') })
-    const res = await postGetGrade({ "createDate": '', "name": '', "institution": '', "staff": '', "adminUserId": ''})
-    console.log(res)
+    const {state:{array}}=location
+    console.log(array);
+    setSevenInfo(array)
+    console.log(typeof(array.evaGzj))
   }
 
   useEffect(() => {
@@ -67,12 +66,13 @@ export default function Evaluationoutcome() {
     radar: {
       // shape: 'circle',
       indicator: [
-        { name: '感觉', max: 6500 },
-        { name: '运动', max: 16000 },
-        { name: '心理', max: 30000 },
-        { name: '二便', max: 38000 },
-        { name: '吞咽', max: 52000 },
-        { name: '认知', max: 25000 }
+        { name: '感觉', min: 60 },
+        { name: '运动', min: 1 },
+        { name: '心理', min: 3 },
+        { name: '二便', min: 3 },
+        { name: '吞咽', min: 5 },
+        { name: '心肺', min: 5 },
+        { name: '认知', min: 2 }
       ]
     },
     series: [
@@ -81,7 +81,8 @@ export default function Evaluationoutcome() {
         type: 'radar',
         data: [
           {
-            value: [6200, 10000, 20000, 35000, 50000, 18000],
+            value: [sevenInfo?.evaGzj, sevenInfo?.evaYd, sevenInfo?.evaXl, sevenInfo?.evaRb, sevenInfo?.evaXf, sevenInfo?.evaTy, sevenInfo?.evaRz],
+            // value: [66, 99, 66, 9, 88, 4, 9],
             name: '认知图例'
           }
         ]
@@ -102,31 +103,31 @@ export default function Evaluationoutcome() {
         <tbody>
           <tr>
             <td>感觉</td>
-            <td>60</td>
+            <td>{sevenInfo.evaGzj}</td>
           </tr>
           <tr>
-            <td>感觉</td>
-            <td>60</td>
+            <td>运动</td>
+            <td>{sevenInfo.evaYd}</td>
           </tr>
           <tr>
-            <td>感觉</td>
-            <td>60</td>
+            <td>心理</td>
+            <td>{sevenInfo.evaXl}</td>
           </tr>
           <tr>
-            <td>感觉</td>
-            <td>60</td>
+            <td>二便</td>
+            <td>{sevenInfo.evaRb}</td>
           </tr>
           <tr>
-            <td>感觉</td>
-            <td>60</td>
+            <td>心肺</td>
+            <td>{sevenInfo.evaXf}</td>
           </tr>
           <tr>
-            <td>感觉</td>
-            <td>60</td>
+            <td>吞咽</td>
+            <td>{sevenInfo.evaTy}</td>
           </tr>
           <tr>
-            <td>感觉</td>
-            <td>60</td>
+            <td>认知</td>
+            <td>{sevenInfo.evaRz}</td>
           </tr>
         </tbody>
       </table>

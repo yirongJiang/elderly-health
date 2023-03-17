@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Commontitle from '../../../UI/Nav-head'
-import { Button, Col, DatePicker,  Form, Input, Row, Select } from 'antd';
+import { Button, Col, DatePicker, Form, Input, Row, Select } from 'antd';
 import './index.less'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import HomeBtn from '../../../UI/HeaderBtn';
+import { postGetGrade } from '../../../api';
+import dayjs from 'dayjs';
 
 const { Option } = Select;
 
@@ -15,18 +17,32 @@ const layout = {
     span: 14,
   },
 }
-
+const arr = ["四川大学华西医院", "南京医科大学", "中南大学湘雅医院", "中国康复研究中心"]
 export default function Queryresult() {
+
+  const [date, setDate] = useState()
+  const [list, SetList] = useState([])
   const nav = useNavigate()
   const [form] = Form.useForm();
   const style = {
     height: '30rem'
   };
 
-  const onFinish = (values) => {
-    console.log(values);
+  const onFinish = async (values) => {
+    console.log(values)
+    const institution = String(arr.indexOf(values.institution) + 1)
+    const res = await postGetGrade({
+      "createDate": date,
+      "name": values.name || '',
+      "institution": institution,
+      "userId": "",
+      "adminUserId": localStorage.getItem('adminUserId'),
+      "staff": ""
+    })
+    console.log(res)
+    SetList(res.body)
   };
-  
+
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
@@ -38,6 +54,7 @@ export default function Queryresult() {
 
   const onChange = (date, dateString) => {
     console.log(dateString);
+    setDate(dateString)
   };
 
   return (
@@ -75,6 +92,7 @@ export default function Queryresult() {
                   <Option value="四川大学华西医院">四川大学华西医院</Option>
                   <Option value="南京医科大学">南京医科大学</Option>
                   <Option value="中南大学湘雅医院">中南大学湘雅医院</Option>
+                  <Option value="中国康复研究中心">中国康复研究中心</Option>
                 </Select>
               </Form.Item>
             </Col>
@@ -93,13 +111,13 @@ export default function Queryresult() {
             </Col>
           </Row>
         </Form.Item>
-        <Form.Item >
+        <Form.Item style={{ marginTop: '2vh' }} >
           <Button type="primary" htmlType="submit">
             查询
           </Button>
         </Form.Item>
       </Form>
-      <hr />
+
       <div className="result-wrapper">
         <table>
           <thead>
@@ -109,73 +127,21 @@ export default function Queryresult() {
               <th>机构来源</th>
             </tr>
           </thead>
-          <tbody>
-            <tr onClick={() => { nav('/evaluationdetail/evaluateoutcome') }}>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-            </tr>
-
+          <tbody>   
+            {list.map((item, index) => {
+              return <Link key={item} to='/evaluationdetail/evaluateoutcome' state={
+                {
+                  array:{...item}
+                }
+              } > 
+              <tr>
+                  <td>{item.name}</td>
+                  <td>{dayjs(item.createDate).format('YYYY-MM-DD')}</td>
+                  <td>{item.org}</td>
+                </tr>
+              </Link>
+            })
+            }
           </tbody>
         </table>
       </div>

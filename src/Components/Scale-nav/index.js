@@ -4,21 +4,26 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
 import { requiredList, optionalList } from '../../routes/requiredList'
 import Commontitle from '../../UI/Nav-head'
-import { postCountGrade } from '../../api';
+import { postCountGrade, postGetGrade } from '../../api';
 import { basicFormContext, topicNumbercontext } from '../../store/topicNumbercontext'
+import dayjs from 'dayjs'
 
+const arr = ["四川大学华西医院", "南京医科大学", "中南大学湘雅医院", "中国康复研究中心"]
 export default function Scalenav() {
 
   const nav = useNavigate()
   const topicNumberContext = useContext(topicNumbercontext)
   const formdataContext = useContext(basicFormContext)
-
+  const date = dayjs().format('YYYY-MM-DD')
+  const { basicForm: { name, org, staff } } = useContext(basicFormContext)
+  const institution = String(arr.indexOf(org) + 1)
 
   const clearAll = async () => {
-    const res = await postCountGrade()
-    console.log(res)
+    await postCountGrade()
+    const result = await postGetGrade({ "createDate": date, "name": name, "institution": institution, "staff": staff, "adminUserId": localStorage.getItem('adminUserId') })
+    console.log(result)
     sessionStorage.removeItem('isPost')
-    nav('/evaluationdetail/evaluateoutcome')
+    nav('/evaluationdetail/evaluateoutcome', { state: {array:result.body[0]} })
   }
 
   return (

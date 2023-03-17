@@ -30,9 +30,6 @@ export default function Basicform() {
   const nav = useNavigate()
   const [form] = Form.useForm();
   const [locationSpecial, setLocationSpecial] = useState(0)
-  const [peopleSpecial, setPeopleSpecial] = useState(0)
-  const [hospitalSpecial, setHospitalSpecial] = useState(0)
-  const [fallingSpecial, setFallingSpecial] = useState(0)
   const [diseaseHistory, setDiseaseHistory] = useState(0)
   const formdataContext = useContext(basicFormContext)
 
@@ -40,7 +37,7 @@ export default function Basicform() {
     console.log('Received values of form: ', values.disease);
     sessionStorage.setItem('isPost', 1)
     const illnessList = values.disease.toString()
-    const userId = sessionStorage.getItem("adminUserId")
+    const userId = localStorage.getItem("adminUserId")
     console.log(illnessList)
     const result = await postInfo(
       {
@@ -50,29 +47,9 @@ export default function Basicform() {
         "illness": '0',
         "illnessNum": "0",
         "illnessOther": "0",
-        "org":'华西'
+        "org":'华西',
       })
 
-    // const result = await postInfo({
-    //   "adminUserId": "8476cc47e1467b22f349de2cc77c804d",
-    //   "age": "55",
-    //   "disease": "2",
-    //   "edu": "本科",
-    //   "fall": "0",
-    //   "gender": "1",
-    //   "height": "177.5",
-    //   "hospital": "0",
-    //   "illness": "0",
-    //   "illnessNum": "0",
-    //   "illnessOther": "0",
-    //   "institution": "0",
-    //   "matrim": "0",
-    //   "name": "测试",
-    //   "org": "华西",
-    //   "place": "1",
-    //   "staff": "0",
-    //   "weight": "64.5"
-    // })
     console.log(result)
     localStorage.setItem('X-Auth-Token', result.body)
     nav(-1)
@@ -84,34 +61,6 @@ export default function Basicform() {
       setLocationSpecial(1)
       form.setFieldsValue({
         place: null,
-      });
-    }
-  }
-
-  const peopleChange = (value) => {
-    if (value === '其他(请注明)') {
-      setPeopleSpecial(1)
-      form.setFieldsValue({
-        staff: null,
-      });
-    }
-  }
-
-  const hospitalChange = (e) => {
-    console.log(e.target.value)
-    if (e.target.value === '是') {
-      setHospitalSpecial(1)
-      form.setFieldsValue({
-        hospital: null,
-      });
-    }
-  }
-
-  const fallingChange = (e) => {
-    if (e.target.value === '是') {
-      setFallingSpecial(1)
-      form.setFieldsValue({
-        falling: null,
       });
     }
   }
@@ -243,14 +192,13 @@ export default function Basicform() {
           name='weight'
           rules={[
             {
-              pattern: /^(\d{1,2}$)/,
+              pattern: /^((\d{1,2})(\.[0-9]{1})?$)/,
               required: true,
               message: '请填写1-100千克之间的体重',
             }
           ]} style={{ width: '90%' }} label="体重 / kg">
           <Input placeholder="kg" />
         </Form.Item>
-
 
         <Form.Item
           style={{ width: '90%' }}
