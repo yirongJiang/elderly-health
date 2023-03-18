@@ -28,9 +28,9 @@ export default function Cognizethird() {
   const position = {}
   const startTime = +new Date()
   //测试传感器
-  const [aX,setAx]=useState(0)
-  const [gX,setGx]=useState(0)
-  const [agX,setAgx]=useState(0)
+  const [aX, setAx] = useState(0)
+  const [gX, setGx] = useState(0)
+  const [agX, setAgx] = useState(0)
 
   const [changePage, setChangePage] = useState(0)
   const canvasDom = useRef()
@@ -45,7 +45,7 @@ export default function Cognizethird() {
         console.log('isTap 开始')
         console.log(isTap)
         isTapArray.push(isTap)
-      } else {                                            
+      } else {
         console.log('还没有开始')
       }
     }, 1000);
@@ -53,6 +53,7 @@ export default function Cognizethird() {
       clearInterval(timer)
     }
   })
+
 
   useEffect(() => {
     let beginX;
@@ -76,7 +77,9 @@ export default function Cognizethird() {
       })
     }
     )
+
     canvas.addEventListener('touchmove', (event) => {
+      setStart(true)
       event.preventDefault() // 阻止在canvas画布上签名的时候页面跟着滚动
       event = event.touches[0]
       const stopX = event.clientX - canvas.offsetLeft
@@ -107,7 +110,16 @@ export default function Cognizethird() {
       }, 1000);
     })
 
-      let t
+    canvas.addEventListener('touchend', () => {
+      isTap = '0'
+    })
+
+  }, [])
+
+  useEffect(() => {
+    let t
+    console.log(start)
+    if (start) {
       window.addEventListener("deviceorientation", function (event) {
         if (t) { return }
         t = setTimeout(() => {
@@ -119,41 +131,82 @@ export default function Cognizethird() {
           cgq_zl_angy.push(y)
           cgq_zl_angz.push(z)
           setAgx(x)
-
           console.log(x, y, z)
         }, 1000);
       });
 
+      return () => {
+        window.removeEventListener("deviceorientation", function (event) {
+          if (t) { return }
+          t = setTimeout(() => {
+            let x = event.alpha;
+            let y = event.gamma;
+            let z = event.beta;
+            t = null
+            cgq_zl_angx.push(x)
+            cgq_zl_angy.push(y)
+            cgq_zl_angz.push(z)
+            setAgx(x)
+            console.log(x, y, z)
+          }, 1000);
+        })
+      }
+    }
+
+
+  }, [start])
+
+  useEffect(() => {
     let t1
-    window.addEventListener('devicemotion', function (event) {
-      if (t1) { return }
-      t1 = setTimeout(() => {
-        let x = event.acceleration.x;
-        let y = event.acceleration.y;
-        let z = event.acceleration.z;
-        let x1 = event.accelerationIncludingGravity.x;
-        let y1 = event.accelerationIncludingGravity.y;
-        let z1 = event.accelerationIncludingGravity.z;
-        setAx(x)
-        setGx(x1)
-        cgq_jsd_x.push(x)
-        cgq_jsd_y.push(y)
-        cgq_jsd_z.push(z)
-        cgq_tly_x.push(x1)
-        cgq_tly_y.push(y1)
-        cgq_tly_z.push(z1)
-        console.log("angel acc", x, y, z)
-        console.log("angel acc", x1, y1, z1)
-        t1 = null
-      }, 1000);
-    })
-
-    canvas.addEventListener('touchend', () => {
-      isTap = '0'
-    })
-
-  }, [])
-
+    if (start) {
+      window.addEventListener('devicemotion', function (event) {
+        if (t1) { return }
+        t1 = setTimeout(() => {
+          let x = event.acceleration.x;
+          let y = event.acceleration.y;
+          let z = event.acceleration.z;
+          let x1 = event.accelerationIncludingGravity.x;
+          let y1 = event.accelerationIncludingGravity.y;
+          let z1 = event.accelerationIncludingGravity.z;
+          setAx(x)
+          setGx(x1)
+          cgq_jsd_x.push(x)
+          cgq_jsd_y.push(y)
+          cgq_jsd_z.push(z)
+          cgq_tly_x.push(x1)
+          cgq_tly_y.push(y1)
+          cgq_tly_z.push(z1)
+          console.log("angel acc", x, y, z)
+          console.log("angel acc", x1, y1, z1)
+          t1 = null
+        }, 1000);
+      })
+    }
+    return () => {
+      window.removeEventListener("devicemotion", function (event) {
+        if (t1) { return }
+        t1 = setTimeout(() => {
+          let x = event.acceleration.x;
+          let y = event.acceleration.y;
+          let z = event.acceleration.z;
+          let x1 = event.accelerationIncludingGravity.x;
+          let y1 = event.accelerationIncludingGravity.y;
+          let z1 = event.accelerationIncludingGravity.z;
+          setAx(x)
+          setGx(x1)
+          cgq_jsd_x.push(x)
+          cgq_jsd_y.push(y)
+          cgq_jsd_z.push(z)
+          cgq_tly_x.push(x1)
+          cgq_tly_y.push(y1)
+          cgq_tly_z.push(z1)
+          console.log("angel acc", x, y, z)
+          console.log("angel acc", x1, y1, z1)
+          t1 = null
+        }, 1000);
+      })
+    }
+  }, [start])
 
   const writing = (beginX, beginY, stopX, stopY, ctx,) => {
     ctx.beginPath()  // 开启一条新路径

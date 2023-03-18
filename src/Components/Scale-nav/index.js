@@ -58,8 +58,7 @@ export default function Scalenav() {
         {
           console.log(topicNumberContext.totalNumber)
         }
-        {/* <Button type='primary' disabled={topicNumberContext.totalNumber ? false : true} onClick={clearAll}>查看评估结果</Button> */}
-        <Button type='primary' onClick={clearAll}>查看评估结果</Button>
+        <Button type='primary' disabled={topicNumberContext.totalNumber===7 ? false : true} onClick={clearAll}>查看评估结果</Button>
       </div>
     </Commontitle>
   )

@@ -36,7 +36,7 @@ function Chart({ options }) {
       // 销毁图表实例，释放内存
       chartInstance && chartInstance.dispose();
     };
-  }, []);
+  }, [options]);
 
   // 监听窗口大小改变
   useEffect(() => {

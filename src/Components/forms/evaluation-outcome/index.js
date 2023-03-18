@@ -13,12 +13,9 @@ import { TitleComponent, TooltipComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 import './index.less'
 import HomeBtn from '../../../UI/HeaderBtn';
-import { postGetGrade } from '../../../api';
 import { useEffect } from 'react';
-import dayjs from 'dayjs';
 import { basicFormContext } from '../../../store/topicNumbercontext';
 import { useState } from 'react';
-import qs from "query-string";
 
 // 注册必须的组件
 echarts.use([
@@ -40,7 +37,6 @@ export default function Evaluationoutcome() {
     const {state:{array}}=location
     console.log(array);
     setSevenInfo(array)
-    console.log(typeof(array.evaGzj))
   }
 
   useEffect(() => {
@@ -66,13 +62,13 @@ export default function Evaluationoutcome() {
     radar: {
       // shape: 'circle',
       indicator: [
-        { name: '感觉', min: 60 },
-        { name: '运动', min: 1 },
-        { name: '心理', min: 3 },
-        { name: '二便', min: 3 },
-        { name: '吞咽', min: 5 },
-        { name: '心肺', min: 5 },
-        { name: '认知', min: 2 }
+        { name: '感觉', max: 100 },
+        { name: '运动', max: 100 },
+        { name: '心理', max: 100 },
+        { name: '二便', max: 100 },
+        { name: '吞咽', max: 100 },
+        { name: '心肺', max: 100 },
+        { name: '认知', max: 100 }
       ]
     },
     series: [
@@ -82,7 +78,6 @@ export default function Evaluationoutcome() {
         data: [
           {
             value: [sevenInfo?.evaGzj, sevenInfo?.evaYd, sevenInfo?.evaXl, sevenInfo?.evaRb, sevenInfo?.evaXf, sevenInfo?.evaTy, sevenInfo?.evaRz],
-            // value: [66, 99, 66, 9, 88, 4, 9],
             name: '认知图例'
           }
         ]
@@ -90,7 +85,7 @@ export default function Evaluationoutcome() {
     ]
   };
   return (
-    <Commontitle basicPage title='您得评估结果如下 ： ' className='echart-wrapper'>
+    <Commontitle basicPage navHome title='您得评估结果如下 ： ' className='echart-wrapper'>
       <HomeBtn />
       <Chart options={options} />
       <table >
