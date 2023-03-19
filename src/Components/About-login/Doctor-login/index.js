@@ -14,7 +14,7 @@ export default function Doctorlogin() {
     console.log(values)
     const result = await login({
       passWord: `${values.passWord}`,
-      phone: "13167827468",
+      phone: "test",
       role: "0",
       userName: `${values.username}`
     })

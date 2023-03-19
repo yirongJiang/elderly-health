@@ -84,7 +84,7 @@ export default function Steps() {
               <Radio value={1}>步行数（步）</Radio>
               <Form.Item name='number' rules={[
                 {
-                  pattern: /^[0-9]{1,2}$/,
+                  pattern: /^[0-9]{1,}$/,
 
                   message: '请填写完整',
                 }

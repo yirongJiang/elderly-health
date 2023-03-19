@@ -57,6 +57,7 @@ export default function Queryresult() {
     setDate(dateString)
   };
 
+
   return (
     <Commontitle title='查询评估结果' basicPage className='queryresult-wrapper'>
       <HomeBtn />
@@ -127,19 +128,13 @@ export default function Queryresult() {
               <th>机构来源</th>
             </tr>
           </thead>
-          <tbody>   
+          <tbody>
             {list.map((item, index) => {
-              return <Link key={item} to='/evaluationdetail/evaluateoutcome' state={
-                {
-                  array:{...item}
-                }
-              } > 
-              <tr>
-                  <td>{item.name}</td>
-                  <td>{dayjs(item.createDate).format('YYYY-MM-DD')}</td>
-                  <td>{item.org}</td>
-                </tr>
-              </Link>
+              return <tr key={Math.random()} onClick={() => { nav('/evaluationdetail/evaluateoutcome', { state: { array: item, trueBack: 'true' } }) }}>
+                <td>{item.name}</td>
+                <td>{dayjs(item.createDate).format('YYYY-MM-DD')}</td>
+                <td>{item.org}</td>
+              </tr>
             })
             }
           </tbody>

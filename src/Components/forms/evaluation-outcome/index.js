@@ -31,11 +31,11 @@ export default function Evaluationoutcome() {
   const formdataContext = useContext(basicFormContext)
   const nav = useNavigate()
   let location = useLocation();
-
+  const { state: { array, trueBack } } = location
 
   const outCome = async () => {
-    const {state:{array}}=location
     console.log(array);
+    console.log(trueBack)
     setSevenInfo(array)
   }
 
@@ -77,7 +77,7 @@ export default function Evaluationoutcome() {
         type: 'radar',
         data: [
           {
-            value: [sevenInfo?.evaGzj, sevenInfo?.evaYd, sevenInfo?.evaXl, sevenInfo?.evaRb, sevenInfo?.evaXf, sevenInfo?.evaTy, sevenInfo?.evaRz],
+            value: [sevenInfo?.evaGzj || 60, sevenInfo?.evaYd || 60, sevenInfo?.evaXl || 60, sevenInfo?.evaRb || 60, sevenInfo?.evaXf || 60, sevenInfo?.evaTy || 60, sevenInfo?.evaRz || 60],
             name: '认知图例'
           }
         ]
@@ -85,7 +85,7 @@ export default function Evaluationoutcome() {
     ]
   };
   return (
-    <Commontitle basicPage navHome title='您得评估结果如下 ： ' className='echart-wrapper'>
+    <Commontitle basicPage noBack={trueBack ? false : true} title='您得评估结果如下 ： ' className='echart-wrapper'>
       <HomeBtn />
       <Chart options={options} />
       <table >
