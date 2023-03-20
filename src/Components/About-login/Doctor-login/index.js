@@ -1,6 +1,4 @@
 import { Button, Form, Input } from 'antd'
-import React, { useEffect } from 'react'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../../api'
 import './index.less'
@@ -71,7 +69,7 @@ export default function Doctorlogin() {
             },
           ]}
         >
-          <Input.Password size='large' placeholder="请输入密码" />
+          <Input.Password size='large' placeholder="请输入密码" autoComplete="off"/>
         </Form.Item>
 
         <Form.Item

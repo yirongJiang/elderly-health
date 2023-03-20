@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 
-import { topicNumbercontext, topicFormDatacontext, basicFormContext } from '../../../store/topicNumbercontext'
+import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import { useState } from 'react';
 import { postWalk } from '../../../api';
 
@@ -47,11 +47,6 @@ export default function Steps() {
 
 
   const formChange = (e) => {
-    const value = form.getFieldsValue(true)
-    let formdata = value
-    console.log(value)
-    let selectedNumber = Object.keys(value).length
-    console.log(selectedNumber)
     topicContext.numberDispatch({ type: 'STEPADD', selectedNumber: 1 })
    
   }
@@ -61,7 +56,6 @@ export default function Steps() {
   }, [])
 
   const radioChange = (e) => {
-    console.log(e.target.value)
     formRef.current?.resetFields();
     setFlag(e.target.value)
   }
@@ -81,8 +75,8 @@ export default function Steps() {
         <Form.Item >
           <Radio.Group onChange={radioChange} >
             <Space direction="vertical">
-              <Radio value={1}>步行数（步）</Radio>
-              <Form.Item name='number' rules={[
+              <Radio value={0}>步行数（步）</Radio>
+              <Form.Item name='walkNum' rules={[
                 {
                   pattern: /^[0-9]{1,}$/,
 
@@ -92,8 +86,8 @@ export default function Steps() {
                 <Input type="text" />
               </Form.Item>
 
-              <Radio value={2}>公里数（km</Radio>
-              <Form.Item name='kilo' hasFeedback rules={[
+              <Radio value={1}>公里数（km</Radio>
+              <Form.Item name='kilometreNum' hasFeedback rules={[
                 {
                   pattern: /^[0-9]{1,2}$/,
 

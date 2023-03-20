@@ -1,9 +1,6 @@
 import Initial from '../Initial'
 import Home from '../Home'
-import Messagelogin from '../Components/About-login/Common-login/Message-login'
-import Phonelogin from '../Components/About-login/Common-login/Phone-login'
 import Doctorlogin from '../Components/About-login/Doctor-login'
-import Reset from '../Components/Reset'
 import Bi from '../Components/forms/BI'
 import Cognize from '../Components/forms/Cognize'
 import Eyesight from '../Components/forms/Eyesight'
@@ -33,7 +30,6 @@ import CameraComponent from '../Components/forms/Cognize/Camera-photo'
 export const getRoutesConfig = () => [
   {
     path: '*',
-    // element: isLogin ? <Navigate to='initail' /> : <Initial />,
     element: <Navigate to='initail' />,
 
   },
@@ -41,21 +37,9 @@ export const getRoutesConfig = () => [
     path: '/initail',
     element: <Initial />,
     children: [
-      // {
-      //   path: '',
-      //   element: <Initailpage />
-      // },
       {
         path: '',
         element: <Doctorlogin />
-      },
-      {
-        path: 'phonelogin',
-        element: <Phonelogin />
-      },
-      {
-        path: 'reset',
-        element: <Reset />
       }
     ]
   },
