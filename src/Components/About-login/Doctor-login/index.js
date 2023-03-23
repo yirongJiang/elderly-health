@@ -9,14 +9,12 @@ export default function Doctorlogin() {
   const [form] = Form.useForm()
 
   const onFinish = async (values) => {
-    console.log(values)
     const result = await login({
       passWord: `${values.passWord}`,
       phone: "test",
       role: "0",
       userName: `${values.username}`
     })
-    console.log(result.body)
     const { userId } = result.body
     localStorage.setItem('adminUserId', userId)
     nav('/home', { replace: true, state: { isScusses: false } })

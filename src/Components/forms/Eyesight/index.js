@@ -1,11 +1,9 @@
 import { Button, Form, Radio, Space } from 'antd';
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
 import Checkfive from './check5';
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import './index.less';
-import { postEyesight } from '../../../api';
 
 
 
@@ -20,9 +18,6 @@ export default function Eyesight() {
   const [form] = Form.useForm()
   
   const onFinish = async (values) => {
-    console.log('Received values of form: ', values);
-    // const res=await postEyesight(values)
-    // console.log(res)
     setNextStep(1)
   };
   const formItemLayout = {

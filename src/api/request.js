@@ -2,7 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 
 const request = axios.create({
-  baseURL: 'https://43.138.153.236:8090/',
+  baseURL: 'http://43.138.153.236:8090/',
   timeout: 5000,
 })
 
@@ -23,8 +23,8 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(res => {
   if (res.data.code === 401) {
     localStorage.removeItem('X-Auth-Token')
-    window.location.href = '/initail'
     message.error('token已经过期啦,请重新登录')
+    window.location.href = '/initail'
   }
   return res.data
 }, err => {

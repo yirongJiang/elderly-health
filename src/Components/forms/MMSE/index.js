@@ -13,9 +13,9 @@ export default function Mmse() {
   const nav = useNavigate()
 
   const onFinish = async (values) => {
-    console.log('Received values of form: ', values);
-    const res = await postMmse(values)
-    console.log(res)
+
+  await postMmse(values)
+
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，完成填写！')

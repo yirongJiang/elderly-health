@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Commontitle from '../../../UI/Nav-head'
-import { Button, Col, DatePicker, Form, Input, Row, Select } from 'antd';
+import { Button, Col, DatePicker, Form, Input, message, Row, Select } from 'antd';
 import './index.less'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import HomeBtn from '../../../UI/HeaderBtn';
 import { postGetGrade } from '../../../api';
 import dayjs from 'dayjs';
@@ -29,7 +29,7 @@ export default function Queryresult() {
   };
 
   const onFinish = async (values) => {
-    console.log(values)
+ 
     const institution = String(arr.indexOf(values.institution) + 1)
     const res = await postGetGrade({
       "createDate": date,
@@ -39,21 +39,15 @@ export default function Queryresult() {
       "adminUserId": localStorage.getItem('adminUserId'),
       "staff": ""
     })
-    console.log(res)
     SetList(res.body)
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    message.error('服务器发生错误')
   };
 
-  const formChange = () => {
-    console.log('first')
-    console.log(form.getFieldsValue(true))
-  }
 
   const onChange = (date, dateString) => {
-    console.log(dateString);
     setDate(dateString)
   };
 
@@ -67,7 +61,6 @@ export default function Queryresult() {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         layout="horizontal"
-        onFieldsChange={formChange}
       >
         <Form.Item >
           <Row style={style}  >

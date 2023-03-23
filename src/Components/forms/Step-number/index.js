@@ -23,9 +23,7 @@ export default function Steps() {
 
   const onFinish = async (values) => {
     values['type'] = `${flag}`
-    console.log('Received values of form: ', values);
-    const res = await postWalk(values)
-    console.log(res)
+await postWalk(values)
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     nav(-1)
     message.success('恭喜您，提交成功！')

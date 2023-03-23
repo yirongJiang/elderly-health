@@ -20,7 +20,6 @@ export default function Basicinfo() {
         return false
       });
       localStorage.removeItem('X-Auth-Token')
-      console.log(localStorage.getItem('X-Auth-Token'))
       nav('/initail')
     }, 1000);
   };

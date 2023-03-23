@@ -27,7 +27,6 @@ export default function Cognizefirst() {
   const [form] = Form.useForm()
   const onFinish = (values) => {
     nav('/evaluationdetail/cognize/second')
-    console.log('Received values of form: ', values);
   };
 
   const topicContext = useContext(topicNumbercontext)

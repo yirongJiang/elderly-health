@@ -34,8 +34,6 @@ export default function Evaluationoutcome() {
   const { state: { array, trueBack } } = location
 
   const outCome = async () => {
-    console.log(array);
-    console.log(trueBack)
     setSevenInfo(array)
   }
 

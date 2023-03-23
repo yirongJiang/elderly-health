@@ -15,7 +15,6 @@ import Swallow from '../Components/forms/Swallow'
 import { Navigate } from 'react-router-dom'
 import Basicinfo from '../Components/hombasicinformation'
 import Evaluation from '../Evaluate-basci-info'
-import Search from '../Components/Search'
 import Queryresult from '../Components/forms/Query-result'
 import Evaluationdetail from '../evaluateChatReducer'
 import Basicform from '../Components/forms/basic-form'
@@ -50,10 +49,6 @@ export const getRoutesConfig = () => [
       {
         path: '',
         element: <Basicinfo />
-      },
-      {
-        path: 'search',
-        element: <Search />
       }
     ]
   },
@@ -75,7 +70,7 @@ export const getRoutesConfig = () => [
   {
     path: '/evaluationdetail',
     key: '/evaluationdetail',
-    element: localStorage.getItem('X-Auth-Token') ? <Evaluationdetail /> : <Navigate to='/initail' />,
+    element: localStorage.getItem('adminUserId') ? <Evaluationdetail /> : <Navigate to='/initail' />,
     children: [
       {
         path: 'scalenav',

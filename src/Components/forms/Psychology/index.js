@@ -19,7 +19,7 @@ export default function Psychology() {
   const nav = useNavigate()
 
   const onFinish = async (values) => {
-    console.log('Received values of form: ', values);
+
     await postPsychology(values)
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     nav('/evaluationdetail/scalenav')
@@ -41,7 +41,6 @@ export default function Psychology() {
 
   const formChange = (e) => {
     const value = form.getFieldsValue(true)
-    console.log(value)
     let formdata = value
     let selectedNumber = Object.keys(value).length
     topicContext.numberDispatch({ type: 'PSYCHOLOGYADD', selectedNumber: selectedNumber })

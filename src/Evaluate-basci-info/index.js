@@ -12,8 +12,6 @@ export default function Evaluation() {
 
   // const isPost = localStorage.getItem('isPost')
   const isPost = sessionStorage.getItem('isPost')
-
-  console.log(typeof (isPost))
   const nav = useNavigate()
   const backHome = () => {
     nav('/home')

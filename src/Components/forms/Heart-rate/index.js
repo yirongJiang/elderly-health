@@ -1,5 +1,5 @@
 import { Button, Form, message, Radio, Space } from 'antd';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
@@ -20,9 +20,7 @@ export default function Heart() {
   const nav = useNavigate()
 
   const onFinish = async(values) => {
-    console.log('Received values of form: ', values);
-    const res=await postHeart(values)
-    console.log(res)
+await postHeart(values)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您提交成功')
   };

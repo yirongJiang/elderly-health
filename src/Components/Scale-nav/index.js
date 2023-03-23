@@ -21,7 +21,6 @@ export default function Scalenav() {
   const clearAll = async () => {
     await postCountGrade()
     const result = await postGetGrade({ "createDate": date, "name": name, "institution": institution, "staff": staff, "adminUserId": localStorage.getItem('adminUserId') })
-    console.log(result)
     sessionStorage.removeItem('isPost')
     nav('/evaluationdetail/evaluateoutcome', { state: {array:result.body[0]} })
   }
@@ -35,7 +34,10 @@ export default function Scalenav() {
       <div className="necessary-list">
         {
           requiredList.map((item, index) => {
-            return <Button className={topicNumberContext[item.finishedNumber] === item.defaultNumber ? 'finishedButton' : null} onClick={() => { nav(`${item.navUrl}`) }} key={item.title}>{
+            return <Button
+             className={topicNumberContext[item.finishedNumber] === item.defaultNumber ? 'finishedButton' : null} 
+             disabled={topicNumberContext[item.finishedNumber] === item.defaultNumber }
+             onClick={() => { nav(`${item.navUrl}`) }} key={item.title}>{
               item.title}
               <div>{topicNumberContext[item.finishedNumber]}题/{item.defaultNumber}题</div>
             </Button>
@@ -47,7 +49,9 @@ export default function Scalenav() {
       <div className="optional-list">
         {
           optionalList.map((item, index) => {
-            return <Button className={topicNumberContext[item.finishedNumber] === item.defaultNumber ? 'finishedButton' : null} onClick={() => { nav(`${item.navUrl}`) }} key={item.title}>{
+            return <Button
+            disabled={topicNumberContext[item.finishedNumber] === item.defaultNumber }
+            className={topicNumberContext[item.finishedNumber] === item.defaultNumber ? 'finishedButton' : null} onClick={() => { nav(`${item.navUrl}`) }} key={item.title}>{
               item.title}
               <div>{topicNumberContext[item.finishedNumber]}题/{item.defaultNumber}题</div>
             </Button>
@@ -55,9 +59,6 @@ export default function Scalenav() {
         }
       </div>
       <div className="bottom">
-        {
-          console.log(topicNumberContext.totalNumber)
-        }
         <Button type='primary' disabled={topicNumberContext.totalNumber===7 ? false : true} onClick={clearAll}>查看评估结果</Button>
       </div>
     </Commontitle>

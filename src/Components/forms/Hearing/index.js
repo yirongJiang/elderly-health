@@ -22,9 +22,7 @@ export default function Hearing() {
   }, [])
 
   const onFinish = async (values) => {
-    console.log('Received values of form: ', values);
-    const res = await postHearing(values)
-    console.log(res)
+await postHearing(values)
     nav('/evaluationdetail/scalenav')
     message.success('恭喜您，提交成功！')
   };

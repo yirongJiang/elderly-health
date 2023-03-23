@@ -1,5 +1,5 @@
 import { Button, Form, message, Radio } from 'antd';
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { postEyesight } from '../../../../api';
 import { topicNumbercontext, topicFormDatacontext } from '../../../../store/topicNumbercontext'
@@ -12,7 +12,6 @@ export default function Checkfive() {
 
   const onFinish = async(values) => {
     const finalValues={...eyesightFormdata,...values}
-    console.log(finalValues)
     await postEyesight(finalValues)
     message.success("恭喜您，提交成功")
     nav('/evaluationdetail/scalenav')

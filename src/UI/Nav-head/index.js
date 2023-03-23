@@ -1,4 +1,4 @@
-import { CaretLeftFilled, LeftCircleTwoTone } from '@ant-design/icons'
+import { CaretLeftFilled } from '@ant-design/icons'
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router'
 import { basicFormContext } from '../../store/topicNumbercontext'
@@ -8,10 +8,14 @@ export default function Commontitle(props) {
 
   const basicdataContext = useContext(basicFormContext)
   const nav = useNavigate()
-  const { basicPage, noBack} = props
+  const { basicPage, noBack, navHome } = props
 
   const navChange = () => {
-      nav(-1)
+    if (navHome) {
+      nav('/home')
+      return
+    }
+    nav(-1)
   }
 
   return (

@@ -18,7 +18,6 @@ function Chart({ options }) {
       }
       chartInstance.setOption(options);
     } catch (error) {
-      console.error("error", error.message);
       chartInstance && chartInstance.dispose();
     }
   }

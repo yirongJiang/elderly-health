@@ -17,7 +17,6 @@ export default function Swallow() {
   const [form] = Form.useForm()
   const nav = useNavigate()
   const onFinish = async(values) => {
-    console.log('Received values of form: ', values);
     await postSwallow(values)
     nav('/evaluationdetail/scalenav')
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })

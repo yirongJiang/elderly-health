@@ -34,11 +34,9 @@ export default function Basicform() {
   const formdataContext = useContext(basicFormContext)
 
   const onFinish = async (values) => {
-    console.log('Received values of form: ', values.disease);
     sessionStorage.setItem('isPost', 1)
     const illnessList = values.disease.toString()
     const userId = localStorage.getItem("adminUserId")
-    console.log(illnessList)
     const result = await postInfo(
       {
         ...values,
@@ -47,10 +45,9 @@ export default function Basicform() {
         "illness": '0',
         "illnessNum": "0",
         "illnessOther": "0",
-        "org":'华西',
+        "org": '华西',
       })
 
-    console.log(result)
     localStorage.setItem('X-Auth-Token', result.body)
     nav(-1)
     message.success('恭喜您，完成填写！')
@@ -85,10 +82,8 @@ export default function Basicform() {
 
   const formChange = () => {
     const value = form.getFieldsValue(true)
-    console.log(value)
     let formData = value
     formdataContext.basicFormGroupDispatch({ type: 'basicForm', formData: formData })
-    console.log(formdataContext.basicForm)
   }
 
   const tagRender = (props) => {
@@ -139,7 +134,7 @@ export default function Basicform() {
           name='name'
           rules={[
             {
-              pattern: /^[\一-\龥]{2,6}$|[a-zA-Z]/,
+              pattern: /[a-zA-Z\u4e00-\u9fa5]+$/,
               required: true,
               message: '请填写2-6位真实姓名',
             }
@@ -361,7 +356,7 @@ export default function Basicform() {
           name='staff'
           rules={[
             {
-              pattern: /^[\一-\龥]{2,6}$|[a-zA-Z]/,
+              pattern: /[a-zA-Z\u4e00-\u9fa5]+$/,
               required: true,
               message: '请填写2-6位真实姓名',
             }

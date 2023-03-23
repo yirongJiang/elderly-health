@@ -1,9 +1,8 @@
 import { Button, message } from 'antd'
 import React, { useEffect, useState, useRef } from 'react'
-import { useFetcher, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import Commontitle from '../../../../UI/Nav-head'
 import './index.less'
-import { use } from 'echarts'
 import { postCognitionTwo } from '../../../../api'
 import { useContext } from 'react'
 import { topicNumbercontext } from '../../../../store/topicNumbercontext'
@@ -28,9 +27,6 @@ export default function Cognizethird() {
   const position = {}
   const startTime = +new Date()
   //测试传感器
-  const [aX, setAx] = useState(0)
-  const [gX, setGx] = useState(0)
-  const [agX, setAgx] = useState(0)
 
   const [changePage, setChangePage] = useState(0)
   const canvasDom = useRef()
@@ -42,11 +38,7 @@ export default function Cognizethird() {
   useEffect(() => {
     let timer = setInterval(() => {
       if (start) {
-        console.log('isTap 开始')
-        console.log(isTap)
         isTapArray.push(isTap)
-      } else {
-        console.log('还没有开始')
       }
     }, 1000);
     return () => {
@@ -92,10 +84,6 @@ export default function Cognizethird() {
 
       if (timer) { return }
       timer = setTimeout(() => {
-        console.log('beginX')
-        console.log(beginX)
-        console.log('beginY')
-        console.log(beginY)
         position[beginX] = beginY
         timer = null
       }, 33.2)
@@ -103,10 +91,7 @@ export default function Cognizethird() {
       if (timer1) { return }
       timer1 = setTimeout(() => {
         drawingTime++
-        console.log('drawingTime')
-        console.log(drawingTime)
         timer1 = null
-        console.log('isTap', isTap)
       }, 1000);
     })
 
@@ -118,7 +103,6 @@ export default function Cognizethird() {
 
   useEffect(() => {
     let t
-    console.log(start)
     if (start) {
       window.addEventListener("deviceorientation", function (event) {
         if (t) { return }
@@ -130,8 +114,7 @@ export default function Cognizethird() {
           cgq_zl_angx.push(x)
           cgq_zl_angy.push(y)
           cgq_zl_angz.push(z)
-          setAgx(x)
-          console.log(x, y, z)
+
         }, 1000);
       });
 
@@ -146,8 +129,7 @@ export default function Cognizethird() {
             cgq_zl_angx.push(x)
             cgq_zl_angy.push(y)
             cgq_zl_angz.push(z)
-            setAgx(x)
-            console.log(x, y, z)
+
           }, 1000);
         })
       }
@@ -168,16 +150,14 @@ export default function Cognizethird() {
           let x1 = event.accelerationIncludingGravity.x;
           let y1 = event.accelerationIncludingGravity.y;
           let z1 = event.accelerationIncludingGravity.z;
-          setAx(x)
-          setGx(x1)
+
           cgq_jsd_x.push(x)
           cgq_jsd_y.push(y)
           cgq_jsd_z.push(z)
           cgq_tly_x.push(x1)
           cgq_tly_y.push(y1)
           cgq_tly_z.push(z1)
-          console.log("angel acc", x, y, z)
-          console.log("angel acc", x1, y1, z1)
+
           t1 = null
         }, 1000);
       })
@@ -192,16 +172,13 @@ export default function Cognizethird() {
           let x1 = event.accelerationIncludingGravity.x;
           let y1 = event.accelerationIncludingGravity.y;
           let z1 = event.accelerationIncludingGravity.z;
-          setAx(x)
-          setGx(x1)
           cgq_jsd_x.push(x)
           cgq_jsd_y.push(y)
           cgq_jsd_z.push(z)
           cgq_tly_x.push(x1)
           cgq_tly_y.push(y1)
           cgq_tly_z.push(z1)
-          console.log("angel acc", x, y, z)
-          console.log("angel acc", x1, y1, z1)
+
           t1 = null
         }, 1000);
       })
@@ -244,10 +221,7 @@ export default function Cognizethird() {
         canvasUrl.pop()
         return canvasUrl
       })
-    } else {
-      console.log('不能再继续撤销了');
     }
-
   }
 
   const sure = async () => {
@@ -257,37 +231,6 @@ export default function Cognizethird() {
     let totalLength = 0
     totalTime = endTime - startTime
     totalLength = xMoveLength + yMoveLength
-    console.log('drawtime')
-    console.log(drawingTime)
-    console.log('totalTime')
-    console.log(endTime - startTime)
-    console.log('xlength')
-    console.log(xMoveLength)
-    console.log('ylength')
-    console.log(yMoveLength)
-    console.log('totalLength')
-    console.log(totalLength)
-    console.log(url)
-    console.log('x轴加速度')
-    console.log(cgq_jsd_x)
-    console.log('y轴加速度')
-    console.log(cgq_jsd_y)
-    console.log('z轴加速度')
-    console.log(cgq_jsd_z)
-    console.log('x轴angle加速度')
-    console.log(cgq_tly_x)
-    console.log('y轴angle加速度')
-    console.log(cgq_tly_y)
-    console.log('z轴angle加速度')
-    console.log(cgq_tly_z)
-    console.log('重力传感器采集的x轴角度')
-    console.log(cgq_zl_angx)
-    console.log('重力传感器采集的y轴角度')
-    console.log(cgq_zl_angy)
-    console.log('重力传感器采集的z轴角度')
-    console.log(cgq_zl_angz)
-    console.log('position')
-    console.log(position)
     const obj = {
       "fingerStatus": isTapArray,
       "gravityAngx": cgq_zl_angx,
@@ -304,9 +247,7 @@ export default function Cognizethird() {
       "collectTime": `${totalTime}`,
       "collectLong": `${totalLength}`
     }
-    const result = await postCognitionTwo(obj)
-    console.log('result')
-    console.log(result)
+    await postCognitionTwo(obj)
     ctx.numberDispatch({ type: 'COGNIZEADD', selectedNumber: 3 })
     ctx.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setChangePage(1)
@@ -333,12 +274,6 @@ export default function Cognizethird() {
     <Commontitle title='在空白处绘制11点10分的钟表 ：' className='cognizethird-wrapper'>
       {changePage === 0 ?
         <div className='formal-content'>
-          {
-
-          }
-          {/* <DeviceMotionTest arr1={arr1} />
-          <DeviceOrientationTest arr={arr} /> */}
-          <div>{aX},{gX},{agX}</div>
           <div className="top-buttons">
             <button onClick={recallClick}>撤销</button>
             <button onClick={clearCanvas}>清除</button>
