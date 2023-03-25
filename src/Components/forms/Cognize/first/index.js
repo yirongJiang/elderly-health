@@ -47,7 +47,7 @@ export default function Cognizefirst() {
   }, [])
 
   return (
-    <Commontitle title='自制认知筛查表' className='cognizefirst-wrapper'>
+    <Commontitle title='自制认知筛查表' back className='cognizefirst-wrapper'>
       <Form
         scrollToFirstError
         onFinishFailed={onFinishFailed}

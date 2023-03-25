@@ -54,7 +54,7 @@ export default function Queryresult() {
 
 
   return (
-    <Commontitle title='查询评估结果' basicPage className='queryresult-wrapper'>
+    <Commontitle title='查询评估结果' navagation='/home' basicPage className='queryresult-wrapper'>
       <HomeBtn />
       <Form
         form={form}

@@ -53,7 +53,7 @@ await postHeart(values)
 
 
   return (
-    <Commontitle title='冠心病/心率问题' className='heart-wrapper'>
+    <Commontitle title='冠心病/心率问题' back className='heart-wrapper'>
       <div className="question">
         是否有冠心病或心脏相关的问题？
       </div>

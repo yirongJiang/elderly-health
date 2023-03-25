@@ -271,7 +271,7 @@ export default function Cognizethird() {
   }
 
   return (
-    <Commontitle title='在空白处绘制11点10分的钟表 ：' className='cognizethird-wrapper'>
+    <Commontitle title='在空白处绘制11点10分的钟表 ：' back className='cognizethird-wrapper'>
       {changePage === 0 ?
         <div className='formal-content'>
           <div className="top-buttons">

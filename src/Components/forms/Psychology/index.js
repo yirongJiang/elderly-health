@@ -53,7 +53,7 @@ export default function Psychology() {
 
 
   return (
-    <Commontitle title='心理问卷' className='psychology-wrapper'>
+    <Commontitle title='心理问卷' back className='psychology-wrapper'>
       <div className="question">
         在最近两周里，您感觉自己被以下症状所困扰的频率是？
       </div>

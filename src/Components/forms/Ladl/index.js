@@ -51,7 +51,7 @@ export default function Ladl() {
   }, [])
 
   return (
-    <Commontitle title='洛顿IADL评估' className='ladi-wrapper'>
+    <Commontitle title='洛顿IADL评估' back className='ladi-wrapper'>
       <ToTopBtn />
       <Form
        scrollToFirstError

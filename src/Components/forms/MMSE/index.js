@@ -49,7 +49,7 @@ export default function Mmse() {
   }, [])
 
   return (
-    <Commontitle title='简易精神状态检查量表(MMSE)' className='mmse-wrapper'>
+    <Commontitle back title='简易精神状态检查量表(MMSE)' className='mmse-wrapper'>
       <h2>说明:（回答正确为1，回答错误为0）</h2>
       {/* <Button className='goTop' type='primary' ghost onClick={handleScroll}>回到顶部</Button> */}
       <ToTopBtn />

@@ -130,7 +130,7 @@ export default function Painful() {
   };
 
   return (
-    <Commontitle title='疼痛报告' className='painful-wrapper'>
+    <Commontitle title='疼痛报告' back className='painful-wrapper'>
 
       <div className="question">疼痛部位 : </div>
       <hr />

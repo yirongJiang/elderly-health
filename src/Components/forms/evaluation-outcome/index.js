@@ -86,7 +86,7 @@ export default function Evaluationoutcome() {
     ]
   };
   return (
-    <Commontitle basicPage noBack={trueBack ? false : true} title='您得评估结果如下 ： ' className='echart-wrapper'>
+    <Commontitle basicPage navagation='/evaluationdetail/queryresult' noBack={trueBack ? false : true} title='您得评估结果如下 ： ' className='echart-wrapper'>
       <HomeBtn />
       <Chart options={options} />
       <table >

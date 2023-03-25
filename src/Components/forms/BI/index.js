@@ -51,7 +51,7 @@ export default function Bi() {
   }, [])
 
   return (
-    <Commontitle title='BI评估表' className='bi-wrapper'>
+    <Commontitle title='BI评估表' back className='bi-wrapper'>
       <ToTopBtn />
       <Form
         scrollToFirstError

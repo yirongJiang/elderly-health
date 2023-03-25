@@ -34,7 +34,7 @@ export default function Scalenav() {
   }
 
   return (
-    <Commontitle basicPage backTwoList title='评估表单（请依次认真完成以下表单，
+    <Commontitle basicPage navagation='/home/addEvaluate' backTwoList title='评估表单（请依次认真完成以下表单，
     此过程可能会花费一些时间）' className='scalenav-wrapper'>
       <div className='tips'>下列量表必填
         <span className='userName'>{formdataContext.basicForm.name}患者</span>
@@ -67,8 +67,8 @@ export default function Scalenav() {
         }
       </div>
       <div className="bottom">
-        {/* <Button type='primary' disabled={topicNumberContext.totalNumber === 7 ? false : true} onClick={clearAll}>查看评估结果</Button> */}
-        <Button type='primary' onClick={clearAll}>查看评估结果</Button>
+        <Button type='primary' disabled={topicNumberContext.totalNumber === 7 ? false : true} onClick={clearAll}>查看评估结果</Button>
+        {/* <Button type='primary' onClick={clearAll}>查看评估结果</Button> */}
       </div>
     </Commontitle>
   )

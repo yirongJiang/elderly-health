@@ -49,7 +49,7 @@ export default function Swallow() {
 
 
   return (
-    <Commontitle title='吞咽二便功能：' className='swallow-wrapper'>
+    <Commontitle title='吞咽二便功能：' back className='swallow-wrapper'>
       <div className="question">
         请自我汇报最近两周的情况：
       </div>

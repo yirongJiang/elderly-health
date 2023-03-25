@@ -59,7 +59,7 @@ await postWalk(values)
   }
 
   return (
-    <Commontitle title='每日步行数' className='step-wrapper'>
+    <Commontitle title='每日步行数' back className='step-wrapper'>
       <Form
         ref={formRef}
         onFieldsChange={formChange}

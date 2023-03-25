@@ -51,7 +51,7 @@ await postHearing(values)
 
 
   return (
-    <Commontitle title='听力筛查表' className='hearing-wrapper'>
+    <Commontitle title='听力筛查表' back className='hearing-wrapper'>
       <ToTopBtn />
       <Form
         scrollToFirstError

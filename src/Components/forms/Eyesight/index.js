@@ -46,7 +46,7 @@ export default function Eyesight() {
   }, [])
 
   return (
-    <Commontitle title='视力测试' className='eyesight-wrapper'>
+    <Commontitle title='视力测试' noBack back className='eyesight-wrapper'>
       {nextStep === 0 ? <Form
        scrollToFirstError
         onFieldsChange={formChange}
