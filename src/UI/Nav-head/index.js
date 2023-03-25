@@ -8,14 +8,17 @@ export default function Commontitle(props) {
 
   const basicdataContext = useContext(basicFormContext)
   const nav = useNavigate()
-  const { basicPage, noBack, navHome } = props
+  const { basicPage, backTwoList, noBack, navHome } = props
 
   const navChange = () => {
     if (navHome) {
       nav('/home')
       return
+    } else if (backTwoList) {
+      nav('/home/addEvaluate')
+      return
     }
-    nav(-1)
+    nav('/evaluationdetail/scalenav')
   }
 
   return (

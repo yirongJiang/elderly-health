@@ -13,6 +13,8 @@ const basicFormReducer = (state, action) => {
     case 'basicForm':
       newForm.basicForm = action.formData
       return newForm
+    case 'clearForm':
+      return {}
   }
 }
 
@@ -23,7 +25,7 @@ export default function App() {
   })
 
   const routes = useRoutes(getRoutesConfig())
-  
+
   return (<basicFormContext.Provider value={{ ...basicFormGroup, basicFormGroupDispatch }} >
     {routes}
   </basicFormContext.Provider>)

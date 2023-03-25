@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import './index.less'
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 import { requiredList, optionalList } from '../../routes/requiredList'
 import Commontitle from '../../UI/Nav-head'
 import { postCountGrade, postGetGrade } from '../../api';
@@ -24,16 +24,17 @@ export default function Scalenav() {
       const result = await postGetGrade({ "createDate": date, "name": name, "institution": institution, "staff": staff, "adminUserId": localStorage.getItem('adminUserId') })
       console.log(result)
       sessionStorage.removeItem('isPost')
+      formdataContext.basicFormGroupDispatch({type:'clearForm'})
       nav('/evaluationdetail/evaluateoutcome', { state: { array: result.body[0] } })
 
     } catch (error) {
-      alert(error)
+      message.error('服务器出错啦，请联系技术人员')
     }
 
   }
 
   return (
-    <Commontitle basicPage navHome title='评估表单（请依次认真完成以下表单，
+    <Commontitle basicPage backTwoList title='评估表单（请依次认真完成以下表单，
     此过程可能会花费一些时间）' className='scalenav-wrapper'>
       <div className='tips'>下列量表必填
         <span className='userName'>{formdataContext.basicForm.name}患者</span>

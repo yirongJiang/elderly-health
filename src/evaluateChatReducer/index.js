@@ -43,8 +43,6 @@ const numberReducer = (state, action) => {
     case 'TOTALADD':
       newNumberGroup.totalNumber += action.selectedNumber
       return newNumberGroup
-    case 'TOTALCLEAR':
-      return {}
   }
 }
 
