@@ -10,7 +10,6 @@ import { CaretLeftFilled } from '@ant-design/icons'
 
 export default function Evaluation() {
 
-  // const isPost = localStorage.getItem('isPost')
   const isPost = sessionStorage.getItem('isPost')
   const nav = useNavigate()
   const backHome = () => {

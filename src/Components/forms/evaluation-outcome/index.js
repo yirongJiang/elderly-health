@@ -5,10 +5,11 @@ import Chart from '../../../utility/echart';
 import { Button } from 'antd'
 // 引入 echarts 核心模块
 import * as echarts from 'echarts/core';
+import "echarts/lib/component/legend";
 // 按需引入图表类型
 import { RadarChart } from 'echarts/charts';
 // 按需引入标题，提示框组件
-import { TitleComponent, TooltipComponent } from 'echarts/components';
+import { LegendComponent, TitleComponent, TooltipComponent,} from 'echarts/components';
 // 引入 Canvas 渲染器
 import { CanvasRenderer } from 'echarts/renderers';
 import './index.less'
@@ -17,12 +18,14 @@ import { useEffect } from 'react';
 import { basicFormContext } from '../../../store/topicNumbercontext';
 import { useState } from 'react';
 
+
 // 注册必须的组件
 echarts.use([
   RadarChart,
   TitleComponent,
   TooltipComponent,
-  CanvasRenderer
+  CanvasRenderer,
+  LegendComponent
 ]);
 
 export default function Evaluationoutcome() {
@@ -75,7 +78,7 @@ export default function Evaluationoutcome() {
         type: 'radar',
         data: [
           {
-            value: [sevenInfo?.evaGzj || 60, sevenInfo?.evaYd || 60, sevenInfo?.evaXl || 60, sevenInfo?.evaRb || 60, sevenInfo?.evaXf || 60, sevenInfo?.evaTy || 60, sevenInfo?.evaRz || 60],
+            value: [sevenInfo?.evaGzj , sevenInfo?.evaYd , sevenInfo?.evaXl , sevenInfo?.evaRb , sevenInfo?.evaXf , sevenInfo?.evaTy , sevenInfo?.evaRz ],
             name: '认知图例'
           }
         ]
@@ -96,31 +99,31 @@ export default function Evaluationoutcome() {
         <tbody>
           <tr>
             <td>感觉</td>
-            <td>{sevenInfo.evaGzj}</td>
+            <td>{sevenInfo?.evaGzj}</td>
           </tr>
           <tr>
             <td>运动</td>
-            <td>{sevenInfo.evaYd}</td>
+            <td>{sevenInfo?.evaYd}</td>
           </tr>
           <tr>
             <td>心理</td>
-            <td>{sevenInfo.evaXl}</td>
+            <td>{sevenInfo?.evaXl}</td>
           </tr>
           <tr>
             <td>二便</td>
-            <td>{sevenInfo.evaRb}</td>
+            <td>{sevenInfo?.evaRb}</td>
           </tr>
           <tr>
             <td>心肺</td>
-            <td>{sevenInfo.evaXf}</td>
+            <td>{sevenInfo?.evaXf}</td>
           </tr>
           <tr>
             <td>吞咽</td>
-            <td>{sevenInfo.evaTy}</td>
+            <td>{sevenInfo?.evaTy}</td>
           </tr>
           <tr>
             <td>认知</td>
-            <td>{sevenInfo.evaRz}</td>
+            <td>{sevenInfo?.evaRz}</td>
           </tr>
         </tbody>
       </table>

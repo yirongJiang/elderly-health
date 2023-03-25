@@ -40,6 +40,7 @@ export default function Queryresult() {
       "staff": ""
     })
     SetList(res.body)
+    console.log(res)
   };
 
   const onFinishFailed = (errorInfo) => {

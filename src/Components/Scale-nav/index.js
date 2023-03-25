@@ -19,10 +19,17 @@ export default function Scalenav() {
   const institution = String(arr.indexOf(org) + 1)
 
   const clearAll = async () => {
-    await postCountGrade()
-    const result = await postGetGrade({ "createDate": date, "name": name, "institution": institution, "staff": staff, "adminUserId": localStorage.getItem('adminUserId') })
-    sessionStorage.removeItem('isPost')
-    nav('/evaluationdetail/evaluateoutcome', { state: {array:result.body[0]} })
+    try {
+      await postCountGrade()
+      const result = await postGetGrade({ "createDate": date, "name": name, "institution": institution, "staff": staff, "adminUserId": localStorage.getItem('adminUserId') })
+      console.log(result)
+      sessionStorage.removeItem('isPost')
+      nav('/evaluationdetail/evaluateoutcome', { state: { array: result.body[0] } })
+
+    } catch (error) {
+      alert(error)
+    }
+
   }
 
   return (
@@ -35,10 +42,10 @@ export default function Scalenav() {
         {
           requiredList.map((item, index) => {
             return <Button
-             className={topicNumberContext[item.finishedNumber] === item.defaultNumber ? 'finishedButton' : null} 
-             disabled={topicNumberContext[item.finishedNumber] === item.defaultNumber }
-             onClick={() => { nav(`${item.navUrl}`) }} key={item.title}>{
-              item.title}
+              className={topicNumberContext[item.finishedNumber] === item.defaultNumber ? 'finishedButton' : null}
+              disabled={topicNumberContext[item.finishedNumber] === item.defaultNumber}
+              onClick={() => { nav(`${item.navUrl}`) }} key={item.title}>{
+                item.title}
               <div>{topicNumberContext[item.finishedNumber]}题/{item.defaultNumber}题</div>
             </Button>
           })
@@ -50,16 +57,17 @@ export default function Scalenav() {
         {
           optionalList.map((item, index) => {
             return <Button
-            disabled={topicNumberContext[item.finishedNumber] === item.defaultNumber }
-            className={topicNumberContext[item.finishedNumber] === item.defaultNumber ? 'finishedButton' : null} onClick={() => { nav(`${item.navUrl}`) }} key={item.title}>{
-              item.title}
+              disabled={topicNumberContext[item.finishedNumber] === item.defaultNumber}
+              className={topicNumberContext[item.finishedNumber] === item.defaultNumber ? 'finishedButton' : null} onClick={() => { nav(`${item.navUrl}`) }} key={item.title}>{
+                item.title}
               <div>{topicNumberContext[item.finishedNumber]}题/{item.defaultNumber}题</div>
             </Button>
           })
         }
       </div>
       <div className="bottom">
-        <Button type='primary' disabled={topicNumberContext.totalNumber===7 ? false : true} onClick={clearAll}>查看评估结果</Button>
+        {/* <Button type='primary' disabled={topicNumberContext.totalNumber === 7 ? false : true} onClick={clearAll}>查看评估结果</Button> */}
+        <Button type='primary' onClick={clearAll}>查看评估结果</Button>
       </div>
     </Commontitle>
   )
