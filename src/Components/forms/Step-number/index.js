@@ -91,8 +91,7 @@ export default function Steps() {
               <Radio value={1}>公里数（km</Radio>
               <Form.Item name='kilometreNum' hasFeedback rules={[
                 {
-                  pattern: /^[0-9]{1,2}$/,
-
+                  pattern: /^((\d{1,2})(\.[0-9]{1,2})?$)/,
                   message: '请填写完整',
                 }
               ]}>
