@@ -1,10 +1,11 @@
-import { Button, Form, message, Radio, Space } from 'antd';
+import { Alert, Button, Form, message, Radio, Space, Spin } from 'antd';
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
 import { postPsychology } from '../../../api';
+import { useState } from 'react';
 
 const commonRules = [
   {
@@ -17,13 +18,15 @@ export default function Psychology() {
 
   const [form] = Form.useForm()
   const nav = useNavigate()
-
+  const [changePage, setChangePage] = useState(0)
   const onFinish = async (values) => {
-
     await postPsychology(values)
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
-    nav('/evaluationdetail/scalenav')
-    message.success('恭喜您，提交成功')
+    setChangePage(1)
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
   };
   const formItemLayout = {
     labelCol: {
@@ -57,7 +60,7 @@ export default function Psychology() {
       <div className="question">
         在最近两周里，您感觉自己被以下症状所困扰的频率是？
       </div>
-      <Form
+      {changePage === 0 ? <Form
         onFieldsChange={formChange}
         style={{ padding: '0 10rem' }}
         form={form}
@@ -99,7 +102,13 @@ export default function Psychology() {
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form> : 
+      <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
     </Commontitle>
   )
 }

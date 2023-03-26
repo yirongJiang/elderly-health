@@ -1,5 +1,5 @@
-import { Button, Form, message, Radio, Space } from 'antd';
-import React, { useContext, useEffect } from 'react'
+import { Alert, Button, Form, message, Radio, Space, Spin } from 'antd';
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
@@ -16,15 +16,18 @@ const commonRules = [
 export default function Hearing() {
   const [form] = Form.useForm()
   const nav = useNavigate()
-
+  const [changePage, setChangePage] = useState(0)
   useEffect(() => {
     form.setFieldsValue({ ...formdataContext.hearingFormdata })
   }, [])
 
   const onFinish = async (values) => {
-await postHearing(values)
-    nav('/evaluationdetail/scalenav')
-    message.success('恭喜您，提交成功！')
+    await postHearing(values)
+    setChangePage(1)
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
   };
 
   const formItemLayout = {
@@ -53,6 +56,7 @@ await postHearing(values)
   return (
     <Commontitle title='听力筛查表' back className='hearing-wrapper'>
       <ToTopBtn />
+    {changePage===0?
       <Form
         scrollToFirstError
         onFieldsChange={formChange}
@@ -178,7 +182,12 @@ await postHearing(values)
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form>: <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
     </Commontitle>
   )
 }

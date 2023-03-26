@@ -1,4 +1,4 @@
-import { Select, Form, Rate, Button, message } from 'antd';
+import { Select, Form, Rate, Button, message, Spin, Alert } from 'antd';
 import { MehOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -99,6 +99,7 @@ const detailPosition = [
 ]
 
 export default function Painful() {
+  const [changePage, setChangePage] = useState(0)
   const itemStyle = {
     display: 'inline-block',
     width: '120rem',
@@ -109,12 +110,14 @@ export default function Painful() {
   const topicContext = useContext(topicNumbercontext)
   const [number, setNumber] = useState(1)
 
-  const onFinish = async(values) => {
-    const res=await postPain(values) 
-    console.log(res)
-    nav(-1)
+  const onFinish = async (values) => {
+    await postPain(values)
     topicContext.numberDispatch({ type: 'PAINSADD', selectedNumber: 1 })
-    message.success('恭喜您，提交成功')
+    setChangePage(1)
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
 
   };
 
@@ -134,6 +137,7 @@ export default function Painful() {
 
       <div className="question">疼痛部位 : </div>
       <hr />
+    {changePage===0?
       <Form
         style={{
           maxWidth: 600,
@@ -211,7 +215,12 @@ export default function Painful() {
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form>: <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
 
     </Commontitle >
   )

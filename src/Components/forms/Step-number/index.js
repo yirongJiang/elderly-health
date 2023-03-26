@@ -1,4 +1,4 @@
-import { Radio, Form, Input, Button, message, Space } from 'antd';
+import { Radio, Form, Input, Button, message, Space, Spin, Alert } from 'antd';
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Commontitle from '../../../UI/Nav-head';
@@ -20,13 +20,16 @@ export default function Steps() {
   const [flag, setFlag] = useState()
   const nav = useNavigate()
   const [form] = Form.useForm()
-
+  const [changePage, setChangePage] = useState(0)
   const onFinish = async (values) => {
     values['type'] = `${flag}`
-await postWalk(values)
+    await postWalk(values)
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
-    nav(-1)
-    message.success('恭喜您，提交成功！')
+    setChangePage(1)
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
   };
 
   const formItemLayout = {
@@ -46,7 +49,7 @@ await postWalk(values)
 
   const formChange = (e) => {
     topicContext.numberDispatch({ type: 'STEPADD', selectedNumber: 1 })
-   
+
   }
 
   useEffect(() => {
@@ -60,6 +63,7 @@ await postWalk(values)
 
   return (
     <Commontitle title='每日步行数' back className='step-wrapper'>
+    {changePage===0?
       <Form
         ref={formRef}
         onFieldsChange={formChange}
@@ -109,7 +113,12 @@ await postWalk(values)
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form>: <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
 
     </Commontitle >
   )

@@ -1,4 +1,4 @@
-import { Button, Form, message, Radio } from 'antd';
+import { Alert, Button, Form, message, Radio, Spin } from 'antd';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { postEyesight } from '../../../../api';
@@ -6,6 +6,7 @@ import { topicNumbercontext, topicFormDatacontext } from '../../../../store/topi
 
 export default function Checkfive() {
   const [size, setSize] = useState(260)
+  const [changePage, setChangePage] = useState(0)
   const nav = useNavigate()
   const [form] = Form.useForm()
   const {eyesightFormdata} = useContext(topicFormDatacontext)
@@ -13,8 +14,11 @@ export default function Checkfive() {
   const onFinish = async(values) => {
     const finalValues={...eyesightFormdata,...values}
     await postEyesight(finalValues)
-    message.success("恭喜您，提交成功")
-    nav('/evaluationdetail/scalenav')
+    setChangePage(1)
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
   };
 
   const formItemLayout = {
@@ -47,7 +51,7 @@ export default function Checkfive() {
 
   return (
     <div className='five-wrapper'>
-      <Form
+    {changePage===0?  <Form
         onFieldsChange={formChange}
         form={form}
         name="validate_other"
@@ -75,7 +79,12 @@ export default function Checkfive() {
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form>: <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
     </div>
   )
 }

@@ -1,5 +1,5 @@
-import { Button, Form, message, Radio, Space } from 'antd';
-import React, { useContext, useEffect } from 'react'
+import { Alert, Button, Form, message, Radio, Space, Spin } from 'antd';
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less';
@@ -15,12 +15,16 @@ const commonRules = [
 ]
 export default function Swallow() {
   const [form] = Form.useForm()
+  const [changePage, setChangePage] = useState(0)
   const nav = useNavigate()
-  const onFinish = async(values) => {
+  const onFinish = async (values) => {
     await postSwallow(values)
-    nav('/evaluationdetail/scalenav')
+    setChangePage(1)
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
-    message.success('恭喜您，提交成功')
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
   };
   const formItemLayout = {
     labelCol: {
@@ -53,8 +57,9 @@ export default function Swallow() {
       <div className="question">
         请自我汇报最近两周的情况：
       </div>
-      <Form
-       scrollToFirstError
+   {changePage===0? 
+     <Form
+        scrollToFirstError
         onFieldsChange={formChange}
         style={{ padding: '0 10rem' }}
         form={form}
@@ -112,7 +117,12 @@ export default function Swallow() {
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form>: <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
     </Commontitle>
   )
 }

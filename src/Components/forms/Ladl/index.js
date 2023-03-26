@@ -1,5 +1,5 @@
-import { Button, Form, message, Radio, Space } from 'antd';
-import React, { useContext, useEffect } from 'react'
+import { Alert, Button, Form, message, Radio, Space, Spin } from 'antd';
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import './index.less'
@@ -17,12 +17,15 @@ const  commonRuls  = [
 export default function Ladl() {
   const [form] = Form.useForm()
   const nav = useNavigate()
-
+  const [changePage, setChangePage] = useState(0)
   const onFinish = async (values) => {
     await postIadl(values)
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
-    nav('/evaluationdetail/scalenav')
-    message.success('恭喜您提交成功')
+    setChangePage(1)
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
   };
 
   const formItemLayout = {
@@ -53,7 +56,8 @@ export default function Ladl() {
   return (
     <Commontitle title='洛顿IADL评估' back className='ladi-wrapper'>
       <ToTopBtn />
-      <Form
+     {changePage===0? 
+     <Form
        scrollToFirstError
         form={form}
         onFieldsChange={formChange}
@@ -223,7 +227,12 @@ export default function Ladl() {
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form>: <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
     </Commontitle >
   )
 }

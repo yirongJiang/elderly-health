@@ -1,5 +1,5 @@
-import { Button, Form, message, Radio, Space } from 'antd';
-import React, { useContext, useEffect } from 'react'
+import { Alert, Button, Form, message, Radio, Space, Spin } from 'antd';
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head';
 import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNumbercontext'
@@ -18,11 +18,14 @@ export default function Heart() {
 
   const [form] = Form.useForm()
   const nav = useNavigate()
-
-  const onFinish = async(values) => {
-await postHeart(values)
-    nav('/evaluationdetail/scalenav')
-    message.success('恭喜您提交成功')
+  const [changePage, setChangePage] = useState(0)
+  const onFinish = async (values) => {
+    await postHeart(values)
+    setChangePage(1)
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
   };
 
   const formItemLayout = {
@@ -57,6 +60,7 @@ await postHeart(values)
       <div className="question">
         是否有冠心病或心脏相关的问题？
       </div>
+     {changePage===0?
       <Form
         onFieldsChange={formChange}
         form={form}
@@ -96,7 +100,12 @@ await postHeart(values)
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form>: <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
     </Commontitle>
   )
 }

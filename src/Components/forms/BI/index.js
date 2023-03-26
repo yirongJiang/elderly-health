@@ -1,4 +1,4 @@
-import { Button, Form, message, Radio, Space } from 'antd';
+import { Alert, Button, Form, message, Radio, Space, Spin } from 'antd';
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Commontitle from '../../../UI/Nav-head'
@@ -6,6 +6,7 @@ import { topicNumbercontext, topicFormDatacontext } from '../../../store/topicNu
 import './index.less'
 import { postBi } from '../../../api';
 import ToTopBtn from '../../../utility/ToTopBtn';
+import { useState } from 'react';
 
 
 const commonRuls = [
@@ -18,12 +19,16 @@ export default function Bi() {
 
   const [form] = Form.useForm()
   const nav = useNavigate()
-
+  const [changePage, setChangePage] = useState(0)
   const onFinish = async (values) => {
     const res = await postBi(values)
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
-    nav('/evaluationdetail/scalenav')
-    message.success('恭喜您，提交成功')
+    setChangePage(1)
+    setTimeout(() => {
+      nav('/evaluationdetail/scalenav')
+      message.success('恭喜您，提交成功')
+    }, 1000);
+
   };
 
   const formItemLayout = {
@@ -53,6 +58,7 @@ export default function Bi() {
   return (
     <Commontitle title='BI评估表' back className='bi-wrapper'>
       <ToTopBtn />
+     {changePage===0?
       <Form
         scrollToFirstError
         onFieldsChange={formChange}
@@ -192,7 +198,12 @@ export default function Bi() {
             提交
           </Button>
         </Form.Item>
-      </Form>
+      </Form>: <Spin tip="Loading...">
+        <Alert style={{ height: '60vh' }}
+          message="正在上传，请勿重复提交"
+          type="info"
+        />
+      </Spin>}
     </Commontitle>
   )
 }

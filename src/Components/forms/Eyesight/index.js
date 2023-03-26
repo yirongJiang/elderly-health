@@ -16,7 +16,6 @@ const commonRules = [
 export default function Eyesight() {
   const [nextStep, setNextStep] = useState(0)
   const [form] = Form.useForm()
-  
   const onFinish = async (values) => {
     setNextStep(1)
   };

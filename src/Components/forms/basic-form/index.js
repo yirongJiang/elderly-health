@@ -37,6 +37,7 @@ export default function Basicform() {
     sessionStorage.setItem('isPost', 1)
     const illnessList = values.disease.toString()
     const userId = localStorage.getItem("adminUserId")
+    let org = ['', '华西', '南京医科', '湘雅', '康复中心']
     const result = await postInfo(
       {
         ...values,
@@ -45,7 +46,7 @@ export default function Basicform() {
         "illness": '0',
         "illnessNum": "0",
         "illnessOther": "0",
-        "org": '华西',
+        "org": `${org[values.institution]}`,
       })
 
     localStorage.setItem('X-Auth-Token', result.body)
@@ -343,10 +344,10 @@ export default function Basicform() {
           label="机构来源"
         >
           <Select style={{ width: '80%' }} size='large' placeholder="点击选择机构来源">
-            <Option value="华西医院">四川大学华西医院</Option>
-            <Option value="南京医科大学">南京医科大学</Option>
-            <Option value="中南大学湘雅医院">中南大学湘雅医院</Option>
-            <Option value="中国康复研究中心">中国康复研究中心</Option>
+            <Option value="1">四川大学华西医院</Option>
+            <Option value="2">南京医科大学</Option>
+            <Option value="3">中南大学湘雅医院</Option>
+            <Option value="4">中国康复研究中心</Option>
           </Select>
         </Form.Item>
 
