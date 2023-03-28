@@ -14,10 +14,9 @@ export default function Mmse() {
   const [form] = Form.useForm()
   const nav = useNavigate()
   const [changePage, setChangePage] = useState(0)
+
   const onFinish = async (values) => {
-
     await postMmse(values)
-
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setChangePage(1)
     setTimeout(() => {

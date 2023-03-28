@@ -9,10 +9,10 @@ export default function Checkfive() {
   const [changePage, setChangePage] = useState(0)
   const nav = useNavigate()
   const [form] = Form.useForm()
-  const {eyesightFormdata} = useContext(topicFormDatacontext)
+  const { eyesightFormdata } = useContext(topicFormDatacontext)
 
-  const onFinish = async(values) => {
-    const finalValues={...eyesightFormdata,...values}
+  const onFinish = async (values) => {
+    const finalValues = { ...eyesightFormdata, ...values }
     await postEyesight(finalValues)
     setChangePage(1)
     setTimeout(() => {
@@ -34,11 +34,11 @@ export default function Checkfive() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setSize(size - 30)
       if (size < 130) {
         setSize(260)
       }
-    }, 1000);
+      setSize(size - 30)
+    }, 1500);
     return () => {
       clearTimeout(timer)
     }
@@ -51,7 +51,7 @@ export default function Checkfive() {
 
   return (
     <div className='five-wrapper'>
-    {changePage===0?  <Form
+      {changePage === 0 ? <Form
         onFieldsChange={formChange}
         form={form}
         name="validate_other"
@@ -79,7 +79,7 @@ export default function Checkfive() {
             提交
           </Button>
         </Form.Item>
-      </Form>: <Spin tip="Loading...">
+      </Form> : <Spin tip="Loading...">
         <Alert style={{ height: '60vh' }}
           message="正在上传，请勿重复提交"
           type="info"

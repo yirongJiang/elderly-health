@@ -51,7 +51,7 @@ export default function Evaluationoutcome() {
 
   const options = {
     title: {
-      text: '七维认知分析图',
+      text: '评估结果图',
       textStyle: {
         color: '#2a4986'
       },
@@ -74,7 +74,7 @@ export default function Evaluationoutcome() {
     },
     series: [
       {
-        name: '七维认知分析图',
+        name: '评估结果图',
         type: 'radar',
         data: [
           {

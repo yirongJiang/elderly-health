@@ -137,90 +137,92 @@ export default function Painful() {
 
       <div className="question">疼痛部位 : </div>
       <hr />
-    {changePage===0?
-      <Form
-        style={{
-          maxWidth: 600,
-        }}
-        layout='horizontal'
-        form={form}
-        name="validate_other"
-        {...formItemLayout}
-        onFinish={onFinish}
-      >
-
-        <Form.List name="pain">
-          {(fields, { add, remove }) => (
-            <>
-              {fields.map((field, index) => (
-                <Form.Item key={field.key} >
-                  <Form.Item
-                    noStyle
-                    shouldUpdate={(prevValues, curValues) =>
-                      prevValues.area !== curValues.area || prevValues.sights !== curValues.sights
-                    }
-                  >
-                    {() => (
-                      <Form.Item
-                        style={itemStyle}
-                        {...field}
-                        label={`部位${++index}`}
-                        name={[field.name, `position`]}
-                      >
-                        <Select options={position} placeholder="无" />
-                      </Form.Item>
-
-                    )}
-                  </Form.Item>
-                  <Form.Item
-                    style={{ display: 'inline-block', marginTop: '10vw', marginLeft: '10vw', width: ' 120rem' }}
-                    {...field}
-                    name={[field.name, `side`]}
-                  >
-                    <Select options={detailPosition} placeholder="无" />
-                  </Form.Item>
-
-                  <Form.Item label="疼痛程度 ： ：" style={{ marginLeft: '4%' }}>
-                    <Form.Item style={{ marginLeft: '4%' }} name={[field.name, `level`]} ><Rate count={10} character={<MehOutlined />} /></Form.Item>
-                    <img style={{ marginLeft: '3%' }} src={pains} alt="" />
-                  </Form.Item>
-
-                  <Button onClick={() => remove(field.name)} icon={<MinusCircleOutlined />}>删除部位</Button>
-                  <hr />
-                </Form.Item>
-
-              ))}
-
-
-              <Form.Item wrapperCol={{
-                span: 2,
-                offset: 0
-              }}>
-                <Button className='add-btn' style={{ width: '40vw' }} type="dashed" onClick={() => { setNumber((prevstate) => prevstate++); add(); }} block icon={<PlusOutlined />}>
-                  添加部位
-                </Button>
-              </Form.Item>
-            </>
-          )}
-        </Form.List>
-
-        <Form.Item
-          style={{ width: '80%' }}
-          wrapperCol={{
-            span: 9,
-            offset: 7
+      {changePage === 0 ?
+        <Form
+          style={{
+            maxWidth: 600,
           }}
+          layout='horizontal'
+          form={form}
+          name="validate_other"
+          {...formItemLayout}
+          onFinish={onFinish}
         >
-          <Button className='submit-btn' type="primary" htmlType="submit">
-            提交
-          </Button>
-        </Form.Item>
-      </Form>: <Spin tip="Loading...">
-        <Alert style={{ height: '60vh' }}
-          message="正在上传，请勿重复提交"
-          type="info"
-        />
-      </Spin>}
+
+          <Form.List name="pain">
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map((field, index) => (
+                  <Form.Item key={field.key} >
+                    <Form.Item
+                      noStyle
+                      shouldUpdate={(prevValues, curValues) =>
+                        prevValues.area !== curValues.area || prevValues.sights !== curValues.sights
+                      }
+                    >
+                      {() => (
+                        <Form.Item
+                          style={itemStyle}
+                          {...field}
+                          label={`部位${++index}`}
+                          name={[field.name, `position`]}
+                        >
+                          <Select options={position} placeholder="无" />
+                        </Form.Item>
+
+                      )}
+                    </Form.Item>
+                    <Form.Item
+                      style={{ display: 'inline-block', marginTop: '10vw', marginLeft: '10vw', width: ' 120rem' }}
+                      {...field}
+                      name={[field.name, `side`]}
+                    >
+                      <Select options={detailPosition} placeholder="无" />
+                    </Form.Item>
+
+                    <Form.Item className='sweet' label="疼痛程度 ： ：" style={{ marginLeft: '4%' }}>
+                      <Form.Item style={{ marginLeft: '4%'}} name={[field.name, `level`]} >
+                        <Rate className='rate' count={10} character={<MehOutlined />} />
+                      </Form.Item>
+                      <img style={{ marginLeft: '3%', width: '68vw' }} src={pains} alt="" />
+                    </Form.Item>
+
+                    <Button onClick={() => remove(field.name)} icon={<MinusCircleOutlined />}>删除部位</Button>
+                    <hr />
+                  </Form.Item>
+
+                ))}
+
+
+                <Form.Item wrapperCol={{
+                  span: 2,
+                  offset: 0
+                }}>
+                  <Button className='add-btn' style={{ width: '40vw' }} type="dashed" onClick={() => { setNumber((prevstate) => prevstate++); add(); }} block icon={<PlusOutlined />}>
+                    添加部位
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+
+          <Form.Item
+            style={{ width: '80%' }}
+            wrapperCol={{
+              span: 9,
+              offset: 7
+            }}
+          >
+            <Button className='submit-btn' type="primary" htmlType="submit">
+              提交
+            </Button>
+          </Form.Item>
+        </Form> : <Spin tip="Loading...">
+          <Alert style={{ height: '60vh' }}
+            message="正在上传，请勿重复提交"
+            type="info"
+          />
+        </Spin>}
 
     </Commontitle >
   )

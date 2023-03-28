@@ -6,7 +6,7 @@ export default function Header(props) {
     <div className='header'>
       {
         change === 1 ? <div className='addTitle'>新增评估病例</div> :
-         <div className='title'>老年认知障碍评估测试</div>
+         <div className='title'>老年智能康复评估系统</div>
       }
 
     </div>

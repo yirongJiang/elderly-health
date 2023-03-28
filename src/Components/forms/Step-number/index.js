@@ -49,7 +49,6 @@ export default function Steps() {
 
   const formChange = (e) => {
     topicContext.numberDispatch({ type: 'STEPADD', selectedNumber: 1 })
-
   }
 
   useEffect(() => {

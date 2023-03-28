@@ -24,7 +24,7 @@ export default function Commontitle(props) {
         {noBack ? '' : <div onClick={navChange} className="back"> <CaretLeftFilled style={{ fontSize: '20rem', color: 'white' }} />  返回</div>}
         <div className="title">{props.title}</div>
         {
-          basicPage ? '' : <span className='userName'>{basicdataContext.basicForm.name}患者</span>
+          basicPage ? '' : <span className='userName'>{basicdataContext.basicForm.name}</span>
         }
       </div>
       {props.children}

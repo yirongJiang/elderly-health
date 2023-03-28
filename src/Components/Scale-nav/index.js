@@ -37,7 +37,7 @@ export default function Scalenav() {
     <Commontitle noBack basicPage navagation='/home/addEvaluate' backTwoList title='评估表单（请依次认真完成以下表单，
     此过程可能会花费一些时间）' className='scalenav-wrapper'>
       <div className='tips'>下列量表必填
-        <span className='userName'>{formdataContext.basicForm.name}患者</span>
+        <span className='userName'>{formdataContext.basicForm.name}</span>
       </div>
       <div className="necessary-list">
         {
