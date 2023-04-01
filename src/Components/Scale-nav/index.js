@@ -16,7 +16,6 @@ export default function Scalenav() {
   const formdataContext = useContext(basicFormContext)
   const date = dayjs().format('YYYY-MM-DD')
   const { basicForm: { name, institution, staff } } = useContext(basicFormContext)
-  // const institutions = String(arr.indexOf(institution) + 1)
 
   const clearAll = async () => {
     try {
@@ -24,7 +23,7 @@ export default function Scalenav() {
       const result = await postGetGrade({ "createDate": date, "name": name, "institution": institution, "staff": staff, "adminUserId": localStorage.getItem('adminUserId') })
       console.log(result)
       sessionStorage.removeItem('isPost')
-      formdataContext.basicFormGroupDispatch({type:'clearForm'})
+      // formdataContext.basicFormGroupDispatch({type:'clearForm'})
       nav('/evaluationdetail/evaluateoutcome', { state: { array: result.body[0] } })
 
     } catch (error) {

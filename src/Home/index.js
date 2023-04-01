@@ -12,7 +12,6 @@ export default function Home() {
         <Header />
         <Outlet />
         <Footer />
-        {/* <Navfooter /> */}
       </div>
   
 

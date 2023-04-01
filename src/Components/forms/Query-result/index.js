@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Commontitle from '../../../UI/Nav-head'
 import { Button, Col, DatePicker, Form, Input, message, Row, Select } from 'antd';
 import './index.less'
+import { basicFormContext } from '../../../store/topicNumbercontext';
 import { useNavigate } from 'react-router-dom';
 import HomeBtn from '../../../UI/HeaderBtn';
 import { postGetGrade } from '../../../api';
@@ -22,6 +23,7 @@ export default function Queryresult() {
 
   const [date, setDate] = useState()
   const [list, SetList] = useState([])
+  const formdataContext = useContext(basicFormContext)
   const nav = useNavigate()
   const [form] = Form.useForm();
   const style = {
@@ -40,7 +42,7 @@ export default function Queryresult() {
       "staff": ""
     })
     SetList(res.body)
-    console.log(res)
+    formdataContext.basicFormGroupDispatch({type:'clearForm'})
   };
 
   const onFinishFailed = (errorInfo) => {

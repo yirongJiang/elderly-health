@@ -25,7 +25,7 @@ export default function Bi() {
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setChangePage(1)
     setTimeout(() => {
-      nav('/evaluationdetail/scalenav')
+      nav('/evaluationdetail/scalenav', { replace: true })
       message.success('恭喜您，提交成功')
     }, 1000);
 
@@ -56,7 +56,7 @@ export default function Bi() {
   }, [])
 
   return (
-    <Commontitle title='BI评估表' back className='bi-wrapper'>
+    <Commontitle title='BI评估表' navagation='/evaluationdetail/scalenav' className='bi-wrapper'>
       <ToTopBtn />
      {changePage===0?
       <Form

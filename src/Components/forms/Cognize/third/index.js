@@ -252,7 +252,7 @@ export default function Cognizethird() {
     ctx.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setChangePage(1)
     setTimeout(() => {
-      nav('/evaluationdetail/scalenav')
+      nav('/evaluationdetail/scalenav',{replace:true})
       message.success('恭喜您提交成功')
     }, 1000);
   }
@@ -271,7 +271,7 @@ export default function Cognizethird() {
   }
 
   return (
-    <Commontitle title='在空白处绘制11点10分的钟表 ：' back className='cognizethird-wrapper'>
+    <Commontitle title='在空白处绘制11点10分的钟表 ：' navagation='/evaluationdetail/cognize/second' className='cognizethird-wrapper'>
       {changePage === 0 ?
         <div className='formal-content'>
           <div className="top-buttons">

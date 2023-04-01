@@ -27,7 +27,7 @@ export default function Steps() {
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setChangePage(1)
     setTimeout(() => {
-      nav('/evaluationdetail/scalenav')
+      nav('/evaluationdetail/scalenav',{replace:true})
       message.success('恭喜您，提交成功')
     }, 1000);
   };
@@ -61,7 +61,7 @@ export default function Steps() {
   }
 
   return (
-    <Commontitle title='每日步行数' back className='step-wrapper'>
+    <Commontitle title='每日步行数' navagation='/evaluationdetail/scalenav' className='step-wrapper'>
     {changePage===0?
       <Form
         ref={formRef}

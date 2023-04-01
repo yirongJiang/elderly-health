@@ -16,7 +16,7 @@ export default function Checkfive() {
     await postEyesight(finalValues)
     setChangePage(1)
     setTimeout(() => {
-      nav('/evaluationdetail/scalenav')
+      nav('/evaluationdetail/scalenav', { replace: true })
       message.success('恭喜您，提交成功')
     }, 1000);
   };

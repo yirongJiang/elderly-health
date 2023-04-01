@@ -22,7 +22,7 @@ export default function Swallow() {
     setChangePage(1)
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setTimeout(() => {
-      nav('/evaluationdetail/scalenav')
+      nav('/evaluationdetail/scalenav', { replace: true })
       message.success('恭喜您，提交成功')
     }, 1000);
   };
@@ -53,7 +53,7 @@ export default function Swallow() {
 
 
   return (
-    <Commontitle title='吞咽二便功能：' back className='swallow-wrapper'>
+    <Commontitle title='吞咽二便功能：' navagation='/evaluationdetail/scalenav' className='swallow-wrapper'>
       <div className="question">
         请自我汇报最近两周的情况：
       </div>

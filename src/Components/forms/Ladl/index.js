@@ -23,7 +23,7 @@ export default function Ladl() {
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setChangePage(1)
     setTimeout(() => {
-      nav('/evaluationdetail/scalenav')
+      nav('/evaluationdetail/scalenav', { replace: true })
       message.success('恭喜您，提交成功')
     }, 1000);
   };
@@ -54,7 +54,7 @@ export default function Ladl() {
   }, [])
 
   return (
-    <Commontitle title='洛顿IADL评估' back className='ladi-wrapper'>
+    <Commontitle title='洛顿IADL评估' navagation='/evaluationdetail/scalenav' className='ladi-wrapper'>
       <ToTopBtn />
      {changePage===0? 
      <Form

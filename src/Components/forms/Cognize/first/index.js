@@ -26,7 +26,7 @@ export default function Cognizefirst() {
   const nav = useNavigate()
   const [form] = Form.useForm()
   const onFinish = (values) => {
-    nav('/evaluationdetail/cognize/second')
+    nav('/evaluationdetail/cognize/second',{replace:true})
   };
 
   const topicContext = useContext(topicNumbercontext)
@@ -47,7 +47,7 @@ export default function Cognizefirst() {
   }, [])
 
   return (
-    <Commontitle title='自制认知筛查表' back className='cognizefirst-wrapper'>
+    <Commontitle title='自制认知筛查表' navagation='/evaluationdetail/scalenav'  className='cognizefirst-wrapper'>
       <Form
         scrollToFirstError
         onFinishFailed={onFinishFailed}

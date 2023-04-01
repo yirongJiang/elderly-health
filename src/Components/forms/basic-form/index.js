@@ -50,7 +50,7 @@ export default function Basicform() {
       })
 
     localStorage.setItem('X-Auth-Token', result.body)
-    nav(-1)
+    nav(-1,{replace:true})
     message.success('恭喜您，完成填写！')
   };
 
@@ -301,7 +301,7 @@ export default function Basicform() {
                 </Option>
               </Select>
             </Form.Item> :
-            <Form.Item style={{ width: '90%' }} hasFeedback name='illnessOther' label='请填写您的其他疾病史' required='true'>
+            <Form.Item name='disease' style={{ width: '90%' }} hasFeedback  label='请填写您的其他疾病史' required='true'>
               <TextArea rows={2} style={{ width: '70%', }} placeholder='点击开始填写说明' />
             </Form.Item>
         }
@@ -387,31 +387,6 @@ export default function Basicform() {
             name='place'
             rules={commonRuls} label='评估地点说明' ><TextArea style={{ width: '88%' }} rows={2} placeholder='点击开始填写说明说明' /></Form.Item>
         }
-
-        {/* 
-        {peopleSpecial === 0 ?
-          <Form.Item
-            hasFeedback
-            rules={commonRuls}
-            style={{ width: '90%' }}
-            name="staff"
-            label="填写人员"
-          >
-            <Select style={{ width: '80%' }} size='large' onChange={peopleChange} placeholder="点击选择填写人员">
-              <Option value="本人">本人</Option>
-              <Option value="照顾者">照顾者</Option>
-              <Option value="医务人员">医务人员</Option>
-              <Option value="其他(请注明)">其他(请注明)</Option>
-            </Select>
-          </Form.Item> :
-          <Form.Item
-            hasFeedback
-            name='staff'
-            rules={commonRuls} label='填写人员说明' >
-            <TextArea rows={2} style={{ width: '88%', }} placeholder='点击开始填写说明' />
-          </Form.Item>}
-
- */}
 
         <Form.Item
           rules={commonRuls}

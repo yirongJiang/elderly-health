@@ -15,7 +15,7 @@ export default function Commontitle(props) {
       nav(-1)
       return
     }
-    nav(navagation)
+    nav(navagation, { replace: true })
   }
 
   return (

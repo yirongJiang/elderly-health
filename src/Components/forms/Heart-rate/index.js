@@ -20,10 +20,11 @@ export default function Heart() {
   const nav = useNavigate()
   const [changePage, setChangePage] = useState(0)
   const onFinish = async (values) => {
+    console.log(values)
     await postHeart(values)
     setChangePage(1)
     setTimeout(() => {
-      nav('/evaluationdetail/scalenav')
+      nav('/evaluationdetail/scalenav', { replace: true })
       message.success('恭喜您，提交成功')
     }, 1000);
   };

@@ -24,7 +24,7 @@ export default function Psychology() {
     topicContext.numberDispatch({ type: 'TOTALADD', selectedNumber: 1 })
     setChangePage(1)
     setTimeout(() => {
-      nav('/evaluationdetail/scalenav')
+      nav('/evaluationdetail/scalenav', { replace: true })
       message.success('恭喜您，提交成功')
     }, 1000);
   };
@@ -56,7 +56,7 @@ export default function Psychology() {
 
 
   return (
-    <Commontitle title='心理问卷' back className='psychology-wrapper'>
+    <Commontitle title='心理问卷' navagation='/evaluationdetail/scalenav' className='psychology-wrapper'>
       <div className="question">
         在最近两周里，您感觉自己被以下症状所困扰的频率是？
       </div>
